@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="1Np-3f-P6S">
+    <dependencies>
+        <development defaultVersion="4200" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="5">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <viewController id="2" customClass="NomadTruckViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3" customClass="UIScrollView">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="YOb-9L-vC6">
+                                <rect key="frame" x="31" y="20" width="86" height="70"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="TruckName" lineBreakMode="tailTruncation" minimumFontSize="10" id="6Ax-DY-tPW">
+                                <rect key="frame" x="130" y="14" width="153" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="The duck has landed Hyde Park. At 57th and Ellis (across the library)" id="2Mm-Sg-PEM">
+                                <rect key="frame" x="40" y="120" width="240" height="79"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Message" lineBreakMode="tailTruncation" minimumFontSize="10" id="A3I-1M-liT">
+                                <rect key="frame" x="48" y="96" width="69" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="140" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="efl-Xc-C3H">
+                                <rect key="frame" x="238" y="96" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="q8V-1e-Exp">
+                                <rect key="frame" x="196" y="207" width="87" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Check in">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitMessage:" destination="2" eventType="touchUpInside" id="SWM-HV-bWl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Nomad" id="FyQ-Vf-1e9"/>
+                    <connections>
+                        <outlet property="charactersRemaining" destination="efl-Xc-C3H" id="jfL-Of-C3U"/>
+                        <outlet property="message" destination="2Mm-Sg-PEM" id="oCW-2f-zbV"/>
+                        <outlet property="scrollView" destination="3" id="eKJ-Re-hxp"/>
+                        <outlet property="truckLogo" destination="YOb-9L-vC6" id="qKv-KV-cUT"/>
+                        <outlet property="truckName" destination="6Ax-DY-tPW" id="yRe-6C-0rM"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1033" y="29"/>
+        </scene>
+        <scene sceneID="Xa7-to-Apg">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DUt-ZL-hG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="twitterLogin" title="TwitterLogin" id="qKy-pj-B7h" customClass="TwitterLoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qm6-b5-Amz">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yWa-b2-15B">
+                                <rect key="frame" x="96" y="272" width="145" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Go to other page">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2" kind="push" id="Cfv-EJ-5uc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Nomad" id="9oN-Ds-GLL"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="513" y="54"/>
+        </scene>
+        <scene sceneID="1BR-Wp-VUX">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hzw-Pj-bpX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="1Np-3f-P6S" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="pBG-Uc-AeO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qKy-pj-B7h" kind="relationship" relationship="rootViewController" id="zI6-1j-cXz"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-13" y="54"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="CLLocationManager" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CLLocationManager.h"/>
+        </class>
+        <class className="NomadTruckViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NomadTruckViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="charactersRemaining" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="locationManager" candidateClass="CLLocationManager"/>
+                <relationship kind="outlet" name="message" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="truckLogo" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="truckName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TwitterLoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TwitterLoginViewController.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
