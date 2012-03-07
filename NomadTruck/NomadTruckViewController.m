@@ -65,11 +65,11 @@
             NSLog(@"in viewdidload truckid: %@",truckID);
             
             PFFile *truckLogoFromParse = [workingTruck objectForKey:@"Logo"];
-            //NSData *logoData = [truckLogoFromParse getData];
+            NSData *logoData = [truckLogoFromParse getData];
             //NSLog(@"%@",logoData);
             
-            //truckLogo.image = [UIImage imageWithData:logoData];
-            truckLogo.image = [UIImage imageNamed:@"Nomad Logo.png"];
+            truckLogo.image = [UIImage imageWithData:logoData];
+            //truckLogo.image = [UIImage imageNamed:@"Nomad Logo.png"];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
