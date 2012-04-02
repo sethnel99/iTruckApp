@@ -27,6 +27,9 @@
 		4EAFE0DA15004CA1004360CD /* NomadTruckAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE0D915004CA1004360CD /* NomadTruckAppDelegate.m */; };
 		4EAFE0DD15004CA1004360CD /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EAFE0DB15004CA1004360CD /* MainStoryboard.storyboard */; };
 		4EAFE0E015004CA1004360CD /* NomadTruckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE0DF15004CA1004360CD /* NomadTruckViewController.m */; };
+		CE2E44E31528F13400FE7136 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E44E11528F13300FE7136 /* MBProgressHUD.m */; };
+		CE2E44E61528F3C400FE7136 /* InventoryDateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E44E51528F3C400FE7136 /* InventoryDateTableViewController.m */; };
+		CE2E44EC15292C4600FE7136 /* NomadTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E44EB15292C4600FE7136 /* NomadTabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +60,12 @@
 		4EAFE0DC15004CA1004360CD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4EAFE0DE15004CA1004360CD /* NomadTruckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomadTruckViewController.h; sourceTree = "<group>"; };
 		4EAFE0DF15004CA1004360CD /* NomadTruckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomadTruckViewController.m; sourceTree = "<group>"; };
+		CE2E44E01528F13300FE7136 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		CE2E44E11528F13300FE7136 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		CE2E44E41528F3C400FE7136 /* InventoryDateTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryDateTableViewController.h; sourceTree = "<group>"; };
+		CE2E44E51528F3C400FE7136 /* InventoryDateTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryDateTableViewController.m; sourceTree = "<group>"; };
+		CE2E44EA15292C4600FE7136 /* NomadTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NomadTabBarController.h; sourceTree = "<group>"; };
+		CE2E44EB15292C4600FE7136 /* NomadTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NomadTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,18 +128,24 @@
 		4EAFE0CF15004CA1004360CD /* NomadTruck */ = {
 			isa = PBXGroup;
 			children = (
+				CE2E44E01528F13300FE7136 /* MBProgressHUD.h */,
+				CE2E44E11528F13300FE7136 /* MBProgressHUD.m */,
 				4EAC8A181505DB390082911C /* Nomad Logo.png */,
 				4EAF9028150576E300DA1BA3 /* background.png */,
 				4EAFE0D815004CA1004360CD /* NomadTruckAppDelegate.h */,
-				4EAFE0D915004CA1004360CD /* NomadTruckAppDelegate.m */,
 				4EAFE0DB15004CA1004360CD /* MainStoryboard.storyboard */,
 				4EA805911500725B00DCB4BC /* TwitterLoginViewController.h */,
 				4EA805921500725B00DCB4BC /* TwitterLoginViewController.m */,
+				4EAFE0D915004CA1004360CD /* NomadTruckAppDelegate.m */,
 				4EA80594150075AB00DCB4BC /* Truck.h */,
 				4EA80595150075AB00DCB4BC /* Truck.m */,
 				4EAFE0DE15004CA1004360CD /* NomadTruckViewController.h */,
 				4EAFE0DF15004CA1004360CD /* NomadTruckViewController.m */,
+				CE2E44E41528F3C400FE7136 /* InventoryDateTableViewController.h */,
+				CE2E44E51528F3C400FE7136 /* InventoryDateTableViewController.m */,
 				4EAFE0D015004CA1004360CD /* Supporting Files */,
+				CE2E44EA15292C4600FE7136 /* NomadTabBarController.h */,
+				CE2E44EB15292C4600FE7136 /* NomadTabBarController.m */,
 			);
 			path = NomadTruck;
 			sourceTree = "<group>";
@@ -215,6 +230,9 @@
 				4EAFE0E015004CA1004360CD /* NomadTruckViewController.m in Sources */,
 				4EA805931500725B00DCB4BC /* TwitterLoginViewController.m in Sources */,
 				4EA80596150075AB00DCB4BC /* Truck.m in Sources */,
+				CE2E44E31528F13400FE7136 /* MBProgressHUD.m in Sources */,
+				CE2E44E61528F3C400FE7136 /* InventoryDateTableViewController.m in Sources */,
+				CE2E44EC15292C4600FE7136 /* NomadTabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

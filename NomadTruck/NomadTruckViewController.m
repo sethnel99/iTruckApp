@@ -33,6 +33,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.navigationItem.hidesBackButton = TRUE;
+    
     
     latLabel = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
     longLabel = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
@@ -75,6 +77,16 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+    
+    
+    
+    
+    //load truck data in background
+    [Truck sharedTruck].loadingTruckData = true;
+    NSOperationQueue *queue = [NSOperationQueue new];
+    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:[Truck self]
+                                                                            selector:@selector(loadTruckFromParse) object:nil];
+    [queue addOperation:operation];
 
     
 }
