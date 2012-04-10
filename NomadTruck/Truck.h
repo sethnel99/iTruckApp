@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 @interface Truck : NSObject{
     NSString *userObjectID;
@@ -15,12 +16,18 @@
 @property (nonatomic, retain) NSString *userObjectID;
 @property (nonatomic, retain) NSString *truckObjectID;
 @property (nonatomic, retain) NSString *parseID;
+@property (nonatomic, strong) NSArray *inventory;
 @property (nonatomic, strong) NSMutableArray *salesData;
 @property (nonatomic, assign) BOOL loadingTruckData;
+@property (nonatomic, strong) PFObject *truckPFObject;
 
 + (Truck *)sharedTruck;
-+ (NSMutableArray*)getSalesData;
 + (void) loadTruckFromParse;
++ (NSArray *) getInventory;
++ (NSMutableArray *) getSalesData;
++ (void) deleteSalesDayAtIndex:(int) index;
++ (void) addSalesDay:(NSMutableArray *)daySales;
++ (void) updateSalesDay:(NSMutableArray *)daySales onDayIndex:(int)index;
 + (void) waitForLoading;
 
 @end

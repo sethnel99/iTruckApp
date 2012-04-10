@@ -31,10 +31,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.hidesBackButton = TRUE;
-    
+     [super viewDidLoad];
     
     latLabel = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
     longLabel = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];

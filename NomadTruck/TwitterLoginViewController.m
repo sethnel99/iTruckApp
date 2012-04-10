@@ -11,6 +11,12 @@
 
 @implementation TwitterLoginViewController
 
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"prepare for segue");
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -54,6 +60,7 @@
             NSLog(@"%@", userObjectID);
             Truck *truck = [Truck sharedTruck];
             truck.userObjectID = userObjectID;
+            [self performSegueWithIdentifier:@"toTabSegue" sender:self];
         }     
     }];
     

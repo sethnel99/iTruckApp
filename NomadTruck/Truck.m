@@ -7,7 +7,7 @@
 //
 
 #import "Truck.h"
-#import "Parse/Parse.h"
+#import "MenuFoodItem.h"
 
 static Truck *sharedTruck = nil;
 
@@ -16,9 +16,10 @@ static Truck *sharedTruck = nil;
 @synthesize userObjectID;
 @synthesize truckObjectID;
 @synthesize parseID;
-@synthesize salesData;
+@synthesize inventory;
 @synthesize loadingTruckData;
-
+@synthesize salesData;
+@synthesize truckPFObject;
 #pragma mark 
 #pragma mark Singleton Methods
 + (Truck *)sharedTruck {
@@ -28,59 +29,102 @@ static Truck *sharedTruck = nil;
     return sharedTruck;
 }
 
-+ (NSMutableArray *) getSalesData{
++ (NSArray *) getInventory{
+    return sharedTruck.inventory;
+}
+
++ (NSArray *) getSalesData{
     return sharedTruck.salesData;
 }
 
-+ (void) loadTruckFromParse{
++ (void) updateSalesDay:(NSMutableArray *)daySales onDayIndex:(int)index{
+    [sharedTruck.salesData replaceObjectAtIndex:index withObject:daySales];
+    [self saveSalesToParse];
+}
+
++ (void) deleteSalesDayAtIndex:(int) index{
+    [sharedTruck.salesData removeObjectAtIndex:index];
+    [self saveSalesToParse];
+}
++ (void) addSalesDay:(NSMutableArray *)daySales{
+    NSDate *newSaleDate = [daySales objectAtIndex:0];
     
-    sharedTruck.salesData = [[NSMutableArray alloc] init];
+    //loop through the existing sales day entries to place this one in the correct chronological order
+    for(int i = 0; i < [sharedTruck.salesData count]; i++){
+        NSMutableArray *tArr = [sharedTruck.salesData objectAtIndex:i];
+        NSDate *tDate = (NSDate*)[tArr objectAtIndex:0];
+        if([tDate compare:newSaleDate] == NSOrderedDescending){
+            [sharedTruck.salesData insertObject:daySales atIndex:i];
+            return;
+        }
+        
+        [self saveSalesToParse];
+    }
+    
+    //get to the end - this is the latest (most recent) object
+    [sharedTruck.salesData addObject:daySales];
+}
+
++ (void) saveSalesToParse{
+    [sharedTruck.truckPFObject setObject:sharedTruck.salesData forKey:@"SalesData"];
+    [sharedTruck.truckPFObject saveInBackground];
+}
+
++ (void) loadTruckFromParse{
     
     PFQuery *query = [PFQuery queryWithClassName:@"Trucks"];
     PFCachePolicy cachePolicy = kPFCachePolicyNetworkElseCache;
     query.cachePolicy = cachePolicy;
     
     //placeholder query until twitter accounts are linked to trucks
-    [query whereKey:@"userObjectID"equalTo:@"A5pACN1qDB"];
+    [query whereKey:@"UserObjectID"equalTo:@"eDBqNUx1lc"];
     
-    PFObject *parseTruck = [query getFirstObject];
-    sharedTruck.parseID = parseTruck.objectId;
+    sharedTruck.truckPFObject = [query getFirstObject];
+    sharedTruck.parseID = sharedTruck.truckPFObject.objectId;
+    //NSArray *rawSD = [parseTruck objectForKey:@"SalesData"];
+    NSMutableArray *salesData = [[NSMutableArray alloc] initWithArray:[sharedTruck.truckPFObject objectForKey:@"SalesData"]];
     
-    NSMutableArray *salesData = [[NSMutableArray alloc] initWithArray:[parseTruck objectForKey:@"SalesData"]];
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
-    
-    ////////////initializing nonsense to fill in empty days/////////
-    
-    //if there is no sales data, start with today
-    if([salesData count] == 0){
-        //populate a day
    
-        NSArray *dataPoint = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:[components day]],[NSNumber numberWithInt:[components month]],[NSNumber numberWithInt:[components year]], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
-        
-        NSLog([NSString stringWithFormat:@"d: %d i: %i",[dataPoint objectAtIndex:0],[dataPoint objectAtIndex:0]]);
-        
-        [salesData addObject:dataPoint];
-    }else{
-    //if there is sales data, fill in up to today 
-        
-        NSArray *lastDataPoint = [salesData lastObject];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyyMMdd"];
-        NSDate *lastDate = [dateFormat dateFromString:[NSString stringWithFormat:@"%@%@%@",[lastDataPoint objectAtIndex:2],[lastDataPoint objectAtIndex:1],[lastDataPoint objectAtIndex:0]]];
-        NSDateComponents *lastComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:lastDate];
-        
-        while([lastComponents year] != [components year] || [lastComponents month] != [components month] || [lastComponents day] != [components day]){
-            
-            NSArray *dataPoint = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:[lastComponents day]],[NSNumber numberWithInt:[lastComponents month]],[NSNumber numberWithInt:[lastComponents year]], [NSNumber numberWithInt:0], [NSNumber numberWithInt:0], nil];
-            
-            [salesData addObject:dataPoint];
-            
-            lastDate = [lastDate dateByAddingTimeInterval:86400];
-            lastComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:lastDate];
-        }
+    
+    
+    
+    //////load inventory//////////
+    PFQuery *queryMenuItems = [PFQuery queryWithClassName:@"MenuItems"];
+    [queryMenuItems whereKey:@"TruckID" equalTo:sharedTruck.parseID];
+    queryMenuItems.cachePolicy = cachePolicy;
+    
+    NSArray* parseData = [queryMenuItems findObjects];
+    NSMutableArray *menuData = [[NSMutableArray alloc] init];
+    for(PFObject *temp in parseData){
+        NSString *ParseID = temp.objectId;
+        NSString *name = [temp objectForKey:@"Name"];
+        double price = [[temp objectForKey:@"Price"] doubleValue];
+        [menuData addObject:[[MenuFoodItem alloc] initWithParseID:ParseID withName:name withPrice:price]];
         
     }
-    //////////////end of nonsense////////////////////////
+    sharedTruck.inventory = menuData;
+    
+    
+    //if there is no sales data, start with today (temporary)
+    if([salesData count] == 0){
+        
+        //create a date point, which is a date followed by data for each menu item
+        NSMutableArray *datePoint = [[NSMutableArray alloc] init];
+        [datePoint addObject:[NSDate date]];
+        [datePoint addObject:@"S. Davis and Wells"];
+        
+        //for each menu item, add an entry which is a name, a before, and an after number
+        for(int i = 0; i < [sharedTruck.inventory count]; i++){
+            [datePoint addObject:[[NSArray alloc] initWithObjects:[[sharedTruck.inventory objectAtIndex:i] name], [NSNumber numberWithInt:0], nil]];
+        }
+        
+        NSLog([NSString stringWithFormat:@"date: %@",[datePoint objectAtIndex:0]]);
+        
+        [salesData addObject:datePoint];
+    }
+
+    
+    
     
     sharedTruck.salesData = salesData;
 

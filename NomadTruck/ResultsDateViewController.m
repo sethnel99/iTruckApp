@@ -1,31 +1,18 @@
 //
-//  InventoryDateTableViewController.m
+//  ResultsDateViewController.m
 //  NomadTruck
 //
-//  Created by Farley User on 4/1/12.
+//  Created by Farley User on 4/10/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "InventoryDateTableViewController.h"
-#import "Truck.h"
-#import "MBProgressHUD.h"
-#import "MenuFoodItem.h"
-#import "InventoryTableViewController.h"
+#import "ResultsDateViewController.h"
 
-@interface InventoryDateTableViewController ()
+@interface ResultsDateViewController ()
 
 @end
 
-@implementation InventoryDateTableViewController
-@synthesize salesData;
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    InventoryTableViewController *itvc = (InventoryTableViewController *)[segue destinationViewController];
-    itvc.daySalesIndex = [[self tableView] indexPathForCell:sender].row;
-    itvc.sender = @"DateTable";
-
-}
-
+@implementation ResultsDateViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,24 +23,10 @@
     return self;
 }
 
--(void) hudWasHidden:(MBProgressHUD *)hud{
-    self.salesData = [Truck getSalesData];
-    [self.tableView reloadData];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if([Truck sharedTruck].loadingTruckData == YES){
-        MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:hud];
-        hud.delegate = self;
-        hud.labelText = @"Loading Data";
-        [hud showWhileExecuting:@selector(waitForLoading) onTarget:[Truck self] withObject:nil animated:YES];
-    }else{
-        self.salesData = [Truck getSalesData];
-    }
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -68,12 +41,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    salesData = [Truck getSalesData];
-    [self.tableView reloadData];
-    [super viewWillAppear:animated];
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -83,45 +50,24 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [[Truck sharedTruck].salesData count];
-    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"DateCell";
+    static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-  
-    NSMutableArray *singleDataSet = [salesData objectAtIndex:indexPath.row];
-    NSDate *tempDate = [singleDataSet objectAtIndex:0];
-    
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:tempDate];
-    
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    int hour = [components hour];
-    NSString *ampm = @"am";
-    if(hour > 12){
-        hour -= 12;
-        ampm = @"pm";
-    }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %d, %d, %02d:%02d%@",
-                           [[df monthSymbols] objectAtIndex:([components month] - 1)],
-                           [components day],[components year],[components hour],[components minute],ampm];
-    
-    cell.detailTextLabel.text = [singleDataSet objectAtIndex:1];
-    
-                               
+    // Configure the cell...
     
     return cell;
 }

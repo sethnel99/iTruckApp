@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface InventoryDateTableViewController : UITableViewController
+@interface InventoryDateTableViewController : UITableViewController <MBProgressHUDDelegate>
+
 @property (nonatomic, strong) NSMutableArray *salesData;
 @end

@@ -1,31 +1,52 @@
 //
-//  InventoryDateTableViewController.m
+//  InventoryTableViewController.m
 //  NomadTruck
 //
-//  Created by Farley User on 4/1/12.
+//  Created by Farley User on 4/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "InventoryDateTableViewController.h"
-#import "Truck.h"
-#import "MBProgressHUD.h"
-#import "MenuFoodItem.h"
 #import "InventoryTableViewController.h"
+#import "Truck.h"
+#import "MenuFoodItem.h"
+#import "CustomInventoryInputCell.h"
 
-@interface InventoryDateTableViewController ()
+@interface InventoryTableViewController ()
 
 @end
 
-@implementation InventoryDateTableViewController
-@synthesize salesData;
+@implementation InventoryTableViewController
+@synthesize daySalesData;
+@synthesize daySalesIndex;
+@synthesize locationTextField;
+@synthesize sender;
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    InventoryTableViewController *itvc = (InventoryTableViewController *)[segue destinationViewController];
-    itvc.daySalesIndex = [[self tableView] indexPathForCell:sender].row;
-    itvc.sender = @"DateTable";
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex == 1) {
+        [Truck deleteSalesDayAtIndex:self.daySalesIndex];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
+- (IBAction)topRightButtonPressed:(id)sender {
+    if([self.sender isEqualToString:@"DateTable"]){
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Delete Data"
+                              message: @"Are you sure you wish to delete this sales record?"
+                              delegate: self
+                              cancelButtonTitle:@"No"
+                              otherButtonTitles:@"Yes", nil];
+        [alert show];
+    }
+}
+
+- (IBAction)saveInventoryChanges:(UIButton *)sender {
+    [self.daySalesData replaceObjectAtIndex:1 withObject:self.locationTextField.text];
+    [Truck updateSalesDay:self.daySalesData onDayIndex:self.daySalesIndex];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -36,24 +57,15 @@
     return self;
 }
 
--(void) hudWasHidden:(MBProgressHUD *)hud{
-    self.salesData = [Truck getSalesData];
-    [self.tableView reloadData];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if([Truck sharedTruck].loadingTruckData == YES){
-        MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:hud];
-        hud.delegate = self;
-        hud.labelText = @"Loading Data";
-        [hud showWhileExecuting:@selector(waitForLoading) onTarget:[Truck self] withObject:nil animated:YES];
-    }else{
-        self.salesData = [Truck getSalesData];
+    if ([self.sender isEqualToString:@"Checkout"]) {
+        self.navigationItem.rightBarButtonItem.title = @"Skip";
     }
+    
+    
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -63,13 +75,14 @@
 
 - (void)viewDidUnload
 {
+    [self setLocationTextField:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    salesData = [Truck getSalesData];
+    self.daySalesData = [NSMutableArray arrayWithArray:[[Truck getSalesData] objectAtIndex:self.daySalesIndex]];
     [self.tableView reloadData];
     [super viewWillAppear:animated];
 }
@@ -90,41 +103,42 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[Truck sharedTruck].salesData count];
-    
+    return [self.daySalesData count] - 2;
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    UITableViewCell *superCell = (UITableViewCell *)[[textField superview] superview];
+    int replIndex = textField.tag - 200 + 2;
+    [self.daySalesData replaceObjectAtIndex:replIndex withObject:[NSArray arrayWithObjects:[(UILabel *)[superCell viewWithTag:100] text], textField.text.integerValue,nil]];
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"DateCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"InventoryCell";
+    CustomInventoryInputCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CustomInventoryInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-  
-    NSMutableArray *singleDataSet = [salesData objectAtIndex:indexPath.row];
-    NSDate *tempDate = [singleDataSet objectAtIndex:0];
     
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:tempDate];
+    UILabel *nameLabel = (UILabel *)[cell viewWithTag:100];
+    UITextField *soldInput = (UITextField *)[cell viewWithTag:102];
+
+    soldInput.delegate = self;
+    soldInput.tag = 200+indexPath.row;
+    cell.textTag = 200+indexPath.row;
     
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    int hour = [components hour];
-    NSString *ampm = @"am";
-    if(hour > 12){
-        hour -= 12;
-        ampm = @"pm";
-    }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %d, %d, %02d:%02d%@",
-                           [[df monthSymbols] objectAtIndex:([components month] - 1)],
-                           [components day],[components year],[components hour],[components minute],ampm];
+    NSArray *salesPoint = [self.daySalesData objectAtIndex:(indexPath.row+2)];
     
-    cell.detailTextLabel.text = [singleDataSet objectAtIndex:1];
+    nameLabel.text = [salesPoint objectAtIndex:0];
+    soldInput.text = [NSString stringWithFormat:@"%@",[salesPoint objectAtIndex:1]];
     
-                               
     
     return cell;
 }
+
+
 
 /*
 // Override to support conditional editing of the table view.
