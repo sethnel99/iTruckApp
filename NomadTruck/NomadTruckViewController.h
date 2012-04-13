@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Parse/Parse.h"
 #import <CoreLocation/CoreLocation.h>
+#import "MBProgressHUD.h"
 
-@interface NomadTruckViewController : UIViewController <UITextViewDelegate>
+@interface NomadTruckViewController : UIViewController <UITextViewDelegate, MBProgressHUDDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *truckName;
 @property (weak, nonatomic) IBOutlet UIImageView *truckLogo;
 @property (weak, nonatomic) IBOutlet UITextView *message;

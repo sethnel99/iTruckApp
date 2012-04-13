@@ -15,11 +15,12 @@ static Truck *sharedTruck = nil;
 
 @synthesize userObjectID;
 @synthesize truckObjectID;
-@synthesize parseID;
+@synthesize name;
 @synthesize inventory;
 @synthesize loadingTruckData;
 @synthesize salesData;
 @synthesize truckPFObject;
+@synthesize truckLogo;
 #pragma mark 
 #pragma mark Singleton Methods
 + (Truck *)sharedTruck {
@@ -75,22 +76,33 @@ static Truck *sharedTruck = nil;
     PFQuery *query = [PFQuery queryWithClassName:@"Trucks"];
     PFCachePolicy cachePolicy = kPFCachePolicyNetworkElseCache;
     query.cachePolicy = cachePolicy;
-    
-    //placeholder query until twitter accounts are linked to trucks
-    [query whereKey:@"UserObjectID"equalTo:@"eDBqNUx1lc"];
-    
-    sharedTruck.truckPFObject = [query getFirstObject];
-    sharedTruck.parseID = sharedTruck.truckPFObject.objectId;
-    //NSArray *rawSD = [parseTruck objectForKey:@"SalesData"];
-    NSMutableArray *salesData = [[NSMutableArray alloc] initWithArray:[sharedTruck.truckPFObject objectForKey:@"SalesData"]];
+    [query whereKey:@"UserObjectID" equalTo:sharedTruck.userObjectID];
     
    
     
+    sharedTruck.truckPFObject = [query getFirstObject];
     
+    
+    //load some general stuff 
+    sharedTruck.truckObjectID = sharedTruck.truckPFObject.objectId;
+    NSMutableArray *salesData = [[NSMutableArray alloc] initWithArray:[sharedTruck.truckPFObject objectForKey:@"SalesData"]];
+    
+    
+    NSLog(@"userobjectID %@",sharedTruck.userObjectID);
+
+        sharedTruck.truckObjectID = sharedTruck.truckPFObject.objectId;
+            
+        NSLog(@"global truckObjectID %@",sharedTruck.truckObjectID);
+            
+        sharedTruck.name = [sharedTruck.truckPFObject objectForKey:@"Name"];
+        PFFile *truckLogoFromParse = [sharedTruck.truckPFObject objectForKey:@"Logo"];
+        sharedTruck.truckLogo = [truckLogoFromParse getData];
+    
+    //end load general stuff
     
     //////load inventory//////////
     PFQuery *queryMenuItems = [PFQuery queryWithClassName:@"MenuItems"];
-    [queryMenuItems whereKey:@"TruckID" equalTo:sharedTruck.parseID];
+    [queryMenuItems whereKey:@"TruckID" equalTo:sharedTruck.truckObjectID];
     queryMenuItems.cachePolicy = cachePolicy;
     
     NSArray* parseData = [queryMenuItems findObjects];
@@ -103,9 +115,9 @@ static Truck *sharedTruck = nil;
         
     }
     sharedTruck.inventory = menuData;
+    //end load inventory//
     
-    
-    //if there is no sales data, start with today (temporary)
+    //temporary sales data for one day (until sales data is full functional)
     if([salesData count] == 0){
         
         //create a date point, which is a date followed by data for each menu item
@@ -122,12 +134,12 @@ static Truck *sharedTruck = nil;
         
         [salesData addObject:datePoint];
     }
-
-    
-    
-    
     sharedTruck.salesData = salesData;
-
+//end temp stuff
+    
+    
+    
+    
     sharedTruck.loadingTruckData = false;
 
 }

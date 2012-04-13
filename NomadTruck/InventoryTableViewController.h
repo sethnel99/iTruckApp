@@ -14,8 +14,8 @@
 @property (nonatomic, assign) int daySalesIndex;
 @property (weak, nonatomic) IBOutlet UITextField *locationTextField;
 @property (nonatomic, strong) NSString *sender;
+@property (weak, nonatomic) IBOutlet UITextField *DateInput;
 
 - (void)textFieldDidEndEditing:(UITextView *)textField;
-- (void)textFieldDidBeginEditing:(UITextView *)textField;
 
 @end

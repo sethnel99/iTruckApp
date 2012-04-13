@@ -10,4 +10,6 @@
 
 @interface ResultsDateViewController : UITableViewController
 
+@property (nonatomic, strong) NSMutableArray *salesByDay;
+
 @end

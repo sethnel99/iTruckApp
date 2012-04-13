@@ -8,7 +8,6 @@
 
 #import "InventoryDateTableViewController.h"
 #import "Truck.h"
-#import "MBProgressHUD.h"
 #import "MenuFoodItem.h"
 #import "InventoryTableViewController.h"
 
@@ -36,24 +35,13 @@
     return self;
 }
 
--(void) hudWasHidden:(MBProgressHUD *)hud{
-    self.salesData = [Truck getSalesData];
-    [self.tableView reloadData];
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+  
+    self.salesData = [Truck getSalesData];
     
-    if([Truck sharedTruck].loadingTruckData == YES){
-        MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:hud];
-        hud.delegate = self;
-        hud.labelText = @"Loading Data";
-        [hud showWhileExecuting:@selector(waitForLoading) onTarget:[Truck self] withObject:nil animated:YES];
-    }else{
-        self.salesData = [Truck getSalesData];
-    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

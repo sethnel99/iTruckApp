@@ -15,11 +15,12 @@
 }
 @property (nonatomic, retain) NSString *userObjectID;
 @property (nonatomic, retain) NSString *truckObjectID;
-@property (nonatomic, retain) NSString *parseID;
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic, strong) NSArray *inventory;
 @property (nonatomic, strong) NSMutableArray *salesData;
 @property (nonatomic, assign) BOOL loadingTruckData;
 @property (nonatomic, strong) PFObject *truckPFObject;
+@property (nonatomic, strong) NSData *truckLogo;
 
 + (Truck *)sharedTruck;
 + (void) loadTruckFromParse;

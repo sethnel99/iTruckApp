@@ -7,12 +7,14 @@
 //
 
 #import "ResultsDateViewController.h"
+#import "Truck.h"
 
 @interface ResultsDateViewController ()
 
 @end
 
 @implementation ResultsDateViewController
+@synthesize salesByDay;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,6 +28,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.salesByDay = [[NSMutableArray alloc] init];
+  
+    
+    NSMutableArray *salesData = [Truck getSalesData];
+    [self.salesByDay addObject:[NSMutableArray arrayWithObject:[salesData objectAtIndex:0]]];
+     
+    for(int i = 1; i < [salesData count]; i++){
+        NSMutableArray *singleDayData = [salesData objectAtIndex:i];
+        NSDate *tempDate = (NSDate*)[singleDayData objectAtIndex:0];
+        
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:tempDate];
+        
+    
+        
+        
+        
+        
+    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

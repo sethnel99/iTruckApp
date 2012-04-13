@@ -27,63 +27,59 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(void) hudWasHidden:(MBProgressHUD *)hud{
+    Truck *globalTruck = [Truck sharedTruck];
+    self.truckName.text = globalTruck.name;
+    truckLogo.image = [UIImage imageWithData:globalTruck.truckLogo];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
      [super viewDidLoad];
+    [PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
+        if (!user) {
+            NSLog(@"Uh oh. The user cancelled the Twitter login.");
+            return;
+        } else if (user.isNew) {
+            NSLog(@"User signed up and logged in with Twitter!");
+        } else {
+            NSLog(@"User logged in with Twitter!");
+            NSString *userObjectID = user.objectId;
+            NSLog(@"%@", userObjectID);
+
+            
+            Truck *globalTruck = [Truck sharedTruck];
+            globalTruck.userObjectID = userObjectID;
+            
+            
+            //load truck data in background
+            NSOperationQueue *queue = [NSOperationQueue new];
+            NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:[Truck self]
+                                                                                    selector:@selector(loadTruckFromParse) object:nil];
+            [queue addOperation:operation];
+        
+        }     
+    }];
     
+    [Truck sharedTruck].loadingTruckData = true;
     latLabel = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
     longLabel = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
-
-    
-    Truck *globalTruck = [Truck sharedTruck];
-    NSString *userObjectID = globalTruck.userObjectID;
     
     message.delegate = self;
     charactersRemaining.text = [NSString stringWithFormat:@"%d",[message.text length]];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Trucks"];
-    [query whereKey:@"UserObjectID" equalTo:userObjectID];
-    NSLog(@"userobjectID %@",userObjectID);
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %d trucks.", objects.count);
-            workingTruck = (PFObject *)[objects objectAtIndex:0];
-            globalTruck.truckObjectID = workingTruck.objectId;
-            
-            NSLog(@"global truckObjectID %@",globalTruck.truckObjectID);
-            
-            NSString *truckNameFromParse = [workingTruck objectForKey:@"Name"];
-            self.truckName.text = truckNameFromParse;
-            
-            NSString *truckID = [workingTruck objectId];
-            NSLog(@"in viewdidload truckid: %@",truckID);
-            
-            PFFile *truckLogoFromParse = [workingTruck objectForKey:@"Logo"];
-            NSData *logoData = [truckLogoFromParse getData];
-            //NSLog(@"%@",logoData);
-            
-            truckLogo.image = [UIImage imageWithData:logoData];
-            //truckLogo.image = [UIImage imageNamed:@"Nomad Logo.png"];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    
-    
-    
-    
-    //load truck data in background
-    [Truck sharedTruck].loadingTruckData = true;
-    NSOperationQueue *queue = [NSOperationQueue new];
-    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:[Truck self]
-                                                                            selector:@selector(loadTruckFromParse) object:nil];
-    [queue addOperation:operation];
+
+        MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:hud];
+        hud.delegate = self;
+        hud.labelText = @"Loading Data";
+        [hud showWhileExecuting:@selector(waitForLoading) onTarget:[Truck self] withObject:nil animated:YES];
+ 
+  
 
     
 }

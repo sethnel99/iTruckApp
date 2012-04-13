@@ -20,6 +20,7 @@
 @synthesize daySalesIndex;
 @synthesize locationTextField;
 @synthesize sender;
+@synthesize DateInput;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(buttonIndex == 1) {
@@ -65,6 +66,21 @@
     }
     
     
+    //set up date-time picker
+    UIDatePicker *dp = [[UIDatePicker alloc] init];
+    dp.datePickerMode = UIDatePickerModeDateAndTime;
+    [dp setDate:[NSDate date]];
+    
+    UIButton *b = [[UIButton alloc] init];
+    b.titleLabel.text = @"Done";
+    [b addTarget:self 
+               action:@selector(doneWithDateInput)
+     forControlEvents:UIControlEventTouchDown];
+    
+    
+    DateInput.inputView = dp;
+    
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -73,9 +89,14 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) doneWithDateInput{
+    [DateInput resignFirstResponder];
+}
+
 - (void)viewDidUnload
 {
     [self setLocationTextField:nil];
+    [self setDateInput:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
