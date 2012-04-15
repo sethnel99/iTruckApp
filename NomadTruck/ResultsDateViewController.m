@@ -33,13 +33,24 @@
     
     NSMutableArray *salesData = [Truck getSalesData];
     [self.salesByDay addObject:[NSMutableArray arrayWithObject:[salesData objectAtIndex:0]]];
-     
     for(int i = 1; i < [salesData count]; i++){
         NSMutableArray *singleDayData = [salesData objectAtIndex:i];
         NSDate *tempDate = (NSDate*)[singleDayData objectAtIndex:0];
         
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:tempDate];
+        NSMutableArray *lastEntry = [salesData objectAtIndex:(i-1)];
+        NSDate *lastDate = (NSDate*)[lastEntry objectAtIndex:0];
         
+        
+        NSDateComponents *thisComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:tempDate];
+        
+        NSDateComponents *lastComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:lastDate];
+        
+        //same day
+        if(([thisComponents month] == [lastComponents month])&&([thisComponents day] == [lastComponents day]) && ([thisComponents year] == [lastComponents year])){
+            [[self.salesByDay lastObject] addObject:singleDayData];
+        }else{
+           [self.salesByDay addObject:[NSMutableArray arrayWithObject:singleDayData]]; 
+        }
     
         
         
@@ -70,24 +81,58 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.salesByDay count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"ResultsDateCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    UILabel *dateLabel = (UILabel *)[cell viewWithTag:100];
+    UILabel *unitsSoldLabel = (UILabel *)[cell viewWithTag:103];
+    UILabel *revenueLabel = (UILabel *)[cell viewWithTag:104];
+    
+    int numSold = 0;
+    double revenue = 0;
+    
+    NSMutableArray *daySalesData = [self.salesByDay objectAtIndex:indexPath.row];
+    for(int i = 0; i < [daySalesData count]; i++){
+        NSMutableArray *singleSalesEntry = [daySalesData objectAtIndex:i];
+        for(int j = 2; j < [singleSalesEntry count]; j++){
+            NSArray *salesDataPoint = [singleSalesEntry objectAtIndex:j];
+            numSold += [[salesDataPoint objectAtIndex:2] intValue];
+            revenue += [[salesDataPoint objectAtIndex:2] intValue] * [Truck priceForInventoryItem:(j-2)];    
+        }
+    }
+    
+    unitsSoldLabel.text = [NSString stringWithFormat:@"%f", numSold];
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+    revenueLabel.text = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:revenue]];
+    
+    
+    NSMutableArray *firstEntry = [daySalesData objectAtIndex:0];
+    NSDate *tempDate = (NSDate*)[firstEntry objectAtIndex:0];
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit fromDate:tempDate];
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    dateLabel.text = [NSString stringWithFormat:@"%@ %d, %d",
+                           [[df monthSymbols] objectAtIndex:([components month] - 1)],
+                           [components day],[components year]];
+    
     
     return cell;
 }

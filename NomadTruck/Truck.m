@@ -38,6 +38,12 @@ static Truck *sharedTruck = nil;
     return sharedTruck.salesData;
 }
 
+
++ (double) priceForInventoryItem:(int)index{
+    MenuFoodItem *item = [sharedTruck.inventory objectAtIndex:index];
+    return item.price;
+}
+
 + (void) updateSalesDay:(NSMutableArray *)daySales onDayIndex:(int)index{
     [sharedTruck.salesData replaceObjectAtIndex:index withObject:daySales];
     [self saveSalesToParse];
@@ -56,14 +62,16 @@ static Truck *sharedTruck = nil;
         NSDate *tDate = (NSDate*)[tArr objectAtIndex:0];
         if([tDate compare:newSaleDate] == NSOrderedDescending){
             [sharedTruck.salesData insertObject:daySales atIndex:i];
+            [self saveSalesToParse];
             return;
         }
         
-        [self saveSalesToParse];
+        
     }
     
     //get to the end - this is the latest (most recent) object
     [sharedTruck.salesData addObject:daySales];
+    [self saveSalesToParse];
 }
 
 + (void) saveSalesToParse{
@@ -127,7 +135,7 @@ static Truck *sharedTruck = nil;
         
         //for each menu item, add an entry which is a name, a before, and an after number
         for(int i = 0; i < [sharedTruck.inventory count]; i++){
-            [datePoint addObject:[[NSArray alloc] initWithObjects:[[sharedTruck.inventory objectAtIndex:i] name], [NSNumber numberWithInt:0], nil]];
+            [datePoint addObject:[[NSArray alloc] initWithObjects:[[sharedTruck.inventory objectAtIndex:i] name],[[sharedTruck.inventory objectAtIndex:i] ParseID], [NSNumber numberWithInt:0], nil]];
         }
         
         NSLog([NSString stringWithFormat:@"date: %@",[datePoint objectAtIndex:0]]);

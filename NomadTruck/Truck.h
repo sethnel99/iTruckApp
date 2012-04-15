@@ -24,11 +24,12 @@
 
 + (Truck *)sharedTruck;
 + (void) loadTruckFromParse;
-+ (NSArray *) getInventory;
++ (NSMutableArray *) getInventory;
 + (NSMutableArray *) getSalesData;
 + (void) deleteSalesDayAtIndex:(int) index;
 + (void) addSalesDay:(NSMutableArray *)daySales;
 + (void) updateSalesDay:(NSMutableArray *)daySales onDayIndex:(int)index;
 + (void) waitForLoading;
++ (double) priceForInventoryItem:(int)index;
 
 @end

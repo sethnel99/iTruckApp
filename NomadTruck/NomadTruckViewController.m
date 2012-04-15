@@ -48,6 +48,13 @@
             NSLog(@"User logged in with Twitter!");
             NSString *userObjectID = user.objectId;
             NSLog(@"%@", userObjectID);
+            
+            
+            MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+            [self.navigationController.view addSubview:hud];
+            hud.delegate = self;
+            hud.labelText = @"Loading Data";
+            [hud showWhileExecuting:@selector(waitForLoading) onTarget:[Truck self] withObject:nil animated:YES];
 
             
             Truck *globalTruck = [Truck sharedTruck];
@@ -60,6 +67,8 @@
                                                                                     selector:@selector(loadTruckFromParse) object:nil];
             [queue addOperation:operation];
         
+          
+            
         }     
     }];
     
@@ -73,11 +82,6 @@
     charactersRemaining.text = [NSString stringWithFormat:@"%d",[message.text length]];
     
 
-        MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:hud];
-        hud.delegate = self;
-        hud.labelText = @"Loading Data";
-        [hud showWhileExecuting:@selector(waitForLoading) onTarget:[Truck self] withObject:nil animated:YES];
  
   
 

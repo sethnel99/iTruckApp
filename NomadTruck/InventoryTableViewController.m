@@ -42,9 +42,13 @@
 }
 
 - (IBAction)saveInventoryChanges:(UIButton *)sender {
-    [self.daySalesData replaceObjectAtIndex:1 withObject:self.locationTextField.text];
-    [Truck updateSalesDay:self.daySalesData onDayIndex:self.daySalesIndex];
+    if([self.sender isEqualToString:@"DateTable"]){
+       [Truck updateSalesDay:self.daySalesData onDayIndex:self.daySalesIndex];
+    }else{
+        [Truck addSalesDay:self.daySalesData];
+    }
     [self.navigationController popViewControllerAnimated:YES];
+
     
     
 }
@@ -63,34 +67,78 @@
     [super viewDidLoad];
     if ([self.sender isEqualToString:@"Checkout"]) {
         self.navigationItem.rightBarButtonItem.title = @"Skip";
+    }else if([self.sender isEqualToString:@"AddButton"]){
+        self.navigationItem.rightBarButtonItems = nil;
     }
     
+    if([self.sender isEqualToString:@"DateTable"]){
+    self.daySalesData = [NSMutableArray arrayWithArray:[[Truck getSalesData] objectAtIndex:self.daySalesIndex]];
+    }else{
+        //new data
+        self.daySalesData = [[NSMutableArray alloc] init];
+        [daySalesData addObject:[NSDate date]];
+        [daySalesData addObject:@""];
+        //for each menu item, add an entry which is a name, a before, and an after number
+        
+        NSMutableArray *inventory = [Truck getInventory];
+        for(int i = 0; i < [inventory count]; i++){
+            [daySalesData addObject:[[NSArray alloc] initWithObjects:[[inventory objectAtIndex:i] name],[[inventory objectAtIndex:i] ParseID], [NSNumber numberWithInt:0], nil]];
+        }
+    }
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+   
     //set up date-time picker
     UIDatePicker *dp = [[UIDatePicker alloc] init];
     dp.datePickerMode = UIDatePickerModeDateAndTime;
-    [dp setDate:[NSDate date]];
     
-    UIButton *b = [[UIButton alloc] init];
-    b.titleLabel.text = @"Done";
-    [b addTarget:self 
-               action:@selector(doneWithDateInput)
-     forControlEvents:UIControlEventTouchDown];
+    if([sender isEqualToString:@"Checkout"]){
+        [dp setDate:[NSDate date]];
+        [self.DateInput setText:[dateFormatter stringFromDate:dp.date]];
+    }else if ([sender isEqualToString:@"DateTable"]){
+        NSDate *tDate = (NSDate *)[self.daySalesData objectAtIndex:0];
+        NSLog(@"%@",tDate);
+        [dp setDate:tDate];
+        [self.DateInput setText:[dateFormatter stringFromDate:tDate]];
+    }else if([sender isEqualToString:@"AddButton"]){
+        [dp setDate:[NSDate date]];
+    }
     
+    locationTextField.text = [self.daySalesData objectAtIndex:1];
+    locationTextField.delegate = self;
     
-    DateInput.inputView = dp;
+    // create a done view + done button, attach to it a doneClicked action, and place it in a toolbar as an accessory input view...
+    // Prepare done button
+    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
+    keyboardDoneButtonView.barStyle = UIBarStyleBlack;
+    keyboardDoneButtonView.translucent = YES;
+    keyboardDoneButtonView.tintColor = nil;
+    [keyboardDoneButtonView sizeToFit];
     
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                    style:UIBarButtonItemStyleBordered target:self
+                                                                  action:@selector(doneWithDateInput)];
+    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
     
+    // Plug the keyboardDoneButtonView into the text field...
+    DateInput.inputAccessoryView = keyboardDoneButtonView;
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+    DateInput.inputView = dp;    
+
 }
 
 - (void) doneWithDateInput{
     [DateInput resignFirstResponder];
+    UIDatePicker *tdp = (UIDatePicker*)DateInput.inputView;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy HH:mm"];
+    [DateInput setText:[dateFormatter stringFromDate:tdp.date]];
+    [self.daySalesData replaceObjectAtIndex:0 withObject:tdp.date];
 }
 
 - (void)viewDidUnload
@@ -103,8 +151,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    self.daySalesData = [NSMutableArray arrayWithArray:[[Truck getSalesData] objectAtIndex:self.daySalesIndex]];
-    [self.tableView reloadData];
     [super viewWillAppear:animated];
 }
 
@@ -128,9 +174,18 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    UITableViewCell *superCell = (UITableViewCell *)[[textField superview] superview];
-    int replIndex = textField.tag - 200 + 2;
-    [self.daySalesData replaceObjectAtIndex:replIndex withObject:[NSArray arrayWithObjects:[(UILabel *)[superCell viewWithTag:100] text], textField.text.integerValue,nil]];
+    if(textField.tag == 999){
+        [self.daySalesData replaceObjectAtIndex:1 withObject:textField.text];
+    }else{
+    
+        int replIndex = textField.tag - 200 + 2;
+        NSArray *dataPoint = [self.daySalesData objectAtIndex:replIndex];
+    
+        NSArray *newDataPoint = [NSArray arrayWithObjects:[dataPoint objectAtIndex:0],[dataPoint objectAtIndex:1],[NSNumber numberWithInteger:[[textField text] integerValue]],nil];
+
+  
+        [self.daySalesData replaceObjectAtIndex:replIndex withObject:newDataPoint];
+    }
 }
 
 
@@ -153,7 +208,7 @@
     NSArray *salesPoint = [self.daySalesData objectAtIndex:(indexPath.row+2)];
     
     nameLabel.text = [salesPoint objectAtIndex:0];
-    soldInput.text = [NSString stringWithFormat:@"%@",[salesPoint objectAtIndex:1]];
+    soldInput.text = [NSString stringWithFormat:@"%@",[salesPoint objectAtIndex:2]];
     
     
     return cell;

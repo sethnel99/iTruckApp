@@ -20,8 +20,14 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     InventoryTableViewController *itvc = (InventoryTableViewController *)[segue destinationViewController];
-    itvc.daySalesIndex = [[self tableView] indexPathForCell:sender].row;
-    itvc.sender = @"DateTable";
+    
+    if([segue.identifier isEqualToString:@"DateTableToSalesRecordSegue"]){
+        itvc.daySalesIndex = [[self tableView] indexPathForCell:sender].row;
+        itvc.sender = @"DateTable";
+    }else if([segue.identifier isEqualToString:@"AddSalesRecordSegue"]){
+        itvc.daySalesIndex = -1;
+        itvc.sender = @"AddButton";
+    }
 
 }
 
