@@ -8,6 +8,7 @@
 
 #import "ResultsDateViewController.h"
 #import "Truck.h"
+#import "ResultsViewController.h"
 
 @interface ResultsDateViewController ()
 
@@ -25,11 +26,18 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    ResultsViewController *itvc = (ResultsViewController *)[segue destinationViewController];
+    itvc.daySalesIndex = [[self tableView] indexPathForCell:sender].row;
+    itvc.daySales = [self.salesByDay objectAtIndex:itvc.daySalesIndex];
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
     self.salesByDay = [[NSMutableArray alloc] init];
-  
+    
     
     NSMutableArray *salesData = [Truck getSalesData];
     [self.salesByDay addObject:[NSMutableArray arrayWithObject:[salesData objectAtIndex:0]]];
@@ -49,15 +57,23 @@
         if(([thisComponents month] == [lastComponents month])&&([thisComponents day] == [lastComponents day]) && ([thisComponents year] == [lastComponents year])){
             [[self.salesByDay lastObject] addObject:singleDayData];
         }else{
-           [self.salesByDay addObject:[NSMutableArray arrayWithObject:singleDayData]]; 
+            [self.salesByDay addObject:[NSMutableArray arrayWithObject:singleDayData]]; 
         }
-    
+        
         
         
         
         
     }
+    
+    [self.tableView reloadData];
 
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -116,7 +132,7 @@
         }
     }
     
-    unitsSoldLabel.text = [NSString stringWithFormat:@"%f", numSold];
+    unitsSoldLabel.text = [NSString stringWithFormat:@"%d", numSold];
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
@@ -126,7 +142,7 @@
     NSMutableArray *firstEntry = [daySalesData objectAtIndex:0];
     NSDate *tempDate = (NSDate*)[firstEntry objectAtIndex:0];
     
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit fromDate:tempDate];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:tempDate];
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     dateLabel.text = [NSString stringWithFormat:@"%@ %d, %d",

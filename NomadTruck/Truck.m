@@ -147,6 +147,7 @@ static Truck *sharedTruck = nil;
     
     
     
+    NSMutableArray *lastSalesEntry = [salesData lastObject];
     
     sharedTruck.loadingTruckData = false;
 

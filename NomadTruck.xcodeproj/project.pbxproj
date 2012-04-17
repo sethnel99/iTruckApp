@@ -32,6 +32,10 @@
 		CE2E44F7152A54DF00FE7136 /* MenuFoodItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E44F6152A54DF00FE7136 /* MenuFoodItem.m */; };
 		CE2E4502153296A400FE7136 /* CustomInventoryInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E4501153296A400FE7136 /* CustomInventoryInputCell.m */; };
 		CE2E45401534C85B00FE7136 /* ResultsDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E453F1534C85B00FE7136 /* ResultsDateViewController.m */; };
+		CE33A91F153BC11C00991734 /* resultsicon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A91C153BC11C00991734 /* resultsicon.png */; };
+		CE33A921153BC11C00991734 /* twittericon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A91E153BC11C00991734 /* twittericon.png */; };
+		CE33A923153BE35500991734 /* salesicon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A922153BE35500991734 /* salesicon.png */; };
+		CEAFB710153D2ECE00444457 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAFB70F153D2ECE00444457 /* ResultsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +76,11 @@
 		CE2E4501153296A400FE7136 /* CustomInventoryInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInventoryInputCell.m; sourceTree = "<group>"; };
 		CE2E453E1534C85B00FE7136 /* ResultsDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsDateViewController.h; sourceTree = "<group>"; };
 		CE2E453F1534C85B00FE7136 /* ResultsDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsDateViewController.m; sourceTree = "<group>"; };
+		CE33A91C153BC11C00991734 /* resultsicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resultsicon.png; sourceTree = "<group>"; };
+		CE33A91E153BC11C00991734 /* twittericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twittericon.png; sourceTree = "<group>"; };
+		CE33A922153BE35500991734 /* salesicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = salesicon.png; sourceTree = "<group>"; };
+		CEAFB70E153D2ECE00444457 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultsViewController.h; path = ../ResultsViewController.h; sourceTree = "<group>"; };
+		CEAFB70F153D2ECE00444457 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultsViewController.m; path = ../ResultsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,16 +108,17 @@
 		4EAFE0BA15004CA0004360CD = {
 			isa = PBXGroup;
 			children = (
+				CE33A91B153BC11C00991734 /* Assets */,
+				4EAFE0CF15004CA1004360CD /* NomadTruck */,
+				4EAFE0C815004CA1004360CD /* Frameworks */,
+				4EAFE0C615004CA0004360CD /* Products */,
 				4EA8058F15005FAD00DCB4BC /* QuartzCore.framework */,
 				4EA8058D15005FA300DCB4BC /* Security.framework */,
 				4EA8058B15005F5B00DCB4BC /* libz.1.1.3.dylib */,
 				4EA8058915005F4700DCB4BC /* MobileCoreServices.framework */,
 				4EA8058715005F3A00DCB4BC /* SystemConfiguration.framework */,
-				4EA8058515005F2700DCB4BC /* CFNetwork.framework */,
 				4EA8058315005F0D00DCB4BC /* AudioToolbox.framework */,
-				4EAFE0CF15004CA1004360CD /* NomadTruck */,
-				4EAFE0C815004CA1004360CD /* Frameworks */,
-				4EAFE0C615004CA0004360CD /* Products */,
+				4EA8058515005F2700DCB4BC /* CFNetwork.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,8 +150,8 @@
 				CE2E44E11528F13300FE7136 /* MBProgressHUD.m */,
 				4EAC8A181505DB390082911C /* Nomad Logo.png */,
 				4EAF9028150576E300DA1BA3 /* background.png */,
-				4EAFE0D815004CA1004360CD /* NomadTruckAppDelegate.h */,
 				4EAFE0DB15004CA1004360CD /* MainStoryboard.storyboard */,
+				4EAFE0D815004CA1004360CD /* NomadTruckAppDelegate.h */,
 				4EAFE0D915004CA1004360CD /* NomadTruckAppDelegate.m */,
 				4EA80594150075AB00DCB4BC /* Truck.h */,
 				4EA80595150075AB00DCB4BC /* Truck.m */,
@@ -153,9 +163,11 @@
 				CE2E44E51528F3C400FE7136 /* InventoryDateTableViewController.m */,
 				CE2E44F1152A3DC400FE7136 /* InventoryTableViewController.h */,
 				CE2E44F2152A3DC400FE7136 /* InventoryTableViewController.m */,
-				4EAFE0D015004CA1004360CD /* Supporting Files */,
 				CE2E453E1534C85B00FE7136 /* ResultsDateViewController.h */,
 				CE2E453F1534C85B00FE7136 /* ResultsDateViewController.m */,
+				CEAFB70E153D2ECE00444457 /* ResultsViewController.h */,
+				CEAFB70F153D2ECE00444457 /* ResultsViewController.m */,
+				4EAFE0D015004CA1004360CD /* Supporting Files */,
 			);
 			path = NomadTruck;
 			sourceTree = "<group>";
@@ -169,6 +181,16 @@
 				4EAFE0D715004CA1004360CD /* NomadTruck-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CE33A91B153BC11C00991734 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CE33A922153BE35500991734 /* salesicon.png */,
+				CE33A91C153BC11C00991734 /* resultsicon.png */,
+				CE33A91E153BC11C00991734 /* twittericon.png */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +247,9 @@
 				4EAFE0DD15004CA1004360CD /* MainStoryboard.storyboard in Resources */,
 				4EAF9029150576E300DA1BA3 /* background.png in Resources */,
 				4EAC8A191505DB390082911C /* Nomad Logo.png in Resources */,
+				CE33A91F153BC11C00991734 /* resultsicon.png in Resources */,
+				CE33A921153BC11C00991734 /* twittericon.png in Resources */,
+				CE33A923153BE35500991734 /* salesicon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +270,7 @@
 				CE2E44F7152A54DF00FE7136 /* MenuFoodItem.m in Sources */,
 				CE2E4502153296A400FE7136 /* CustomInventoryInputCell.m in Sources */,
 				CE2E45401534C85B00FE7136 /* ResultsDateViewController.m in Sources */,
+				CEAFB710153D2ECE00444457 /* ResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

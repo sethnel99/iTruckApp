@@ -42,6 +42,7 @@
 }
 
 - (IBAction)saveInventoryChanges:(UIButton *)sender {
+    [self.view endEditing:YES]; 
     if([self.sender isEqualToString:@"DateTable"]){
        [Truck updateSalesDay:self.daySalesData onDayIndex:self.daySalesIndex];
     }else{
@@ -188,6 +189,12 @@
     }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	
+	return YES;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -213,7 +220,6 @@
     
     return cell;
 }
-
 
 
 /*

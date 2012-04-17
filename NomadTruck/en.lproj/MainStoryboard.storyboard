@@ -34,7 +34,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJQ-OM-Mdb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="Iys-NA-lbK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sales" id="is6-Ev-IHS"/>
+                    <tabBarItem key="tabBarItem" title="Sales" image="salesicon.png" id="is6-Ev-IHS"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="2kk-2O-i61">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -107,22 +107,138 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="v7W-2E-wuB" kind="push" id="SFo-uD-hmD"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Results" id="EZ4-V7-IUQ"/>
+                    <tabBarItem key="tabBarItem" title="Results" image="resultsicon.png" id="EZ4-V7-IUQ"/>
                     <navigationItem key="navigationItem" id="M4k-zF-Mza"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="-803" y="923"/>
         </scene>
+        <!--Results View Controller-->
+        <scene sceneID="rUy-Ea-gnu">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZLM-mI-Kob" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="v7W-2E-wuB" customClass="ResultsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ghZ-1d-lf0">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sales Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="QOI-rT-T4r">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Most Sold Item:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="5FA-4d-WvU">
+                                <rect key="frame" x="100" y="134" width="121" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Most Profitable Item:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="fkr-VI-644">
+                                <rect key="frame" x="81" y="213" width="159" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="10" id="tLK-jh-Q9T">
+                                <rect key="frame" x="15" y="165" width="285" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Chicken Empanadas 
+(12)</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="left" text="Chicken Empanadas   ($16.98)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="10" id="zcQ-x0-l66">
+                                <rect key="frame" x="20" y="234" width="280" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Relative Sales Performance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="U6B-b0-3EV">
+                                <rect key="frame" x="55" y="285" width="216" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" text="66%" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="Dc4-Qh-16u">
+                                <rect key="frame" x="130" y="307" width="61" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="VPr-ya-VGo">
+                                <rect key="frame" x="20" y="42" width="280" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Day"/>
+                                    <segment title="Stop 1"/>
+                                    <segment title="Stop 2"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="wDv-Sh-RdB">
+                                <rect key="frame" x="20" y="89" width="43" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="iZi-i1-ned">
+                                <rect key="frame" x="20" y="105" width="71" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="12:32 pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="71C-SC-dlW">
+                                <rect key="frame" x="86" y="89" width="182" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Location One" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="n8O-Ab-gUM">
+                                <rect key="frame" x="86" y="105" width="182" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="riN-ys-N3X"/>
+                    <connections>
+                        <outlet property="locationLabel" destination="n8O-Ab-gUM" id="ZiW-up-eNR"/>
+                        <outlet property="mostProfitableLabel" destination="zcQ-x0-l66" id="ZtO-i9-4Ij"/>
+                        <outlet property="mostSoldLabel" destination="tLK-jh-Q9T" id="V9v-Kz-HOI"/>
+                        <outlet property="salesPerformanceLabel" destination="Dc4-Qh-16u" id="KO0-x1-CXQ"/>
+                        <outlet property="stopPicker" destination="VPr-ya-VGo" id="9Zx-6Z-oMV"/>
+                        <outlet property="timeLabel" destination="71C-SC-dlW" id="RJQ-QY-Slf"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-288" y="923"/>
+        </scene>
         <!--Navigation Controller - Results-->
         <scene sceneID="YGz-UP-RmR">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vqa-81-mLK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="zDL-cO-KMq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Results" id="Ga5-o8-lHp"/>
+                    <tabBarItem key="tabBarItem" title="Results" image="resultsicon.png" id="Ga5-o8-lHp"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="nM1-nU-cRU">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -339,7 +455,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orH-nm-5eF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="OIr-lj-8NY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Twitter" id="dvw-YV-p9C"/>
+                    <tabBarItem key="tabBarItem" title="Twitter" image="twittericon.png" id="dvw-YV-p9C"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="BSu-E0-sUb">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -425,6 +541,11 @@
             <point key="canvasLocation" x="-811" y="-314"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="resultsicon.png" width="30" height="30"/>
+        <image name="salesicon.png" width="30" height="30"/>
+        <image name="twittericon.png" width="30" height="30"/>
+    </resources>
     <classes>
         <class className="CustomInventoryInputCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomInventoryInputCell.h"/>
@@ -452,6 +573,17 @@
         </class>
         <class className="ResultsDateViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultsDateViewController.h"/>
+        </class>
+        <class className="ResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mostProfitableLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mostSoldLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="salesPerformanceLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="stopPicker" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
