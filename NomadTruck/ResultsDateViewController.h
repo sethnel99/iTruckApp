@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ResultsDateViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UIView *titleLabelView;
 
 @property (nonatomic, strong) NSMutableArray *salesByDay;
 

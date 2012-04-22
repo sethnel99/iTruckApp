@@ -10,12 +10,21 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface ResultsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *titleLabelView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *stopPicker;
 @property (weak, nonatomic) IBOutlet UILabel *mostSoldLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mostProfitableLabel;
 @property (weak, nonatomic) IBOutlet UILabel *salesPerformanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+
 @property (nonatomic, assign) int daySalesIndex;
-@property (nonatomic, assign) NSMutableArray *daySales;
+@property (nonatomic, strong) NSMutableArray *daySales;
+@property (nonatomic, strong) NSMutableArray *aggregateSales;
+
+@property (nonatomic, strong) NSMutableArray *salesPerformancesByStop;
+@property (nonatomic, assign) int salesPerformanceForDay;
+
+
+
 @end

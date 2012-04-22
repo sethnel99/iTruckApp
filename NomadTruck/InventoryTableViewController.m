@@ -16,15 +16,18 @@
 @end
 
 @implementation InventoryTableViewController
-@synthesize daySalesData;
-@synthesize daySalesIndex;
+@synthesize titleLabelView;
+@synthesize inputBackgroundUIView;
+@synthesize TableHeadingsBackgroundView;
+@synthesize entrySalesData;
+@synthesize entrySalesIndex;
 @synthesize locationTextField;
 @synthesize sender;
 @synthesize DateInput;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(buttonIndex == 1) {
-        [Truck deleteSalesDayAtIndex:self.daySalesIndex];
+        [Truck deleteSalesEntryAtIndex:self.entrySalesIndex];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -44,9 +47,9 @@
 - (IBAction)saveInventoryChanges:(UIButton *)sender {
     [self.view endEditing:YES]; 
     if([self.sender isEqualToString:@"DateTable"]){
-       [Truck updateSalesDay:self.daySalesData onDayIndex:self.daySalesIndex];
+       [Truck updateSalesEntry:self.entrySalesData onEntryIndex:self.entrySalesIndex];
     }else{
-        [Truck addSalesDay:self.daySalesData];
+        [Truck addSalesEntry:self.entrySalesData];
     }
     [self.navigationController popViewControllerAnimated:YES];
 
@@ -73,17 +76,17 @@
     }
     
     if([self.sender isEqualToString:@"DateTable"]){
-    self.daySalesData = [NSMutableArray arrayWithArray:[[Truck getSalesData] objectAtIndex:self.daySalesIndex]];
+    self.entrySalesData = [NSMutableArray arrayWithArray:[[Truck getSalesData] objectAtIndex:self.entrySalesIndex]];
     }else{
         //new data
-        self.daySalesData = [[NSMutableArray alloc] init];
-        [daySalesData addObject:[NSDate date]];
-        [daySalesData addObject:@""];
+        self.EntrySalesData = [[NSMutableArray alloc] init];
+        [entrySalesData addObject:[NSDate date]];
+        [entrySalesData addObject:@""];
         //for each menu item, add an entry which is a name, a before, and an after number
         
         NSMutableArray *inventory = [Truck getInventory];
         for(int i = 0; i < [inventory count]; i++){
-            [daySalesData addObject:[[NSArray alloc] initWithObjects:[[inventory objectAtIndex:i] name],[[inventory objectAtIndex:i] ParseID], [NSNumber numberWithInt:0], nil]];
+            [entrySalesData addObject:[[NSArray alloc] initWithObjects:[[inventory objectAtIndex:i] name],[[inventory objectAtIndex:i] ParseID], [NSNumber numberWithInt:0], nil]];
         }
     }
     
@@ -100,7 +103,7 @@
         [dp setDate:[NSDate date]];
         [self.DateInput setText:[dateFormatter stringFromDate:dp.date]];
     }else if ([sender isEqualToString:@"DateTable"]){
-        NSDate *tDate = (NSDate *)[self.daySalesData objectAtIndex:0];
+        NSDate *tDate = (NSDate *)[self.entrySalesData objectAtIndex:0];
         NSLog(@"%@",tDate);
         [dp setDate:tDate];
         [self.DateInput setText:[dateFormatter stringFromDate:tDate]];
@@ -108,7 +111,7 @@
         [dp setDate:[NSDate date]];
     }
     
-    locationTextField.text = [self.daySalesData objectAtIndex:1];
+    locationTextField.text = [self.entrySalesData objectAtIndex:1];
     locationTextField.delegate = self;
     
     // create a done view + done button, attach to it a doneClicked action, and place it in a toolbar as an accessory input view...
@@ -129,7 +132,23 @@
 
     
     
-    DateInput.inputView = dp;    
+    DateInput.inputView = dp; 
+    
+    
+    //add gradient to title label (really, to the uiview that houses it)
+    [self.titleLabelView.layer insertSublayer:[Truck getTitleBarGradientWithFrame:self.titleLabelView.bounds] atIndex:0];
+    
+    //add gradients to other non-cell views
+    [self.inputBackgroundUIView.layer insertSublayer:[Truck getCellGradientWithFrame:self.self.inputBackgroundUIView.bounds] atIndex:0];
+    [self.TableHeadingsBackgroundView.layer insertSublayer:[Truck getCellGradientWithFrame:self.TableHeadingsBackgroundView.bounds] atIndex:0];
+    //add borders to those views
+    [self.inputBackgroundUIView.layer setBorderWidth:1.0];
+    [self.inputBackgroundUIView.layer setBorderColor:[[UIColor blackColor] CGColor]];
+    [self.TableHeadingsBackgroundView.layer setBorderWidth:1.0];
+    [self.TableHeadingsBackgroundView.layer setBorderColor:[[UIColor blackColor] CGColor]];
+  
+    
+    
 
 }
 
@@ -139,13 +158,16 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy HH:mm"];
     [DateInput setText:[dateFormatter stringFromDate:tdp.date]];
-    [self.daySalesData replaceObjectAtIndex:0 withObject:tdp.date];
+    [self.entrySalesData replaceObjectAtIndex:0 withObject:tdp.date];
 }
 
 - (void)viewDidUnload
 {
     [self setLocationTextField:nil];
     [self setDateInput:nil];
+    [self setTitleLabelView:nil];
+    [self setInputBackgroundUIView:nil];
+    [self setTableHeadingsBackgroundView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -171,21 +193,21 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.daySalesData count] - 2;
+    return [self.entrySalesData count] - 2;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if(textField.tag == 999){
-        [self.daySalesData replaceObjectAtIndex:1 withObject:textField.text];
+        [self.entrySalesData replaceObjectAtIndex:1 withObject:textField.text];
     }else{
     
         int replIndex = textField.tag - 200 + 2;
-        NSArray *dataPoint = [self.daySalesData objectAtIndex:replIndex];
+        NSArray *dataPoint = [self.entrySalesData objectAtIndex:replIndex];
     
         NSArray *newDataPoint = [NSArray arrayWithObjects:[dataPoint objectAtIndex:0],[dataPoint objectAtIndex:1],[NSNumber numberWithInteger:[[textField text] integerValue]],nil];
 
   
-        [self.daySalesData replaceObjectAtIndex:replIndex withObject:newDataPoint];
+        [self.entrySalesData replaceObjectAtIndex:replIndex withObject:newDataPoint];
     }
 }
 
@@ -212,13 +234,23 @@
     soldInput.tag = 200+indexPath.row;
     cell.textTag = 200+indexPath.row;
     
-    NSArray *salesPoint = [self.daySalesData objectAtIndex:(indexPath.row+2)];
+    NSArray *salesPoint = [self.entrySalesData objectAtIndex:(indexPath.row+2)];
     
     nameLabel.text = [salesPoint objectAtIndex:0];
     soldInput.text = [NSString stringWithFormat:@"%@",[salesPoint objectAtIndex:2]];
     
+    //apply gradient 
+    [cell.layer insertSublayer:[Truck getCellGradientWithFrame:cell.bounds] atIndex:0];
+    
+    
+
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 48;
 }
 
 

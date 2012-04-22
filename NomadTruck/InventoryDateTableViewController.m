@@ -16,16 +16,17 @@
 @end
 
 @implementation InventoryDateTableViewController
+@synthesize titleLabelView;
 @synthesize salesData;
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     InventoryTableViewController *itvc = (InventoryTableViewController *)[segue destinationViewController];
     
     if([segue.identifier isEqualToString:@"DateTableToSalesRecordSegue"]){
-        itvc.daySalesIndex = [[self tableView] indexPathForCell:sender].row;
+        itvc.entrySalesIndex = [[self tableView] indexPathForCell:sender].row;
         itvc.sender = @"DateTable";
     }else if([segue.identifier isEqualToString:@"AddSalesRecordSegue"]){
-        itvc.daySalesIndex = -1;
+        itvc.entrySalesIndex = -1;
         itvc.sender = @"AddButton";
     }
 
@@ -48,6 +49,12 @@
   
     self.salesData = [Truck getSalesData];
     
+    //add gradient to title label (really, to the uiview that houses it)
+    [self.titleLabelView.layer insertSublayer:[Truck getTitleBarGradientWithFrame:self.titleLabelView.bounds] atIndex:0];
+    
+    
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -57,6 +64,7 @@
 
 - (void)viewDidUnload
 {
+    [self setTitleLabelView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -109,15 +117,25 @@
         hour -= 12;
         ampm = @"pm";
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %d, %d, %02d:%02d%@",
+    ((UILabel*)[cell viewWithTag:100]).text = [NSString stringWithFormat:@"%@ %dth, %d",
                            [[df monthSymbols] objectAtIndex:([components month] - 1)],
-                           [components day],[components year],[components hour],[components minute],ampm];
+                           [components day],[components year]];
+    ((UILabel*)[cell viewWithTag:101]).text = [NSString stringWithFormat:@"%02d:%02d %@",
+                                               [components hour],[components minute],ampm];
     
-    cell.detailTextLabel.text = [singleDataSet objectAtIndex:1];
+    ((UILabel*)[cell viewWithTag:102]).text = [singleDataSet objectAtIndex:1];
     
-                               
+    //apply gradient
+    [cell.layer insertSublayer:[Truck getCellGradientWithFrame:cell.bounds] atIndex:0];
+    
+    
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 58;
 }
 
 /*

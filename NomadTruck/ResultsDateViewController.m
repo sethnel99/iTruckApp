@@ -15,6 +15,7 @@
 @end
 
 @implementation ResultsDateViewController
+@synthesize titleLabelView;
 @synthesize salesByDay;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -36,43 +37,17 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    self.salesByDay = [[NSMutableArray alloc] init];
-    
-    
-    NSMutableArray *salesData = [Truck getSalesData];
-    [self.salesByDay addObject:[NSMutableArray arrayWithObject:[salesData objectAtIndex:0]]];
-    for(int i = 1; i < [salesData count]; i++){
-        NSMutableArray *singleDayData = [salesData objectAtIndex:i];
-        NSDate *tempDate = (NSDate*)[singleDayData objectAtIndex:0];
-        
-        NSMutableArray *lastEntry = [salesData objectAtIndex:(i-1)];
-        NSDate *lastDate = (NSDate*)[lastEntry objectAtIndex:0];
-        
-        
-        NSDateComponents *thisComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:tempDate];
-        
-        NSDateComponents *lastComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:lastDate];
-        
-        //same day
-        if(([thisComponents month] == [lastComponents month])&&([thisComponents day] == [lastComponents day]) && ([thisComponents year] == [lastComponents year])){
-            [[self.salesByDay lastObject] addObject:singleDayData];
-        }else{
-            [self.salesByDay addObject:[NSMutableArray arrayWithObject:singleDayData]]; 
-        }
-        
-        
-        
-        
-        
-    }
-    
+    self.salesByDay = [Truck getSalesDataByDay];
     [self.tableView reloadData];
 
 }
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
+    //add gradient to title label (really, to the uiview that houses it)
+    [self.titleLabelView.layer insertSublayer:[Truck getTitleBarGradientWithFrame:self.titleLabelView.bounds] atIndex:0];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -83,6 +58,7 @@
 
 - (void)viewDidUnload
 {
+    [self setTitleLabelView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -145,9 +121,12 @@
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:tempDate];
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    dateLabel.text = [NSString stringWithFormat:@"%@ %d, %d",
+    dateLabel.text = [NSString stringWithFormat:@"%@ %dth, %d",
                            [[df monthSymbols] objectAtIndex:([components month] - 1)],
                            [components day],[components year]];
+    
+    //apply gradient 
+    [cell.layer insertSublayer:[Truck getCellGradientWithFrame:cell.bounds] atIndex:0];
     
     
     return cell;

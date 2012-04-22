@@ -80,8 +80,9 @@
     hud.labelText = @"Loading Data";
     [hud showWhileExecuting:@selector(waitForLoading) onTarget:[Truck self] withObject:nil animated:YES];
 
+    
  
-  
+    
 
     
 }

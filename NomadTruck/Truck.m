@@ -21,6 +21,8 @@ static Truck *sharedTruck = nil;
 @synthesize salesData;
 @synthesize truckPFObject;
 @synthesize truckLogo;
+@synthesize salesDataByDay;
+
 #pragma mark 
 #pragma mark Singleton Methods
 + (Truck *)sharedTruck {
@@ -30,13 +32,19 @@ static Truck *sharedTruck = nil;
     return sharedTruck;
 }
 
+
 + (NSArray *) getInventory{
     return sharedTruck.inventory;
 }
 
-+ (NSArray *) getSalesData{
++ (NSMutableArray *) getSalesData{
     return sharedTruck.salesData;
 }
+
++ (NSMutableArray *) getSalesDataByDay{
+    return sharedTruck.salesDataByDay;
+}
+
 
 
 + (double) priceForInventoryItem:(int)index{
@@ -44,24 +52,26 @@ static Truck *sharedTruck = nil;
     return item.price;
 }
 
-+ (void) updateSalesDay:(NSMutableArray *)daySales onDayIndex:(int)index{
-    [sharedTruck.salesData replaceObjectAtIndex:index withObject:daySales];
++ (void) updateSalesEntry:(NSMutableArray *)entrySales onEntryIndex:(int)index{
+    [sharedTruck.salesData replaceObjectAtIndex:index withObject:entrySales];
+    [self rebuildSalesEntryByDay];
     [self saveSalesToParse];
 }
 
-+ (void) deleteSalesDayAtIndex:(int) index{
++ (void) deleteSalesEntryAtIndex:(int) index{
     [sharedTruck.salesData removeObjectAtIndex:index];
+    [self rebuildSalesEntryByDay];
     [self saveSalesToParse];
 }
-+ (void) addSalesDay:(NSMutableArray *)daySales{
-    NSDate *newSaleDate = [daySales objectAtIndex:0];
++ (void) addSalesEntry:(NSMutableArray *)entrySales{
+    NSDate *newSaleDate = [entrySales objectAtIndex:0];
     
     //loop through the existing sales day entries to place this one in the correct chronological order
     for(int i = 0; i < [sharedTruck.salesData count]; i++){
         NSMutableArray *tArr = [sharedTruck.salesData objectAtIndex:i];
         NSDate *tDate = (NSDate*)[tArr objectAtIndex:0];
         if([tDate compare:newSaleDate] == NSOrderedDescending){
-            [sharedTruck.salesData insertObject:daySales atIndex:i];
+            [sharedTruck.salesData insertObject:entrySales atIndex:i];
             [self saveSalesToParse];
             return;
         }
@@ -70,8 +80,50 @@ static Truck *sharedTruck = nil;
     }
     
     //get to the end - this is the latest (most recent) object
-    [sharedTruck.salesData addObject:daySales];
+    [sharedTruck.salesData addObject:entrySales];
+    [self rebuildSalesEntryByDay];
     [self saveSalesToParse];
+}
+
++ (void) updateAveragesWithMoney:(double)money{
+    
+}
+
++ (void) rebuildSalesEntryByDay{
+
+    //set up sales organized by day//
+    sharedTruck.salesDataByDay = [[NSMutableArray alloc] init];
+    
+    [sharedTruck.salesDataByDay addObject:[NSMutableArray arrayWithObject:[sharedTruck.salesData objectAtIndex:0]]];
+    for(int i = 1; i < [sharedTruck.salesData count]; i++){
+        NSMutableArray *singleDayData = [sharedTruck.salesData objectAtIndex:i];
+        NSDate *tempDate = (NSDate*)[singleDayData objectAtIndex:0];
+        
+        NSMutableArray *lastEntry = [sharedTruck.salesData objectAtIndex:(i-1)];
+        NSDate *lastDate = (NSDate*)[lastEntry objectAtIndex:0];
+        
+        
+        NSDateComponents *thisComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:tempDate];
+        
+        NSDateComponents *lastComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:lastDate];
+        
+        //same day
+        if(([thisComponents month] == [lastComponents month])&&([thisComponents day] == [lastComponents day]) && ([thisComponents year] == [lastComponents year])){
+            [[sharedTruck.salesDataByDay lastObject] addObject:singleDayData];
+        }else{
+            [sharedTruck.salesDataByDay addObject:[NSMutableArray arrayWithObject:singleDayData]]; 
+        }
+        
+        
+        
+        
+        
+    }
+    //end sales organized by day setup
+    
+    
+    
+    
 }
 
 + (void) saveSalesToParse{
@@ -93,8 +145,7 @@ static Truck *sharedTruck = nil;
     
     //load some general stuff 
     sharedTruck.truckObjectID = sharedTruck.truckPFObject.objectId;
-    NSMutableArray *salesData = [[NSMutableArray alloc] initWithArray:[sharedTruck.truckPFObject objectForKey:@"SalesData"]];
-    
+  
     
     NSLog(@"userobjectID %@",sharedTruck.userObjectID);
 
@@ -125,30 +176,12 @@ static Truck *sharedTruck = nil;
     sharedTruck.inventory = menuData;
     //end load inventory//
     
-    //temporary sales data for one day (until sales data is full functional)
-    if([salesData count] == 0){
-        
-        //create a date point, which is a date followed by data for each menu item
-        NSMutableArray *datePoint = [[NSMutableArray alloc] init];
-        [datePoint addObject:[NSDate date]];
-        [datePoint addObject:@"S. Davis and Wells"];
-        
-        //for each menu item, add an entry which is a name, a before, and an after number
-        for(int i = 0; i < [sharedTruck.inventory count]; i++){
-            [datePoint addObject:[[NSArray alloc] initWithObjects:[[sharedTruck.inventory objectAtIndex:i] name],[[sharedTruck.inventory objectAtIndex:i] ParseID], [NSNumber numberWithInt:0], nil]];
-        }
-        
-        NSLog([NSString stringWithFormat:@"date: %@",[datePoint objectAtIndex:0]]);
-        
-        [salesData addObject:datePoint];
-    }
-    sharedTruck.salesData = salesData;
-//end temp stuff
+    sharedTruck.salesData = [[NSMutableArray alloc] initWithArray:[sharedTruck.truckPFObject objectForKey:@"SalesData"]];
+    
+ 
     
     
-    
-    NSMutableArray *lastSalesEntry = [salesData lastObject];
-    
+    [self rebuildSalesEntryByDay];
     sharedTruck.loadingTruckData = false;
 
 }
@@ -160,6 +193,41 @@ static Truck *sharedTruck = nil;
    
 }
 
++ (double) getTotalMoney{
+    double totalMoney = 0;
+    //sum up sales for each entry
+    for(int i = 0; i < [sharedTruck.salesData count]; i++){
+        NSMutableArray *singleEntry = [sharedTruck.salesData objectAtIndex:i];
+        for(int j = 2; j < [singleEntry count]; j++){
+            NSArray *dataPoint = [singleEntry objectAtIndex:j];
+            totalMoney += [[dataPoint objectAtIndex:2] intValue]*[Truck priceForInventoryItem:(j-2)];
+        }
+    }
+    
+    return totalMoney;
+}
+
++ (UIColor *)getTealGreenTint{
+    return [UIColor colorWithRed:.184 green:.565 blue:.514 alpha:1];
+}
+
++ (CAGradientLayer *)getTitleBarGradientWithFrame:(CGRect)frame{
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = frame;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1] CGColor],[[UIColor colorWithRed:.42 green:.42 blue:.42 alpha:1] CGColor], (id)[[UIColor colorWithRed:.38 green:.38 blue:.38 alpha:1.0] CGColor],[[UIColor colorWithRed:.28 green:.28 blue:.28 alpha:1.0] CGColor], nil];
+    gradient.locations = [NSArray arrayWithObjects:[NSNumber numberWithDouble:0.0],[NSNumber numberWithDouble:.5],[NSNumber numberWithDouble:.51],[NSNumber numberWithDouble:1.0], nil];
+   
+    return gradient;
+    
+}
+
++ (CAGradientLayer *)getCellGradientWithFrame:(CGRect)frame{
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = frame;
+    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:.875 green:.875 blue:.875 alpha:1] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
+
+    return gradient;
+}
 
 
 @end

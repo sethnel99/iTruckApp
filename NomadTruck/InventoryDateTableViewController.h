@@ -11,5 +11,6 @@
 
 @interface InventoryDateTableViewController : UITableViewController 
 
+@property (weak, nonatomic) IBOutlet UIView *titleLabelView;
 @property (nonatomic, strong) NSMutableArray *salesData;
 @end
