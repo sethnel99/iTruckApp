@@ -37,34 +37,9 @@
 
 - (void)viewDidLoad
 {
-     [super viewDidLoad];
-    [PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
-        if (!user) {
-            NSLog(@"Uh oh. The user cancelled the Twitter login.");
-            return;
-        } else if (user.isNew) {
-            NSLog(@"User signed up and logged in with Twitter!");
-        } else {
-            NSLog(@"User logged in with Twitter!");
-            NSString *userObjectID = user.objectId;
-            NSLog(@"%@", userObjectID);
-            
-            Truck *globalTruck = [Truck sharedTruck];
-            globalTruck.userObjectID = userObjectID;
-            
-            
-            //load truck data in background
-            NSOperationQueue *queue = [NSOperationQueue new];
-            NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:[Truck self]
-                                                                                    selector:@selector(loadTruckFromParse) object:nil];
-            [queue addOperation:operation];
-        
-          
-            
-        }     
-    }];
     
-    [Truck sharedTruck].loadingTruckData = true;
+     [super viewDidLoad];
+    
     latLabel = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
     longLabel = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
     
@@ -72,18 +47,10 @@
     
     message.delegate = self;
     charactersRemaining.text = [NSString stringWithFormat:@"%d",[message.text length]];
-    
-    
-    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:hud];
-    hud.delegate = self;
-    hud.labelText = @"Loading Data";
-    [hud showWhileExecuting:@selector(waitForLoading) onTarget:[Truck self] withObject:nil animated:YES];
 
-    
- 
-    
-
+    //add title bar logo
+    self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
+  
     
 }
 
@@ -102,11 +69,61 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if([Truck sharedTruck].userObjectID == nil){
+        [self promptTwitterLogin];
+    }
+   
+}
+
+- (void)promptTwitterLogin{
+    
+        [PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
+            if (!user) {
+                NSLog(@"Uh oh. The user cancelled the Twitter login.");
+                exit(0);
+                //[self promptTwitterLogin];
+                return;
+            } else if (user.isNew) {
+                NSLog(@"User signed up and logged in with Twitter!");
+            } else {
+                MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+                [self.navigationController.view addSubview:hud];
+                hud.delegate = self;
+                hud.labelText = @"Loading Data";
+                [hud showWhileExecuting:@selector(waitForLoading) onTarget:[Truck self] withObject:nil animated:YES];
+                
+                NSLog(@"User logged in with Twitter!");
+                NSString *userObjectID = user.objectId;
+                NSLog(@"%@", userObjectID);
+                
+                Truck *globalTruck = [Truck sharedTruck];
+                globalTruck.userObjectID = userObjectID;
+                
+                
+                //load truck data in background
+                NSOperationQueue *queue = [NSOperationQueue new];
+                NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:[Truck self]
+                                                                                        selector:@selector(loadTruckFromParse) object:nil];
+                [queue addOperation:operation];
+                
+                
+                
+                
+            }     
+        }];
+        
+        
+        [Truck sharedTruck].loadingTruckData = true;
+        
+        
+       
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

@@ -147,7 +147,8 @@
     [self.TableHeadingsBackgroundView.layer setBorderWidth:1.0];
     [self.TableHeadingsBackgroundView.layer setBorderColor:[[UIColor blackColor] CGColor]];
   
-    
+    //add title bar logo
+    self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
     
 
 }

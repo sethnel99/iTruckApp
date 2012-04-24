@@ -18,7 +18,9 @@
     //set up some color stuff
     [[UITabBar appearance] setSelectedImageTintColor:[Truck getTealGreenTint]];
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:.35 green:.35 blue:.35 alpha:1]];
-    // Override point for customization after application launch.
+   
+    
+
     return YES;
 }
 							

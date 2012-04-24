@@ -10,6 +10,7 @@
 #import "Truck.h"
 #import "MenuFoodItem.h"
 #import "InventoryTableViewController.h"
+#import "CustomInventoryInputCell.h"
 
 @interface InventoryDateTableViewController ()
 
@@ -47,15 +48,19 @@
 {
     [super viewDidLoad];
   
+   
     self.salesData = [Truck getSalesData];
     
     //add gradient to title label (really, to the uiview that houses it)
     [self.titleLabelView.layer insertSublayer:[Truck getTitleBarGradientWithFrame:self.titleLabelView.bounds] atIndex:0];
     
+    //add title bar logo
+    self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
     
     
     
-    // Uncomment the following line to preserve selection between presentations.
+    
+        // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -121,7 +126,7 @@
                            [[df monthSymbols] objectAtIndex:([components month] - 1)],
                            [components day],[components year]];
     ((UILabel*)[cell viewWithTag:101]).text = [NSString stringWithFormat:@"%02d:%02d %@",
-                                               [components hour],[components minute],ampm];
+                                               hour,[components minute],ampm];
     
     ((UILabel*)[cell viewWithTag:102]).text = [singleDataSet objectAtIndex:1];
     
@@ -189,5 +194,8 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
+  
+
+
 
 @end

@@ -31,7 +31,7 @@
     
     ResultsViewController *itvc = (ResultsViewController *)[segue destinationViewController];
     itvc.daySalesIndex = [[self tableView] indexPathForCell:sender].row;
-    itvc.daySales = [self.salesByDay objectAtIndex:itvc.daySalesIndex];
+    itvc.salesByDay = self.salesByDay;
     
     
 }
@@ -127,6 +127,9 @@
     
     //apply gradient 
     [cell.layer insertSublayer:[Truck getCellGradientWithFrame:cell.bounds] atIndex:0];
+    
+    //add title bar logo
+    self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
     
     
     return cell;

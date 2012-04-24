@@ -8,6 +8,8 @@
 
 #import "CustomInventoryInputCell.h"
 
+static CustomInventoryInputCell *activeCell = nil;
+
 @implementation CustomInventoryInputCell
 @synthesize textTag;
 
@@ -31,5 +33,29 @@
     UITextField *tempTextField = (UITextField*)[self viewWithTag:self.textTag];
     tempTextField.tag = 102;
 }
+
+-(BOOL)resignFirstResponder
+{   
+    [[self viewWithTag:self.textTag] resignFirstResponder];  
+    return [super resignFirstResponder];
+}
+
+
+-(UIView*) hitTest:(CGPoint)point withEvent:(UIEvent*)event
+{
+    // check to see if the hit is in this cell 
+    if ([self pointInside:point withEvent:event]) {
+            [activeCell resignFirstResponder];
+            activeCell = self;   
+        
+    }
+    
+    // return the super's hitTest result
+    return [super hitTest:point withEvent:event];   
+}  
+
+
+
+
 
 @end

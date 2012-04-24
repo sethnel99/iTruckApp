@@ -72,6 +72,7 @@ static Truck *sharedTruck = nil;
         NSDate *tDate = (NSDate*)[tArr objectAtIndex:0];
         if([tDate compare:newSaleDate] == NSOrderedDescending){
             [sharedTruck.salesData insertObject:entrySales atIndex:i];
+            [self rebuildSalesEntryByDay];
             [self saveSalesToParse];
             return;
         }
@@ -81,7 +82,6 @@ static Truck *sharedTruck = nil;
     
     //get to the end - this is the latest (most recent) object
     [sharedTruck.salesData addObject:entrySales];
-    [self rebuildSalesEntryByDay];
     [self saveSalesToParse];
 }
 

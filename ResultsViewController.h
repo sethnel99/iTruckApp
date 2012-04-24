@@ -17,10 +17,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *salesPerformanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (nonatomic, assign) int daySalesIndex;
 @property (nonatomic, strong) NSMutableArray *daySales;
 @property (nonatomic, strong) NSMutableArray *aggregateSales;
+@property (nonatomic, strong) NSMutableArray *salesByDay;
 
 @property (nonatomic, strong) NSMutableArray *salesPerformancesByStop;
 @property (nonatomic, assign) int salesPerformanceForDay;

@@ -21,11 +21,13 @@
 @synthesize salesPerformanceLabel;
 @synthesize timeLabel;
 @synthesize locationLabel;
+@synthesize dateLabel;
 @synthesize daySalesIndex;
 @synthesize daySales;
 @synthesize aggregateSales;
 @synthesize salesPerformancesByStop;
 @synthesize salesPerformanceForDay;
+@synthesize salesByDay;
 
 - (IBAction)segmentedControlClicked:(UISegmentedControl*)sender {
     int index = [sender selectedSegmentIndex];
@@ -41,12 +43,15 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
+   self.stopPicker.tintColor = [Truck getTealGreenTint];
+    self.stopPicker.segmentedControlStyle = UISegmentedControlStyleBar;
     
  
     //add gradient to title label (really, to the uiview that houses it)
     [self.titleLabelView.layer insertSublayer:[Truck getTitleBarGradientWithFrame:self.titleLabelView.bounds] atIndex:0];
     
-
+    //add title bar logo
+    self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
                                 
     
     
@@ -58,6 +63,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    self.daySales = [self.salesByDay objectAtIndex:self.daySalesIndex];
     [stopPicker removeAllSegments];
     [stopPicker insertSegmentWithTitle:@"Day" atIndex:0 animated:YES];
     for(int i = 0; i < [self.daySales count]; i++){
@@ -120,6 +126,13 @@
     timeLabel.text = @"N/A";
     locationLabel.text = @"N/A";
     
+    NSDate *tempDate = [((NSMutableArray *)[self.daySales objectAtIndex:0]) objectAtIndex:0];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:tempDate];
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    self.dateLabel.text = [NSString stringWithFormat:@"%@ %dth, %d",
+                           [[df monthSymbols] objectAtIndex:([components month] - 1)],
+                           [components day],[components year]];
+    
     int maxIndex = 0;
     int maxSold = 0; 
     int maxProfitIndex = 0;
@@ -145,15 +158,9 @@
     
     NSArray *mostSoldPoint = [self.aggregateSales objectAtIndex:maxIndex];
     NSArray *mostProfitPoint = [self.aggregateSales objectAtIndex:maxProfitIndex];
-    self.mostSoldLabel.text = [NSString stringWithFormat:@"%@ \n (%d)",[mostSoldPoint objectAtIndex:0],maxSold];
-    self.mostProfitableLabel.text = [NSString stringWithFormat:@"%@ \n (%@)",[mostProfitPoint objectAtIndex:0],[numberFormatter stringFromNumber:[NSNumber numberWithDouble:maxProfit]]];
-    
-    [self.mostSoldLabel sizeToFit];
-    [self.mostProfitableLabel sizeToFit];
-    
-    self.mostSoldLabel.center = CGPointMake(self.mostSoldLabel.superview.center.x, self.mostSoldLabel.center.y);
-    self.mostProfitableLabel.center = CGPointMake(self.mostProfitableLabel.superview.center.x, self.mostProfitableLabel.center.y);
-    
+    self.mostSoldLabel.text = [NSString stringWithFormat:@"%@ (%d)",[mostSoldPoint objectAtIndex:0],maxSold];
+    self.mostProfitableLabel.text = [NSString stringWithFormat:@"%@ (%@)",[mostProfitPoint objectAtIndex:0],[numberFormatter stringFromNumber:[NSNumber numberWithDouble:maxProfit]]];
+        
     self.salesPerformanceLabel.text = [NSString stringWithFormat:@"%d%%",
                                   self.salesPerformanceForDay];
     
@@ -168,17 +175,14 @@
     NSDate *tempDate = [stopSales objectAtIndex:0];
     
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit fromDate:tempDate];
-    
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
     int hour = [components hour];
     NSString *ampm = @"am";
     if(hour > 12){
         hour -= 12;
         ampm = @"pm";
     }
-    self.timeLabel.text = [NSString stringWithFormat:@"%@ %d, %d, %02d:%02d%@",
-                           [[df monthSymbols] objectAtIndex:([components month] - 1)],
-                           [components day],[components year],[components hour],[components minute],ampm];
+                           
+    self.timeLabel.text = [NSString stringWithFormat:@"%02d:%02d %@",hour,[components minute],ampm];
 
     self.locationLabel.text = [stopSales objectAtIndex:1];
     
@@ -207,14 +211,9 @@
     
     NSArray *mostSoldPoint = [stopSales objectAtIndex:maxIndex];
     NSArray *mostProfitPoint = [stopSales objectAtIndex:maxProfitIndex];
-    self.mostSoldLabel.text = [NSString stringWithFormat:@"%@ \n (%d)",[mostSoldPoint objectAtIndex:0],maxSold];
-    self.mostProfitableLabel.text = [NSString stringWithFormat:@"%@ \n (%@)",[mostProfitPoint objectAtIndex:0],[numberFormatter stringFromNumber:[NSNumber numberWithDouble:maxProfit]]];
-    
-    [self.mostSoldLabel sizeToFit];
-    [self.mostProfitableLabel sizeToFit];
-    
-    self.mostSoldLabel.center = CGPointMake(self.mostSoldLabel.superview.center.x, self.mostSoldLabel.center.y);
-    self.mostProfitableLabel.center = CGPointMake(self.mostProfitableLabel.superview.center.x, self.mostProfitableLabel.center.y);
+    self.mostSoldLabel.text = [NSString stringWithFormat:@"%@ (%d)",[mostSoldPoint objectAtIndex:0],maxSold];
+    self.mostProfitableLabel.text = [NSString stringWithFormat:@"%@ (%@)",[mostProfitPoint objectAtIndex:0],[numberFormatter stringFromNumber:[NSNumber numberWithDouble:maxProfit]]];
+  
     
     self.salesPerformanceLabel.text = [NSString stringWithFormat:@"%d%%",
                                   [[self.salesPerformancesByStop objectAtIndex:index] intValue]];
@@ -232,6 +231,7 @@
     [self setTimeLabel:nil];
     [self setLocationLabel:nil];
     [self setTitleLabelView:nil];
+    [self setDateLabel:nil];
     [super viewDidUnload];
 }
 
