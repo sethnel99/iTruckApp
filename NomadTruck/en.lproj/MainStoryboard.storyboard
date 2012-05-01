@@ -615,60 +615,6 @@
         <image name="salesicon.png" width="30" height="30"/>
         <image name="twittericon.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="CustomInventoryInputCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CustomInventoryInputCell.h"/>
-        </class>
-        <class className="InventoryDateTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InventoryDateTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="titleLabelView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="InventoryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InventoryTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="DateInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="TableHeadingsBackgroundView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="inputBackgroundUIView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="locationTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="titleLabelView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="NomadNavigationViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NomadNavigationViewController.h"/>
-        </class>
-        <class className="NomadTruckViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NomadTruckViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="charactersRemaining" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="locationManager" candidateClass="CLLocationManager"/>
-                <relationship kind="outlet" name="message" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="truckLogo" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="truckName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ResultsDateViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultsDateViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="titleLabelView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="ResultsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mostProfitableLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mostSoldLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="salesPerformanceLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="stopPicker" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabelView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

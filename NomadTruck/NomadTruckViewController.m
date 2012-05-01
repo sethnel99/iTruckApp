@@ -94,6 +94,7 @@
                                       delegate: self
                                       cancelButtonTitle:nil
                                       otherButtonTitles:@"Ok", nil];
+                alert.tag = 106;
                 [alert show];
                 return;
             } else if (user.isNew) {
@@ -181,13 +182,17 @@
     
     NSString *truckID = globalTruck.truckObjectID;
     [newMessage setObject:truckID forKey:@"TruckID"];
-    [newMessage setObject:message.text forKey:@"Message"];
+    NSString *tempMessage = message.text;
+    NSString *finalAppendedMessage = [tempMessage stringByAppendingString:@" http://www.nomadgo.com/truckmap.php?lat%3d41.9%26lng%3d-87.65"];
+    //replace equals signs with %3d, apersands with %26
+    //need to create test cases for those
+    [newMessage setObject:finalAppendedMessage forKey:@"Message"];
     [newMessage save];
     
     NSURL *update = [NSURL URLWithString:@"https://api.twitter.com/1/statuses/update.json"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:update];
     request.HTTPMethod = @"POST";
-    request.HTTPBody = [[NSString stringWithFormat:@"status=%@",message.text] 
+    request.HTTPBody = [[NSString stringWithFormat:@"status=%@",finalAppendedMessage]
                         dataUsingEncoding:NSUTF8StringEncoding];
     [[PFTwitterUtils twitter] signRequest:request];
     
@@ -198,12 +203,27 @@
                                                      error:&error];
     
     NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    
+    
+    NSLog(@"%@",finalAppendedMessage);
     NSLog(@"%@", responseString);
     NSLog(@"%@",error);
+    
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Message Posted!"
+                          message: @"Your message was posted to twitter!"
+                          delegate: self
+                          cancelButtonTitle:nil
+                          otherButtonTitles:@"Ok", nil];
+    [alert show];
+    
+   
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    exit(0);
+    if(alertView.tag == 106)
+        exit(0);
 }
 
 

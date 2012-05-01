@@ -17,7 +17,6 @@
 		4EA8059015005FAD00DCB4BC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058F15005FAD00DCB4BC /* QuartzCore.framework */; };
 		4EA80596150075AB00DCB4BC /* Truck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA80595150075AB00DCB4BC /* Truck.m */; };
 		4EAC8A191505DB390082911C /* Nomad Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAC8A181505DB390082911C /* Nomad Logo.png */; };
-		4EAF9029150576E300DA1BA3 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAF9028150576E300DA1BA3 /* background.png */; };
 		4EAFE0CA15004CA1004360CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAFE0C915004CA1004360CD /* UIKit.framework */; };
 		4EAFE0CC15004CA1004360CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAFE0CB15004CA1004360CD /* Foundation.framework */; };
 		4EAFE0CE15004CA1004360CD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAFE0CD15004CA1004360CD /* CoreGraphics.framework */; };
@@ -35,6 +34,7 @@
 		CE33A91F153BC11C00991734 /* resultsicon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A91C153BC11C00991734 /* resultsicon.png */; };
 		CE33A921153BC11C00991734 /* twittericon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A91E153BC11C00991734 /* twittericon.png */; };
 		CE33A923153BE35500991734 /* salesicon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A922153BE35500991734 /* salesicon.png */; };
+		CE3C99FB155075CB00614B26 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = CE3C99FA155075CB00614B26 /* background.png */; };
 		CE4633E31547565300ABA410 /* NomadNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4633E21547565300ABA410 /* NomadNavigationViewController.m */; };
 		CE4633EA15475B1600ABA410 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4633E615475B1600ABA410 /* libTestFlight.a */; };
 		CE4633EB15475B1600ABA410 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CE4633E715475B1600ABA410 /* README.txt */; };
@@ -55,7 +55,6 @@
 		4EA80594150075AB00DCB4BC /* Truck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Truck.h; sourceTree = "<group>"; };
 		4EA80595150075AB00DCB4BC /* Truck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Truck.m; sourceTree = "<group>"; };
 		4EAC8A181505DB390082911C /* Nomad Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nomad Logo.png"; path = "../NomadTruck/Nomad Logo.png"; sourceTree = "<group>"; };
-		4EAF9028150576E300DA1BA3 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../NomadTruck/background.png; sourceTree = "<group>"; };
 		4EAFE0C515004CA0004360CD /* NomadTruck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NomadTruck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAFE0C915004CA1004360CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4EAFE0CB15004CA1004360CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -84,6 +83,7 @@
 		CE33A91C153BC11C00991734 /* resultsicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resultsicon.png; sourceTree = "<group>"; };
 		CE33A91E153BC11C00991734 /* twittericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twittericon.png; sourceTree = "<group>"; };
 		CE33A922153BE35500991734 /* salesicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = salesicon.png; sourceTree = "<group>"; };
+		CE3C99FA155075CB00614B26 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		CE4633E11547565300ABA410 /* NomadNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NomadNavigationViewController.h; sourceTree = "<group>"; };
 		CE4633E21547565300ABA410 /* NomadNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NomadNavigationViewController.m; sourceTree = "<group>"; };
 		CE4633E615475B1600ABA410 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
@@ -200,11 +200,11 @@
 		CE33A91B153BC11C00991734 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				CE3C99FA155075CB00614B26 /* background.png */,
 				CE4891D81545259B00898E02 /* titlelogo.png */,
 				CE33A922153BE35500991734 /* salesicon.png */,
 				CE33A91C153BC11C00991734 /* resultsicon.png */,
 				4EAC8A181505DB390082911C /* Nomad Logo.png */,
-				4EAF9028150576E300DA1BA3 /* background.png */,
 				CE33A91E153BC11C00991734 /* twittericon.png */,
 			);
 			path = Assets;
@@ -273,7 +273,6 @@
 			files = (
 				4EAFE0D415004CA1004360CD /* InfoPlist.strings in Resources */,
 				4EAFE0DD15004CA1004360CD /* MainStoryboard.storyboard in Resources */,
-				4EAF9029150576E300DA1BA3 /* background.png in Resources */,
 				4EAC8A191505DB390082911C /* Nomad Logo.png in Resources */,
 				CE33A91F153BC11C00991734 /* resultsicon.png in Resources */,
 				CE33A921153BC11C00991734 /* twittericon.png in Resources */,
@@ -281,6 +280,7 @@
 				CE4891D91545259B00898E02 /* titlelogo.png in Resources */,
 				CE4633EB15475B1600ABA410 /* README.txt in Resources */,
 				CE4633EC15475B1600ABA410 /* release_notes.txt in Resources */,
+				CE3C99FB155075CB00614B26 /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
