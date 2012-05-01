@@ -35,8 +35,12 @@
 		CE33A91F153BC11C00991734 /* resultsicon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A91C153BC11C00991734 /* resultsicon.png */; };
 		CE33A921153BC11C00991734 /* twittericon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A91E153BC11C00991734 /* twittericon.png */; };
 		CE33A923153BE35500991734 /* salesicon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A922153BE35500991734 /* salesicon.png */; };
+		CE4633E31547565300ABA410 /* NomadNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4633E21547565300ABA410 /* NomadNavigationViewController.m */; };
+		CE4633EA15475B1600ABA410 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4633E615475B1600ABA410 /* libTestFlight.a */; };
+		CE4633EB15475B1600ABA410 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CE4633E715475B1600ABA410 /* README.txt */; };
+		CE4633EC15475B1600ABA410 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = CE4633E815475B1600ABA410 /* release_notes.txt */; };
+		CE4633EF1547625B00ABA410 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4633EE1547625B00ABA410 /* ResultsViewController.m */; };
 		CE4891D91545259B00898E02 /* titlelogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE4891D81545259B00898E02 /* titlelogo.png */; };
-		CEAFB710153D2ECE00444457 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAFB70F153D2ECE00444457 /* ResultsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,8 +54,8 @@
 		4EA8058F15005FAD00DCB4BC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4EA80594150075AB00DCB4BC /* Truck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Truck.h; sourceTree = "<group>"; };
 		4EA80595150075AB00DCB4BC /* Truck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Truck.m; sourceTree = "<group>"; };
-		4EAC8A181505DB390082911C /* Nomad Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Nomad Logo.png"; sourceTree = "<group>"; };
-		4EAF9028150576E300DA1BA3 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		4EAC8A181505DB390082911C /* Nomad Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nomad Logo.png"; path = "../NomadTruck/Nomad Logo.png"; sourceTree = "<group>"; };
+		4EAF9028150576E300DA1BA3 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../NomadTruck/background.png; sourceTree = "<group>"; };
 		4EAFE0C515004CA0004360CD /* NomadTruck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NomadTruck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EAFE0C915004CA1004360CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4EAFE0CB15004CA1004360CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -80,9 +84,15 @@
 		CE33A91C153BC11C00991734 /* resultsicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resultsicon.png; sourceTree = "<group>"; };
 		CE33A91E153BC11C00991734 /* twittericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twittericon.png; sourceTree = "<group>"; };
 		CE33A922153BE35500991734 /* salesicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = salesicon.png; sourceTree = "<group>"; };
+		CE4633E11547565300ABA410 /* NomadNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NomadNavigationViewController.h; sourceTree = "<group>"; };
+		CE4633E21547565300ABA410 /* NomadNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NomadNavigationViewController.m; sourceTree = "<group>"; };
+		CE4633E615475B1600ABA410 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		CE4633E715475B1600ABA410 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		CE4633E815475B1600ABA410 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
+		CE4633E915475B1600ABA410 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		CE4633ED1547625A00ABA410 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		CE4633EE1547625B00ABA410 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		CE4891D81545259B00898E02 /* titlelogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titlelogo.png; sourceTree = "<group>"; };
-		CEAFB70E153D2ECE00444457 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultsViewController.h; path = ../ResultsViewController.h; sourceTree = "<group>"; };
-		CEAFB70F153D2ECE00444457 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultsViewController.m; path = ../ResultsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +111,7 @@
 				4EAFE0CA15004CA1004360CD /* UIKit.framework in Frameworks */,
 				4EAFE0CC15004CA1004360CD /* Foundation.framework in Frameworks */,
 				4EA8058115005EDC00DCB4BC /* Parse.framework in Frameworks */,
+				CE4633EA15475B1600ABA410 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +121,7 @@
 		4EAFE0BA15004CA0004360CD = {
 			isa = PBXGroup;
 			children = (
+				CE4633E515475B1600ABA410 /* TestFlightSDK1 */,
 				CE33A91B153BC11C00991734 /* Assets */,
 				4EAFE0CF15004CA1004360CD /* NomadTruck */,
 				4EAFE0C815004CA1004360CD /* Frameworks */,
@@ -150,8 +162,6 @@
 				CE2E44F6152A54DF00FE7136 /* MenuFoodItem.m */,
 				CE2E44E01528F13300FE7136 /* MBProgressHUD.h */,
 				CE2E44E11528F13300FE7136 /* MBProgressHUD.m */,
-				4EAC8A181505DB390082911C /* Nomad Logo.png */,
-				4EAF9028150576E300DA1BA3 /* background.png */,
 				4EAFE0DB15004CA1004360CD /* MainStoryboard.storyboard */,
 				4EAFE0D815004CA1004360CD /* NomadTruckAppDelegate.h */,
 				4EAFE0D915004CA1004360CD /* NomadTruckAppDelegate.m */,
@@ -167,9 +177,11 @@
 				CE2E44F2152A3DC400FE7136 /* InventoryTableViewController.m */,
 				CE2E453E1534C85B00FE7136 /* ResultsDateViewController.h */,
 				CE2E453F1534C85B00FE7136 /* ResultsDateViewController.m */,
-				CEAFB70E153D2ECE00444457 /* ResultsViewController.h */,
-				CEAFB70F153D2ECE00444457 /* ResultsViewController.m */,
+				CE4633ED1547625A00ABA410 /* ResultsViewController.h */,
+				CE4633EE1547625B00ABA410 /* ResultsViewController.m */,
 				4EAFE0D015004CA1004360CD /* Supporting Files */,
+				CE4633E11547565300ABA410 /* NomadNavigationViewController.h */,
+				CE4633E21547565300ABA410 /* NomadNavigationViewController.m */,
 			);
 			path = NomadTruck;
 			sourceTree = "<group>";
@@ -191,9 +203,22 @@
 				CE4891D81545259B00898E02 /* titlelogo.png */,
 				CE33A922153BE35500991734 /* salesicon.png */,
 				CE33A91C153BC11C00991734 /* resultsicon.png */,
+				4EAC8A181505DB390082911C /* Nomad Logo.png */,
+				4EAF9028150576E300DA1BA3 /* background.png */,
 				CE33A91E153BC11C00991734 /* twittericon.png */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		CE4633E515475B1600ABA410 /* TestFlightSDK1 */ = {
+			isa = PBXGroup;
+			children = (
+				CE4633E615475B1600ABA410 /* libTestFlight.a */,
+				CE4633E715475B1600ABA410 /* README.txt */,
+				CE4633E815475B1600ABA410 /* release_notes.txt */,
+				CE4633E915475B1600ABA410 /* TestFlight.h */,
+			);
+			path = TestFlightSDK1;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +279,8 @@
 				CE33A921153BC11C00991734 /* twittericon.png in Resources */,
 				CE33A923153BE35500991734 /* salesicon.png in Resources */,
 				CE4891D91545259B00898E02 /* titlelogo.png in Resources */,
+				CE4633EB15475B1600ABA410 /* README.txt in Resources */,
+				CE4633EC15475B1600ABA410 /* release_notes.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +301,8 @@
 				CE2E44F7152A54DF00FE7136 /* MenuFoodItem.m in Sources */,
 				CE2E4502153296A400FE7136 /* CustomInventoryInputCell.m in Sources */,
 				CE2E45401534C85B00FE7136 /* ResultsDateViewController.m in Sources */,
-				CEAFB710153D2ECE00444457 /* ResultsViewController.m in Sources */,
+				CE4633E31547565300ABA410 /* NomadNavigationViewController.m in Sources */,
+				CE4633EF1547625B00ABA410 /* ResultsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +383,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NomadTruck/NomadTruck-Prefix.pch";
 				INFOPLIST_FILE = "NomadTruck/NomadTruck-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -370,6 +402,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NomadTruck/NomadTruck-Prefix.pch";
 				INFOPLIST_FILE = "NomadTruck/NomadTruck-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

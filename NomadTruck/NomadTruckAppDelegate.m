@@ -9,12 +9,21 @@
 #import "NomadTruckAppDelegate.h"
 #import "Truck.h"
 
+
+
 @implementation NomadTruckAppDelegate
 
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [TestFlight takeOff:@"f7f205dcc4abe9a7fff20d8f9a7d9e2a_ODE5MTkyMDEyLTA0LTI0IDE4OjA3OjE2LjA1MDY5NA"];
+    
+    #define TESTING 1
+    #ifdef TESTING
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    #endif
+    
     //set up some color stuff
     [[UITabBar appearance] setSelectedImageTintColor:[Truck getTealGreenTint]];
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:.35 green:.35 blue:.35 alpha:1]];

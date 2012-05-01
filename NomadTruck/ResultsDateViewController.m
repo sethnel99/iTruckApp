@@ -31,7 +31,6 @@
     
     ResultsViewController *itvc = (ResultsViewController *)[segue destinationViewController];
     itvc.daySalesIndex = [[self tableView] indexPathForCell:sender].row;
-    itvc.salesByDay = self.salesByDay;
     
     
 }
@@ -48,6 +47,8 @@
     [super viewDidLoad];
     //add gradient to title label (really, to the uiview that houses it)
     [self.titleLabelView.layer insertSublayer:[Truck getTitleBarGradientWithFrame:self.titleLabelView.bounds] atIndex:0];
+    //add title bar logo
+    //self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -121,15 +122,12 @@
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:tempDate];
     
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    dateLabel.text = [NSString stringWithFormat:@"%@ %dth, %d",
+    dateLabel.text = [NSString stringWithFormat:@"%@ %d%@, %d",
                            [[df monthSymbols] objectAtIndex:([components month] - 1)],
-                           [components day],[components year]];
+                      [components day],[Truck getAffixForDay:[components day]],[components year]];
     
     //apply gradient 
     [cell.layer insertSublayer:[Truck getCellGradientWithFrame:cell.bounds] atIndex:0];
-    
-    //add title bar logo
-    self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
     
     
     return cell;

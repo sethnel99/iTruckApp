@@ -40,4 +40,5 @@
 + (UIColor *)getTealGreenTint;
 + (CAGradientLayer *)getTitleBarGradientWithFrame:(CGRect)frame;
 + (CAGradientLayer *)getCellGradientWithFrame:(CGRect)frame;
++ (NSString *)getAffixForDay:(int)day;
 @end

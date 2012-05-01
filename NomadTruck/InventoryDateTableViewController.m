@@ -55,7 +55,7 @@
     [self.titleLabelView.layer insertSublayer:[Truck getTitleBarGradientWithFrame:self.titleLabelView.bounds] atIndex:0];
     
     //add title bar logo
-    self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
+   // self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
     
     
     
@@ -122,9 +122,9 @@
         hour -= 12;
         ampm = @"pm";
     }
-    ((UILabel*)[cell viewWithTag:100]).text = [NSString stringWithFormat:@"%@ %dth, %d",
-                           [[df monthSymbols] objectAtIndex:([components month] - 1)],
-                           [components day],[components year]];
+    ((UILabel*)[cell viewWithTag:100]).text = [NSString stringWithFormat:@"%@ %d%@, %d",
+                                               [[df monthSymbols] objectAtIndex:([components month] - 1)],
+                                               [components day],[Truck getAffixForDay:[components day]],[components year]];
     ((UILabel*)[cell viewWithTag:101]).text = [NSString stringWithFormat:@"%02d:%02d %@",
                                                hour,[components minute],ampm];
     

@@ -51,7 +51,8 @@
     [self.titleLabelView.layer insertSublayer:[Truck getTitleBarGradientWithFrame:self.titleLabelView.bounds] atIndex:0];
     
     //add title bar logo
-    self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
+    //self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
+ 
                                 
     
     
@@ -63,6 +64,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    self.salesByDay =  [Truck getSalesDataByDay];
     self.daySales = [self.salesByDay objectAtIndex:self.daySalesIndex];
     [stopPicker removeAllSegments];
     [stopPicker insertSegmentWithTitle:@"Day" atIndex:0 animated:YES];
@@ -129,9 +131,9 @@
     NSDate *tempDate = [((NSMutableArray *)[self.daySales objectAtIndex:0]) objectAtIndex:0];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:tempDate];
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    self.dateLabel.text = [NSString stringWithFormat:@"%@ %dth, %d",
-                           [[df monthSymbols] objectAtIndex:([components month] - 1)],
-                           [components day],[components year]];
+    self.dateLabel.text = [NSString stringWithFormat:@"%@ %d%@, %d",
+                                                [[df monthSymbols] objectAtIndex:([components month] - 1)],
+                                                [components day],[Truck getAffixForDay:[components day]],[components year]];
     
     int maxIndex = 0;
     int maxSold = 0; 

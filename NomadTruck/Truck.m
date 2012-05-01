@@ -82,12 +82,10 @@ static Truck *sharedTruck = nil;
     
     //get to the end - this is the latest (most recent) object
     [sharedTruck.salesData addObject:entrySales];
+    [self rebuildSalesEntryByDay];
     [self saveSalesToParse];
 }
 
-+ (void) updateAveragesWithMoney:(double)money{
-    
-}
 
 + (void) rebuildSalesEntryByDay{
 
@@ -227,6 +225,18 @@ static Truck *sharedTruck = nil;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:.875 green:.875 blue:.875 alpha:1] CGColor], (id)[[UIColor whiteColor] CGColor], nil];
 
     return gradient;
+}
+
++ (NSString *)getAffixForDay:(int)day{
+    if (day == 1)
+        return @"st";
+    else if (day == 2)
+        return @"nd";
+    else if (day == 3)
+        return @"rd";
+    else {
+        return @"th";
+    }
 }
 
 

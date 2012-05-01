@@ -45,7 +45,26 @@
 }
 
 - (IBAction)saveInventoryChanges:(UIButton *)sender {
-    [self.view endEditing:YES]; 
+    [self.view endEditing:YES];
+    
+    if([[self.entrySalesData objectAtIndex:0] isEqualToDate:[NSDate dateWithTimeIntervalSince1970:0]]){
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Date Required"
+                              message: @"Please provide a date and time for this sales record."
+                              delegate: self
+                              cancelButtonTitle:nil
+                              otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }else if([[self.entrySalesData objectAtIndex:1] isEqualToString:@""]){
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Location required"
+                              message: @"Please provide a location for this sales record."
+                              delegate: self
+                              cancelButtonTitle:nil
+                              otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }else{
+    
     if([self.sender isEqualToString:@"DateTable"]){
        [Truck updateSalesEntry:self.entrySalesData onEntryIndex:self.entrySalesIndex];
     }else{
@@ -53,7 +72,7 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
 
-    
+    }
     
 }
 
@@ -80,7 +99,7 @@
     }else{
         //new data
         self.EntrySalesData = [[NSMutableArray alloc] init];
-        [entrySalesData addObject:[NSDate date]];
+        [entrySalesData addObject:[NSDate dateWithTimeIntervalSince1970:0]];
         [entrySalesData addObject:@""];
         //for each menu item, add an entry which is a name, a before, and an after number
         
@@ -148,7 +167,7 @@
     [self.TableHeadingsBackgroundView.layer setBorderColor:[[UIColor blackColor] CGColor]];
   
     //add title bar logo
-    self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
+   // self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
     
 
 }

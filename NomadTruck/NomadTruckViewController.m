@@ -39,6 +39,7 @@
 {
     
      [super viewDidLoad];
+    dispatch_async(dispatch_get_main_queue(), ^{[self promptTwitterLogin];});
     
     latLabel = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.latitude];
     longLabel = [NSString stringWithFormat:@"%f", locationManager.location.coordinate.longitude];
@@ -50,7 +51,8 @@
 
     //add title bar logo
     self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
-  
+   
+    
     
 }
 
@@ -75,9 +77,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if([Truck sharedTruck].userObjectID == nil){
-        [self promptTwitterLogin];
-    }
+  
+    
    
 }
 
@@ -86,8 +87,14 @@
         [PFTwitterUtils logInWithBlock:^(PFUser *user, NSError *error) {
             if (!user) {
                 NSLog(@"Uh oh. The user cancelled the Twitter login.");
-                exit(0);
-                //[self promptTwitterLogin];
+                
+                UIAlertView *alert = [[UIAlertView alloc]
+                                      initWithTitle: @"Twitter Login Required"
+                                      message: @"We're sorry. A problem occured during your twitter login. Please re-open the application and try again."
+                                      delegate: self
+                                      cancelButtonTitle:nil
+                                      otherButtonTitles:@"Ok", nil];
+                [alert show];
                 return;
             } else if (user.isNew) {
                 NSLog(@"User signed up and logged in with Twitter!");
@@ -193,6 +200,10 @@
     NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"%@", responseString);
     NSLog(@"%@",error);
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    exit(0);
 }
 
 
