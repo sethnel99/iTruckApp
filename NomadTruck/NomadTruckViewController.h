@@ -22,4 +22,6 @@
 @property (weak, nonatomic) NSString *latLabel;
 @property (weak, nonatomic) NSString *longLabel;
 
+- (void) promptTwitterLogin;
+
 @end

@@ -27,6 +27,7 @@
 
 + (Truck *)sharedTruck;
 + (void) loadTruckFromParse;
++ (void) saveSalesToParse;
 + (NSMutableArray *) getInventory;
 + (NSMutableArray *) getSalesData;
 + (NSMutableArray *) getSalesDataByDay;

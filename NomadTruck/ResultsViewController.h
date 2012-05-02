@@ -27,6 +27,6 @@
 @property (nonatomic, strong) NSMutableArray *salesPerformancesByStop;
 @property (nonatomic, assign) int salesPerformanceForDay;
 
-
-
+- (void) setDayLabels;
+- (void) setStopLabels:(int)index;
 @end
