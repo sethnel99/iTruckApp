@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E8AE51A1550EEC400CBD331 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8AE5191550EEC400CBD331 /* MapViewController.m */; };
 		4EA8058115005EDC00DCB4BC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058015005EDC00DCB4BC /* Parse.framework */; };
 		4EA8058415005F0D00DCB4BC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058315005F0D00DCB4BC /* AudioToolbox.framework */; };
 		4EA8058615005F2700DCB4BC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058515005F2700DCB4BC /* CFNetwork.framework */; };
@@ -44,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E8AE5181550EEC400CBD331 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		4E8AE5191550EEC400CBD331 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		4EA8058015005EDC00DCB4BC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		4EA8058315005F0D00DCB4BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4EA8058515005F2700DCB4BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -163,6 +166,8 @@
 				CE2E44E01528F13300FE7136 /* MBProgressHUD.h */,
 				CE2E44E11528F13300FE7136 /* MBProgressHUD.m */,
 				4EAFE0DB15004CA1004360CD /* MainStoryboard.storyboard */,
+				4E8AE5181550EEC400CBD331 /* MapViewController.h */,
+				4E8AE5191550EEC400CBD331 /* MapViewController.m */,
 				4EAFE0D815004CA1004360CD /* NomadTruckAppDelegate.h */,
 				4EAFE0D915004CA1004360CD /* NomadTruckAppDelegate.m */,
 				4EA80594150075AB00DCB4BC /* Truck.h */,
@@ -303,6 +308,7 @@
 				CE2E45401534C85B00FE7136 /* ResultsDateViewController.m in Sources */,
 				CE4633E31547565300ABA410 /* NomadNavigationViewController.m in Sources */,
 				CE4633EF1547625B00ABA410 /* ResultsViewController.m in Sources */,
+				4E8AE51A1550EEC400CBD331 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
