@@ -52,7 +52,11 @@
     //add title bar logo
     self.navigationController.navigationBar.topItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"titlelogo.png"]];
    
-    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
+    [locationManager startUpdatingLocation];
     
 }
 
@@ -80,6 +84,26 @@
   
     
    
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    int degrees = newLocation.coordinate.latitude;
+    double decimal = fabs(newLocation.coordinate.latitude - degrees);
+    int minutes = decimal * 60;
+    double seconds = decimal * 3600 - minutes * 60;
+    NSString *lat = [NSString stringWithFormat:@"%d° %d' %1.4f\"", 
+                     degrees, minutes, seconds];
+    latLabel = lat;
+    degrees = newLocation.coordinate.longitude;
+    decimal = fabs(newLocation.coordinate.longitude - degrees);
+    minutes = decimal * 60;
+    seconds = decimal * 3600 - minutes * 60;
+    NSString *longt = [NSString stringWithFormat:@"%d° %d' %1.4f\"", 
+                       degrees, minutes, seconds];
+    longLabel = longt;
 }
 
 - (void)promptTwitterLogin{
@@ -183,7 +207,11 @@
     NSString *truckID = globalTruck.truckObjectID;
     [newMessage setObject:truckID forKey:@"TruckID"];
     NSString *tempMessage = message.text;
-    NSString *finalAppendedMessage = [tempMessage stringByAppendingString:@" http://www.nomadgo.com/truckmap.php?lat%3d41.9%26lng%3d-87.65"];
+    NSString *finalAppendedMessage = [tempMessage stringByAppendingString:@" http://www.nomadgo.com/truckmap.php?lat%3d"];
+    finalAppendedMessage = [finalAppendedMessage stringByAppendingString:latLabel];
+    finalAppendedMessage = [finalAppendedMessage stringByAppendingString:@"%26lng%3d"];
+    finalAppendedMessage = [finalAppendedMessage stringByAppendingString:longLabel];
+    //41.9%26lng%3d-87.65"];
     //replace equals signs with %3d, apersands with %26
     //need to create test cases for those
     [newMessage setObject:finalAppendedMessage forKey:@"Message"];

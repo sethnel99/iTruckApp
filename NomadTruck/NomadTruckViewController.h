@@ -11,7 +11,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "MBProgressHUD.h"
 
-@interface NomadTruckViewController : UIViewController <UITextViewDelegate, MBProgressHUDDelegate, UIAlertViewDelegate>
+@interface NomadTruckViewController : UIViewController <UITextViewDelegate, MBProgressHUDDelegate, UIAlertViewDelegate, CLLocationManagerDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *truckName;
 @property (weak, nonatomic) IBOutlet UIImageView *truckLogo;
 @property (weak, nonatomic) IBOutlet UITextView *message;
@@ -23,5 +24,4 @@
 @property (weak, nonatomic) NSString *longLabel;
 
 - (void) promptTwitterLogin;
-
 @end
