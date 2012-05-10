@@ -19,9 +19,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *charactersRemaining;
 @property (weak, nonatomic) PFObject *workingTruck;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet CLLocationManager *locationManager;
-@property (weak, nonatomic) NSString *latLabel;
-@property (weak, nonatomic) NSString *longLabel;
+@property (strong, nonatomic) IBOutlet CLLocationManager *locationManager;
+@property (strong, nonatomic) NSString *latLabel;
+@property (strong, nonatomic) NSString *longLabel;
 
 - (void) promptTwitterLogin;
 @end

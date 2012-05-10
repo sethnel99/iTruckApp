@@ -94,14 +94,14 @@
     double decimal = fabs(newLocation.coordinate.latitude - degrees);
     int minutes = decimal * 60;
     double seconds = decimal * 3600 - minutes * 60;
-    NSString *lat = [NSString stringWithFormat:@"%d° %d' %1.4f\"", 
+    NSString *lat = [NSString stringWithFormat:@"%d.%d%1.0f", 
                      degrees, minutes, seconds];
     latLabel = lat;
     degrees = newLocation.coordinate.longitude;
     decimal = fabs(newLocation.coordinate.longitude - degrees);
     minutes = decimal * 60;
     seconds = decimal * 3600 - minutes * 60;
-    NSString *longt = [NSString stringWithFormat:@"%d° %d' %1.4f\"", 
+    NSString *longt = [NSString stringWithFormat:@"%d.%d%1.0f", 
                        degrees, minutes, seconds];
     longLabel = longt;
 }
@@ -203,7 +203,7 @@
 - (IBAction)submitMessage:(id)sender {
     PFObject *newMessage = [PFObject objectWithClassName:@"Messages"];
     Truck *globalTruck = [Truck sharedTruck];
-    
+    NSLog(@"in submit message");
     NSString *truckID = globalTruck.truckObjectID;
     [newMessage setObject:truckID forKey:@"TruckID"];
     NSString *tempMessage = message.text;
