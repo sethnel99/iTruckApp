@@ -25,6 +25,7 @@
 @property (nonatomic, strong) PFObject *truckPFObject; //PFObject for truck
 @property (nonatomic, strong) NSData *truckLogo; //truck's logos
 
+
 + (Truck *)sharedTruck;
 + (void) loadTruckFromParse;
 + (void) saveSalesToParse;
