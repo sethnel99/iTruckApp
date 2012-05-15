@@ -24,4 +24,5 @@
 @property (strong, nonatomic) NSString *longLabel;
 
 - (void) promptTwitterLogin;
+- (void) exitWithTitle:(NSString *)title withMessage:(NSString *)message;
 @end

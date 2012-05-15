@@ -112,14 +112,8 @@
             if (!user) {
                 NSLog(@"Uh oh. The user cancelled the Twitter login.");
                 
-                UIAlertView *alert = [[UIAlertView alloc]
-                                      initWithTitle: @"Twitter Login Required"
-                                      message: @"We're sorry. A problem occured during your twitter login. Please re-open the application and try again."
-                                      delegate: self
-                                      cancelButtonTitle:nil
-                                      otherButtonTitles:@"Ok", nil];
-                alert.tag = 106;
-                [alert show];
+                [self exitWithTitle: @"Twitter Login Required"
+                            withMessage: @"We're sorry. A problem occured during your twitter login. Please re-open the application and try again."];
                 return;
             } else if (user.isNew) {
                 NSLog(@"User signed up and logged in with Twitter!");
@@ -141,7 +135,7 @@
                 //load truck data in background
                 NSOperationQueue *queue = [NSOperationQueue new];
                 NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:[Truck self]
-                                                                                        selector:@selector(loadTruckFromParse) object:nil];
+                                                                                        selector:@selector(loadTruckFromParse:) object:self];
                 [queue addOperation:operation];
                 
                 
@@ -252,6 +246,17 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(alertView.tag == 106)
         exit(0);
+}
+
+- (void) exitWithTitle:(NSString *)title withMessage:(NSString *)message{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: title
+                          message: message
+                          delegate: self
+                          cancelButtonTitle:nil
+                          otherButtonTitles:@"Ok", nil];
+    alert.tag = 106;
+    [alert show];
 }
 
 

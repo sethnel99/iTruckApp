@@ -8,6 +8,7 @@
 
 #import "Truck.h"
 #import "MenuFoodItem.h"
+#import "NomadTruckViewController.h"
 
 static Truck *sharedTruck = nil;
 
@@ -47,9 +48,15 @@ static Truck *sharedTruck = nil;
 
 
 
-+ (double) priceForInventoryItem:(int)index{
-    MenuFoodItem *item = [sharedTruck.inventory objectAtIndex:index];
-    return item.price;
++ (double) priceForInventoryItem:(NSString *) menuItemID{
+    MenuFoodItem *item;// = [sharedTruck.inventory objectAtIndex:index];
+    for(int i = 0; i < [sharedTruck.inventory count]; i++){
+        item = [sharedTruck.inventory objectAtIndex:i];
+        if([item.ParseID isEqualToString:menuItemID])
+            return item.price;
+    }
+    NSLog(@"price for inventory item that did not exist");
+    return 0;
 }
 
 + (void) updateSalesEntry:(NSMutableArray *)entrySales onEntryIndex:(int)index{
@@ -91,6 +98,8 @@ static Truck *sharedTruck = nil;
 
     //set up sales organized by day//
     sharedTruck.salesDataByDay = [[NSMutableArray alloc] init];
+    if([sharedTruck.salesData count] == 0)
+        return;
     
     [sharedTruck.salesDataByDay addObject:[NSMutableArray arrayWithObject:[sharedTruck.salesData objectAtIndex:0]]];
     for(int i = 1; i < [sharedTruck.salesData count]; i++){
@@ -129,7 +138,8 @@ static Truck *sharedTruck = nil;
     [sharedTruck.truckPFObject saveInBackground];
 }
 
-+ (void) loadTruckFromParse{
++ (void) loadTruckFromParse:(UIViewController *)sender
+{
     
     PFQuery *query = [PFQuery queryWithClassName:@"Trucks"];
     PFCachePolicy cachePolicy = kPFCachePolicyNetworkElseCache;
@@ -140,6 +150,15 @@ static Truck *sharedTruck = nil;
     
     sharedTruck.truckPFObject = [query getFirstObject];
     
+    if(sharedTruck.truckPFObject == nil){
+        sharedTruck.loadingTruckData = false;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+        [(NomadTruckViewController *)sender exitWithTitle: @"Please sign up on our website!"
+                withMessage: @"We require that you register on our website before you can begin using this application. Please visit www.nomadgo.com. Thank you!"];
+        });
+        NSLog(@"shit login");
+    }
     
     //load some general stuff 
     sharedTruck.truckObjectID = sharedTruck.truckPFObject.objectId;
@@ -174,11 +193,14 @@ static Truck *sharedTruck = nil;
     sharedTruck.inventory = menuData;
     //end load inventory//
     
-    sharedTruck.salesData = [[NSMutableArray alloc] initWithArray:[sharedTruck.truckPFObject objectForKey:@"SalesData"]];
-    
+    NSArray *dl = [sharedTruck.truckPFObject objectForKey:@"SalesData"];
+     
+    if(dl == [NSNull null]){
+        sharedTruck.salesData = [[NSMutableArray alloc] init]; 
+    }else{
+        sharedTruck.salesData = [[NSMutableArray alloc] initWithArray:dl];
+    }   
  
-    
-    
     [self rebuildSalesEntryByDay];
     sharedTruck.loadingTruckData = false;
 
@@ -198,7 +220,7 @@ static Truck *sharedTruck = nil;
         NSMutableArray *singleEntry = [sharedTruck.salesData objectAtIndex:i];
         for(int j = 2; j < [singleEntry count]; j++){
             NSArray *dataPoint = [singleEntry objectAtIndex:j];
-            totalMoney += [[dataPoint objectAtIndex:2] intValue]*[Truck priceForInventoryItem:(j-2)];
+            totalMoney += [[dataPoint objectAtIndex:2] intValue]*[Truck priceForInventoryItem:[dataPoint objectAtIndex:1]];
         }
     }
     
@@ -238,6 +260,7 @@ static Truck *sharedTruck = nil;
         return @"th";
     }
 }
+
 
 
 @end
