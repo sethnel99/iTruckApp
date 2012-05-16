@@ -48,7 +48,7 @@ static Truck *sharedTruck = nil;
 
 
 
-+ (double) priceForInventoryItem:(NSString *) menuItemID{
+/*+ (double) priceForInventoryItem:(NSString *) menuItemID{
     MenuFoodItem *item;// = [sharedTruck.inventory objectAtIndex:index];
     for(int i = 0; i < [sharedTruck.inventory count]; i++){
         item = [sharedTruck.inventory objectAtIndex:i];
@@ -57,7 +57,7 @@ static Truck *sharedTruck = nil;
     }
     NSLog(@"price for inventory item that did not exist");
     return 0;
-}
+}*/
 
 + (void) updateSalesEntry:(NSMutableArray *)entrySales onEntryIndex:(int)index{
     [sharedTruck.salesData replaceObjectAtIndex:index withObject:entrySales];
@@ -220,7 +220,7 @@ static Truck *sharedTruck = nil;
         NSMutableArray *singleEntry = [sharedTruck.salesData objectAtIndex:i];
         for(int j = 2; j < [singleEntry count]; j++){
             NSArray *dataPoint = [singleEntry objectAtIndex:j];
-            totalMoney += [[dataPoint objectAtIndex:2] intValue]*[Truck priceForInventoryItem:[dataPoint objectAtIndex:1]];
+            totalMoney += [[dataPoint objectAtIndex:2] intValue]*[[dataPoint objectAtIndex:3] doubleValue];
         }
     }
     

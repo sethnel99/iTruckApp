@@ -78,13 +78,13 @@
     self.salesPerformancesByStop = [[NSMutableArray alloc] init]; 
     
     self.aggregateSales = [NSMutableArray arrayWithArray:[self.daySales objectAtIndex:0]];
-    //add up sales for the first stop stop
+    //add up sales from first stop of the day (for use in money calculations)
      double totalMoneyForDay = 0;
      double totalMoneyForStop = 0;
     for(int j = 2; j < [aggregateSales count]; j++){
         NSArray *dataPoint = [aggregateSales objectAtIndex:j];
         int itemsSold = [[dataPoint objectAtIndex:2] intValue];
-        double itemProfit = itemsSold * [Truck priceForInventoryItem:[dataPoint objectAtIndex:1]];
+        double itemProfit = itemsSold *[[dataPoint objectAtIndex:3] doubleValue];
         totalMoneyForStop += itemProfit;
         totalMoneyForDay += itemProfit;
     }
@@ -94,6 +94,9 @@
     //end add up sales for the first stop
     
     //aggregate sales. Also continue to add sales totals for the rest of the stops
+    //note: aggregate sales data only saves the price during the first stop. If the price
+    //changes in the middle of the day, this is not reflected. HOWEVER, it is reflected in the
+    //money calculations. 
    
     for(int i = 1; i < [self.daySales count]; i++){
         NSMutableArray *stopSales = [self.daySales objectAtIndex:i];
@@ -104,13 +107,13 @@
             NSArray *aggPoint = [self.aggregateSales objectAtIndex:j];
             
             int itemsSold = [[dataPoint objectAtIndex:2] intValue];
-            double itemProfit = itemsSold * [Truck priceForInventoryItem:[dataPoint objectAtIndex:1]];
+            double itemProfit = itemsSold * [[dataPoint objectAtIndex:3] doubleValue];
             totalMoneyForStop += itemProfit;
             totalMoneyForDay += itemProfit;
             
             NSNumber *addition = [NSNumber numberWithInt:[(NSNumber *)[aggPoint objectAtIndex:2] intValue] + itemsSold];
             
-            [self.aggregateSales replaceObjectAtIndex:j withObject:[NSArray arrayWithObjects:[aggPoint objectAtIndex:0],[aggPoint objectAtIndex:1],addition,nil]];
+            [self.aggregateSales replaceObjectAtIndex:j withObject:[NSArray arrayWithObjects:[aggPoint objectAtIndex:0],[aggPoint objectAtIndex:1],addition,[aggPoint objectAtIndex:3],nil]];
             
             
             
@@ -143,7 +146,7 @@
     for(int i = 2; i < [self.aggregateSales count]; i++){
         NSArray *aggPoint = [self.aggregateSales objectAtIndex:i];
         int sold = [[aggPoint objectAtIndex:2] intValue];
-        double profit = sold * [Truck priceForInventoryItem:[aggPoint objectAtIndex:1]];
+        double profit = sold * [[aggPoint objectAtIndex:3] doubleValue];
         if(sold > maxSold){
             maxSold = sold;
             maxIndex = i;
@@ -196,7 +199,7 @@
     for(int i = 2; i < [stopSales count]; i++){
         NSArray *salesPoint = [stopSales objectAtIndex:i];
         int sold = [[salesPoint objectAtIndex:2] intValue];
-        double profit = sold * [Truck priceForInventoryItem:[salesPoint objectAtIndex:1]];
+        double profit = sold * [[salesPoint objectAtIndex:3] doubleValue];
         if(sold > maxSold){
             maxSold = sold;
             maxIndex = i;

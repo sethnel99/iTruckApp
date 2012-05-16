@@ -105,7 +105,7 @@
         for(int j = 2; j < [singleSalesEntry count]; j++){
             NSArray *salesDataPoint = [singleSalesEntry objectAtIndex:j];
             numSold += [[salesDataPoint objectAtIndex:2] intValue];
-            revenue += [[salesDataPoint objectAtIndex:2] intValue] * [Truck priceForInventoryItem:[salesDataPoint objectAtIndex:1]];    
+            revenue += [[salesDataPoint objectAtIndex:2] intValue] * [[salesDataPoint objectAtIndex:3] doubleValue];   
         }
     }
     

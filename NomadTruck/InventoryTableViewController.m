@@ -105,7 +105,7 @@
         
         NSMutableArray *inventory = [Truck getInventory];
         for(int i = 0; i < [inventory count]; i++){
-            [entrySalesData addObject:[[NSArray alloc] initWithObjects:[[inventory objectAtIndex:i] name],[[inventory objectAtIndex:i] ParseID], [NSNumber numberWithInt:0], nil]];
+            [entrySalesData addObject:[[NSArray alloc] initWithObjects:[[inventory objectAtIndex:i] name],[[inventory objectAtIndex:i] ParseID], [NSNumber numberWithInt:0],[NSNumber numberWithDouble:[[inventory objectAtIndex:i] price]], nil]];
         }
     }
     
@@ -224,7 +224,7 @@
         int replIndex = textField.tag - 200 + 2;
         NSArray *dataPoint = [self.entrySalesData objectAtIndex:replIndex];
     
-        NSArray *newDataPoint = [NSArray arrayWithObjects:[dataPoint objectAtIndex:0],[dataPoint objectAtIndex:1],[NSNumber numberWithInteger:[[textField text] integerValue]],nil];
+        NSArray *newDataPoint = [NSArray arrayWithObjects:[dataPoint objectAtIndex:0],[dataPoint objectAtIndex:1],[NSNumber numberWithInteger:[[textField text] integerValue]],[dataPoint objectAtIndex:3],nil];
 
   
         [self.entrySalesData replaceObjectAtIndex:replIndex withObject:newDataPoint];

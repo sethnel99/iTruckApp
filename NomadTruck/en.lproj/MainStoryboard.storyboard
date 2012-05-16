@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="D7Y-vV-k6h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="D7Y-vV-k6h">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
+        <!--Tab Bar Controller-->
         <scene sceneID="hp2-xs-9Cz">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NzU-OK-dr0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -28,6 +29,7 @@
             </objects>
             <point key="canvasLocation" x="-1945" y="30"/>
         </scene>
+        <!--Nomad Navigation View Controller - Sales-->
         <scene sceneID="SDc-hW-P7C">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJQ-OM-Mdb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -43,6 +45,7 @@
             </objects>
             <point key="canvasLocation" x="-1405" y="315"/>
         </scene>
+        <!--Results Date View Controller - Results-->
         <scene sceneID="X22-p8-8yO">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mBB-CZ-uXE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -128,6 +131,7 @@
             </objects>
             <point key="canvasLocation" x="-803" y="923"/>
         </scene>
+        <!--Results View Controller-->
         <scene sceneID="rUy-Ea-gnu">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLM-mI-Kob" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -258,6 +262,7 @@
             </objects>
             <point key="canvasLocation" x="-288" y="923"/>
         </scene>
+        <!--Nomad Navigation View Controller - Results-->
         <scene sceneID="YGz-UP-RmR">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vqa-81-mLK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -273,6 +278,7 @@
             </objects>
             <point key="canvasLocation" x="-1411" y="923"/>
         </scene>
+        <!--Inventory Date Table View Controller - Sales-->
         <scene sceneID="QGP-Jv-mvf">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V9J-XN-lwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -359,6 +365,7 @@
             </objects>
             <point key="canvasLocation" x="-803" y="315"/>
         </scene>
+        <!--Inventory Table View Controller-->
         <scene sceneID="l10-fh-UQa">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6uG-0l-xpA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -512,6 +519,7 @@
             </objects>
             <point key="canvasLocation" x="-253" y="315"/>
         </scene>
+        <!--Nomad Navigation View Controller - Twitter-->
         <scene sceneID="bcA-LZ-Tie">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="orH-nm-5eF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -527,6 +535,7 @@
             </objects>
             <point key="canvasLocation" x="-1405" y="-314"/>
         </scene>
+        <!--Nomad Truck View Controller - Twitter-->
         <scene sceneID="5">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -615,6 +624,7 @@
             </objects>
             <point key="canvasLocation" x="-803" y="-314"/>
         </scene>
+        <!--Map View Controller-->
         <scene sceneID="1U8-aT-R7x">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zn1-eY-fSy" userLabel="First Responder" sceneMemberID="firstResponder"/>

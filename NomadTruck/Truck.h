@@ -37,7 +37,7 @@
 + (void) updateSalesEntry:(NSMutableArray *)entrySales onEntryIndex:(int)index;
 + (void) rebuildSalesEntryByDay;
 + (void) waitForLoading;
-+ (double) priceForInventoryItem:(NSString *)menuItemID;
+//+ (double) priceForInventoryItem:(NSString *)menuItemID;
 + (double) getTotalMoney;
 + (UIColor *)getTealGreenTint;
 + (CAGradientLayer *)getTitleBarGradientWithFrame:(CGRect)frame;
