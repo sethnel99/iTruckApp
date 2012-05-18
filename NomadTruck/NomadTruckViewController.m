@@ -112,8 +112,9 @@
             if (!user) {
                 NSLog(@"Uh oh. The user cancelled the Twitter login.");
                 
+                
                 [self exitWithTitle: @"Twitter Login Required"
-                            withMessage: @"We're sorry. A problem occured during your twitter login. Please re-open the application and try again."];
+                            withMessage: @"We're sorry. A problem occured during your twitter login. Are you sure you are connected to the internet? Please re-open the application and try again."];
                 return;
             } else if (user.isNew) {
                 NSLog(@"User signed up and logged in with Twitter!");

@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NomadTruck/NomadTruckViewController.m"
-         timestampString = "358806450.445836"
+         timestampString = "359062739.137624"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "121"
-         endingLineNumber = "121"
+         startingLineNumber = "122"
+         endingLineNumber = "122"
          landmarkName = "-promptTwitterLogin"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NomadTruck/NomadTruckViewController.m"
-         timestampString = "358806450.445836"
+         timestampString = "359062739.137624"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "142"
-         endingLineNumber = "142"
+         startingLineNumber = "143"
+         endingLineNumber = "143"
          landmarkName = "-promptTwitterLogin"
          landmarkType = "5">
       </FileBreakpoint>
@@ -391,6 +391,19 @@
          startingLineNumber = "149"
          endingLineNumber = "149"
          landmarkName = "-setDayLabels"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "NomadTruck/NomadTruckViewController.m"
+         timestampString = "359062739.137624"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "116"
+         endingLineNumber = "116"
+         landmarkName = "-promptTwitterLogin"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
