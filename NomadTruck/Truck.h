@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSArray *inventory; //truck's inventory
 @property (nonatomic, strong) NSMutableArray *salesData; //array of sales entries
 @property (nonatomic, strong) NSMutableArray *salesDataByDay; //sales entries by day
+@property (nonatomic, strong) NSMutableDictionary *salesDataByItem; //sales entries by item - keys are item's ParseID's
 @property (nonatomic, assign) BOOL loadingTruckData; //true = loading in background 
 @property (nonatomic, strong) PFObject *truckPFObject; //PFObject for truck
 @property (nonatomic, strong) NSData *truckLogo; //truck's logos
@@ -32,13 +33,15 @@
 + (NSMutableArray *) getInventory;
 + (NSMutableArray *) getSalesData;
 + (NSMutableArray *) getSalesDataByDay;
++ (NSMutableDictionary *) getSalesDataByItem;
 + (void) deleteSalesEntryAtIndex:(int) index;
 + (void) addSalesEntry:(NSMutableArray *)entrySales;
 + (void) updateSalesEntry:(NSMutableArray *)entrySales onEntryIndex:(int)index;
 + (void) rebuildSalesEntryByDay;
++ (void) rebuildSalesEntryByItem;
 + (void) waitForLoading;
 //+ (double) priceForInventoryItem:(NSString *)menuItemID;
-+ (double) getTotalMoney;
++ (double) getTotalProfit;
 + (UIColor *)getTealGreenTint;
 + (CAGradientLayer *)getTitleBarGradientWithFrame:(CGRect)frame;
 + (CAGradientLayer *)getCellGradientWithFrame:(CGRect)frame;

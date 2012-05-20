@@ -28,6 +28,9 @@
 		4EAFE0DA15004CA1004360CD /* NomadTruckAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE0D915004CA1004360CD /* NomadTruckAppDelegate.m */; };
 		4EAFE0DD15004CA1004360CD /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EAFE0DB15004CA1004360CD /* MainStoryboard.storyboard */; };
 		4EAFE0E015004CA1004360CD /* NomadTruckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE0DF15004CA1004360CD /* NomadTruckViewController.m */; };
+		CE23F9B71569714300E0DFBC /* ResultsByItemPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE23F9B61569714200E0DFBC /* ResultsByItemPageViewController.m */; };
+		CE23F9BB1569715800E0DFBC /* ResultsByItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE23F9BA1569715700E0DFBC /* ResultsByItemViewController.m */; };
+		CE23F9BD15699F9C00E0DFBC /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CE23F9BC15699F9B00E0DFBC /* Notes.rtf */; };
 		CE2E44E31528F13400FE7136 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E44E11528F13300FE7136 /* MBProgressHUD.m */; };
 		CE2E44E61528F3C400FE7136 /* InventoryDateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E44E51528F3C400FE7136 /* InventoryDateTableViewController.m */; };
 		CE2E44F3152A3DC400FE7136 /* InventoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E44F2152A3DC400FE7136 /* InventoryTableViewController.m */; };
@@ -75,6 +78,11 @@
 		4EAFE0DC15004CA1004360CD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4EAFE0DE15004CA1004360CD /* NomadTruckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomadTruckViewController.h; sourceTree = "<group>"; };
 		4EAFE0DF15004CA1004360CD /* NomadTruckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomadTruckViewController.m; sourceTree = "<group>"; };
+		CE23F9B51569714200E0DFBC /* ResultsByItemPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsByItemPageViewController.h; sourceTree = "<group>"; };
+		CE23F9B61569714200E0DFBC /* ResultsByItemPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsByItemPageViewController.m; sourceTree = "<group>"; };
+		CE23F9B91569715700E0DFBC /* ResultsByItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsByItemViewController.h; sourceTree = "<group>"; };
+		CE23F9BA1569715700E0DFBC /* ResultsByItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsByItemViewController.m; sourceTree = "<group>"; };
+		CE23F9BC15699F9B00E0DFBC /* Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
 		CE2E44E01528F13300FE7136 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		CE2E44E11528F13300FE7136 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		CE2E44E41528F3C400FE7136 /* InventoryDateTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryDateTableViewController.h; sourceTree = "<group>"; };
@@ -195,6 +203,11 @@
 				4EAFE0D015004CA1004360CD /* Supporting Files */,
 				CE4633E11547565300ABA410 /* NomadNavigationViewController.h */,
 				CE4633E21547565300ABA410 /* NomadNavigationViewController.m */,
+				CE23F9B51569714200E0DFBC /* ResultsByItemPageViewController.h */,
+				CE23F9B61569714200E0DFBC /* ResultsByItemPageViewController.m */,
+				CE23F9B91569715700E0DFBC /* ResultsByItemViewController.h */,
+				CE23F9BA1569715700E0DFBC /* ResultsByItemViewController.m */,
+				CE23F9BC15699F9B00E0DFBC /* Notes.rtf */,
 			);
 			path = NomadTruck;
 			sourceTree = "<group>";
@@ -294,6 +307,7 @@
 				CE4633EB15475B1600ABA410 /* README.txt in Resources */,
 				CE4633EC15475B1600ABA410 /* release_notes.txt in Resources */,
 				CE3C99FB155075CB00614B26 /* background.png in Resources */,
+				CE23F9BD15699F9C00E0DFBC /* Notes.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +331,8 @@
 				CE4633E31547565300ABA410 /* NomadNavigationViewController.m in Sources */,
 				CE4633EF1547625B00ABA410 /* ResultsViewController.m in Sources */,
 				4E8AE51A1550EEC400CBD331 /* MapViewController.m in Sources */,
+				CE23F9B71569714300E0DFBC /* ResultsByItemPageViewController.m in Sources */,
+				CE23F9BB1569715800E0DFBC /* ResultsByItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

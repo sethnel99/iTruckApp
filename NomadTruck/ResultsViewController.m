@@ -73,22 +73,33 @@
     }
     
     [stopPicker setSelectedSegmentIndex:0];
-    
+    //0x06f9ade0
     
     self.salesPerformancesByStop = [[NSMutableArray alloc] init]; 
     
-    self.aggregateSales = [NSMutableArray arrayWithArray:[self.daySales objectAtIndex:0]];
+    
+    //put all of the first stop data into aggregateSales (to start it off). We must loop
+    //through daySales and individually recreate each datapoint so that manipulating the datapoints
+    //within self.aggregateSales won't change the actual sales data
+    //note: aggregate sales does not have a date or location (it is just for math). It begins immediately with dataPoints
+    self.aggregateSales = [[NSMutableArray alloc] init];
+    NSMutableArray *firstSalesRecord = [self.daySales objectAtIndex:0];
+    for(int i = 2; i < [firstSalesRecord count]; i++){
+        [self.aggregateSales addObject:[NSMutableArray arrayWithArray:[firstSalesRecord objectAtIndex:i]]];
+    }
+    
+    
     //add up sales from first stop of the day (for use in money calculations)
-     double totalMoneyForDay = 0;
-     double totalMoneyForStop = 0;
-    for(int j = 2; j < [aggregateSales count]; j++){
+     double totalProfitForDay = 0;
+     double totalProfitForStop = 0;
+    for(int j = 0; j < [aggregateSales count]; j++){
         NSArray *dataPoint = [aggregateSales objectAtIndex:j];
         int itemsSold = [[dataPoint objectAtIndex:2] intValue];
-        double itemProfit = itemsSold *[[dataPoint objectAtIndex:3] doubleValue];
-        totalMoneyForStop += itemProfit;
-        totalMoneyForDay += itemProfit;
+        double itemProfit = itemsSold *([[dataPoint objectAtIndex:3] doubleValue] - [[dataPoint objectAtIndex:4] doubleValue]);
+        totalProfitForStop += itemProfit;
+        totalProfitForDay += itemProfit;
     }
-    int salesPerformanceForStop = totalMoneyForStop / ([Truck getTotalMoney]/[[Truck getSalesData] count]) * 100;
+    int salesPerformanceForStop = totalProfitForStop / ([Truck getTotalProfit]/[[Truck getSalesData] count]) * 100;
     
     [self.salesPerformancesByStop addObject:[NSNumber numberWithInt:salesPerformanceForStop]];
     //end add up sales for the first stop
@@ -100,29 +111,28 @@
    
     for(int i = 1; i < [self.daySales count]; i++){
         NSMutableArray *stopSales = [self.daySales objectAtIndex:i];
-        double totalMoneyForStop = 0;
+        double totalProfitForStop = 0;
         
         for(int j = 2; j < [stopSales count]; j++){
             NSArray *dataPoint = [stopSales objectAtIndex:j];
-            NSArray *aggPoint = [self.aggregateSales objectAtIndex:j];
+            NSMutableArray *aggPoint = [self.aggregateSales objectAtIndex:j-2];
             
             int itemsSold = [[dataPoint objectAtIndex:2] intValue];
-            double itemProfit = itemsSold * [[dataPoint objectAtIndex:3] doubleValue];
-            totalMoneyForStop += itemProfit;
-            totalMoneyForDay += itemProfit;
+            double itemProfit = itemsSold * ([[dataPoint objectAtIndex:3] doubleValue] - [[dataPoint objectAtIndex:4] doubleValue]);
+            totalProfitForStop += itemProfit;
+            totalProfitForDay += itemProfit;
             
             NSNumber *addition = [NSNumber numberWithInt:[(NSNumber *)[aggPoint objectAtIndex:2] intValue] + itemsSold];
             
-            [self.aggregateSales replaceObjectAtIndex:j withObject:[NSArray arrayWithObjects:[aggPoint objectAtIndex:0],[aggPoint objectAtIndex:1],addition,[aggPoint objectAtIndex:3],[aggPoint objectAtIndex:4],nil]];
-            
+            [aggPoint replaceObjectAtIndex:2 withObject:addition];
             
             
         }
-        int salesPerformanceForStop = totalMoneyForStop / ([Truck getTotalMoney]/[[Truck getSalesData] count]) * 100;
+        int salesPerformanceForStop = totalProfitForStop / ([Truck getTotalProfit]/[[Truck getSalesData] count]) * 100;
         [self.salesPerformancesByStop addObject:[NSNumber numberWithInt:salesPerformanceForStop]];
         
     }
-    self.salesPerformanceForDay = totalMoneyForDay / ([Truck getTotalMoney]/[[Truck getSalesDataByDay] count]) * 100;
+    self.salesPerformanceForDay = totalProfitForDay / ([Truck getTotalProfit]/[[Truck getSalesDataByDay] count]) * 100;
     
     [self setDayLabels];
 }
@@ -143,10 +153,10 @@
     int maxProfitIndex = 0;
     double maxProfit = 0;
     
-    for(int i = 2; i < [self.aggregateSales count]; i++){
+    for(int i = 0; i < [self.aggregateSales count]; i++){
         NSArray *aggPoint = [self.aggregateSales objectAtIndex:i];
         int sold = [[aggPoint objectAtIndex:2] intValue];
-        double profit = sold * [[aggPoint objectAtIndex:3] doubleValue];
+        double profit = sold * ([[aggPoint objectAtIndex:3] doubleValue] - [[aggPoint objectAtIndex:4] doubleValue]);
         if(sold > maxSold){
             maxSold = sold;
             maxIndex = i;
@@ -199,7 +209,7 @@
     for(int i = 2; i < [stopSales count]; i++){
         NSArray *salesPoint = [stopSales objectAtIndex:i];
         int sold = [[salesPoint objectAtIndex:2] intValue];
-        double profit = sold * [[salesPoint objectAtIndex:3] doubleValue];
+        double profit = sold * ([[salesPoint objectAtIndex:3] doubleValue] - [[salesPoint objectAtIndex:4] doubleValue]);
         if(sold > maxSold){
             maxSold = sold;
             maxIndex = i;

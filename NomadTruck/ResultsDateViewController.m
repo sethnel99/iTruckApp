@@ -29,8 +29,10 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    ResultsViewController *itvc = (ResultsViewController *)[segue destinationViewController];
-    itvc.daySalesIndex = [[self tableView] indexPathForCell:sender].row;
+    if([sender isKindOfClass:[UITableViewCell class]]){
+        ResultsViewController *itvc = (ResultsViewController *)[segue destinationViewController];
+        itvc.daySalesIndex = [[self tableView] indexPathForCell:sender].row;
+    }
     
     
 }

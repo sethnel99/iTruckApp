@@ -23,6 +23,7 @@ static Truck *sharedTruck = nil;
 @synthesize truckPFObject;
 @synthesize truckLogo;
 @synthesize salesDataByDay;
+@synthesize salesDataByItem;
 
 #pragma mark 
 #pragma mark Singleton Methods
@@ -46,6 +47,10 @@ static Truck *sharedTruck = nil;
     return sharedTruck.salesDataByDay;
 }
 
++ (NSMutableDictionary *) getSalesDataByItem{
+    return sharedTruck.salesDataByItem;
+}
+
 
 
 /*+ (double) priceForInventoryItem:(NSString *) menuItemID{
@@ -62,12 +67,14 @@ static Truck *sharedTruck = nil;
 + (void) updateSalesEntry:(NSMutableArray *)entrySales onEntryIndex:(int)index{
     [sharedTruck.salesData replaceObjectAtIndex:index withObject:entrySales];
     [self rebuildSalesEntryByDay];
+    [self rebuildSalesEntryByItem];
     [self saveSalesToParse];
 }
 
 + (void) deleteSalesEntryAtIndex:(int) index{
     [sharedTruck.salesData removeObjectAtIndex:index];
     [self rebuildSalesEntryByDay];
+    [self rebuildSalesEntryByItem];
     [self saveSalesToParse];
 }
 + (void) addSalesEntry:(NSMutableArray *)entrySales{
@@ -80,6 +87,7 @@ static Truck *sharedTruck = nil;
         if([tDate compare:newSaleDate] == NSOrderedDescending){
             [sharedTruck.salesData insertObject:entrySales atIndex:i];
             [self rebuildSalesEntryByDay];
+            [self rebuildSalesEntryByItem];
             [self saveSalesToParse];
             return;
         }
@@ -90,6 +98,7 @@ static Truck *sharedTruck = nil;
     //get to the end - this is the latest (most recent) object
     [sharedTruck.salesData addObject:entrySales];
     [self rebuildSalesEntryByDay];
+    [self rebuildSalesEntryByItem];
     [self saveSalesToParse];
 }
 
@@ -129,6 +138,31 @@ static Truck *sharedTruck = nil;
     //end sales organized by day setup
     
     
+    
+    
+}
+
++ (void) rebuildSalesEntryByItem{
+    //set up sales organized by item//
+    sharedTruck.salesDataByItem = [[NSMutableDictionary alloc] init];
+    if([sharedTruck.salesData count] == 0)
+        return;
+    
+    
+    for(int i = 0; i < [sharedTruck.salesData count]; i++){
+        NSArray *salesRecord = [sharedTruck.salesData objectAtIndex:i];
+        for(int j = 2; j < [salesRecord count]; j++){
+            NSMutableArray *dataPoint = [salesRecord objectAtIndex:j];
+            NSMutableArray *array = [sharedTruck.salesDataByItem objectForKey:[dataPoint objectAtIndex:1]]; //keyed by datapoints's parseID
+            if(array == nil){
+                array = [NSMutableArray arrayWithObject:dataPoint];
+                [sharedTruck.salesDataByItem setObject:array forKey:[dataPoint objectAtIndex:1]];
+            }else{
+                [array addObject:dataPoint]; 
+            }
+            
+        }
+    }
     
     
 }
@@ -208,6 +242,7 @@ static Truck *sharedTruck = nil;
     }   
  
     [self rebuildSalesEntryByDay];
+    [self rebuildSalesEntryByItem];
     sharedTruck.loadingTruckData = false;
 
 }
@@ -219,18 +254,18 @@ static Truck *sharedTruck = nil;
    
 }
 
-+ (double) getTotalMoney{
-    double totalMoney = 0;
++ (double) getTotalProfit{
+    double totalProfit = 0;
     //sum up sales for each entry
     for(int i = 0; i < [sharedTruck.salesData count]; i++){
         NSMutableArray *singleEntry = [sharedTruck.salesData objectAtIndex:i];
         for(int j = 2; j < [singleEntry count]; j++){
             NSArray *dataPoint = [singleEntry objectAtIndex:j];
-            totalMoney += [[dataPoint objectAtIndex:2] intValue]*[[dataPoint objectAtIndex:3] doubleValue];
+            totalProfit += [[dataPoint objectAtIndex:2] intValue]*([[dataPoint objectAtIndex:3] doubleValue] - [[dataPoint objectAtIndex:4] doubleValue]); //profit = numSold * (price-cost)
         }
     }
     
-    return totalMoney;
+    return totalProfit;
 }
 
 + (UIColor *)getTealGreenTint{
