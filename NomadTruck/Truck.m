@@ -186,8 +186,14 @@ static Truck *sharedTruck = nil;
     for(PFObject *temp in parseData){
         NSString *ParseID = temp.objectId;
         NSString *name = [temp objectForKey:@"Name"];
+        NSNumber *cost = [temp objectForKey:@"Cost"];
+        double dcost = 0;
+        //quick error check: make sure there is a cost - otherwise 0
+        if(cost != [NSNull null])
+            dcost = [cost doubleValue];
+        
         double price = [[temp objectForKey:@"Price"] doubleValue];
-        [menuData addObject:[[MenuFoodItem alloc] initWithParseID:ParseID withName:name withPrice:price]];
+        [menuData addObject:[[MenuFoodItem alloc] initWithParseID:ParseID withName:name withCost:dcost withPrice:price]];
         
     }
     sharedTruck.inventory = menuData;

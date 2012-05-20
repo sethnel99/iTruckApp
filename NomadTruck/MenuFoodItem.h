@@ -12,11 +12,12 @@
 
 @property (nonatomic, strong) NSString *ParseID;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) double cost;
 @property (nonatomic, assign) double price;
-
 
 - (MenuFoodItem *)initWithParseID:(NSString *)pID
                          withName:(NSString *)n
+                         withCost:(double)c
                         withPrice:(double)p;
 
 

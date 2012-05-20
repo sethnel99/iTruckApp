@@ -113,7 +113,7 @@
             
             NSNumber *addition = [NSNumber numberWithInt:[(NSNumber *)[aggPoint objectAtIndex:2] intValue] + itemsSold];
             
-            [self.aggregateSales replaceObjectAtIndex:j withObject:[NSArray arrayWithObjects:[aggPoint objectAtIndex:0],[aggPoint objectAtIndex:1],addition,[aggPoint objectAtIndex:3],nil]];
+            [self.aggregateSales replaceObjectAtIndex:j withObject:[NSArray arrayWithObjects:[aggPoint objectAtIndex:0],[aggPoint objectAtIndex:1],addition,[aggPoint objectAtIndex:3],[aggPoint objectAtIndex:4],nil]];
             
             
             
