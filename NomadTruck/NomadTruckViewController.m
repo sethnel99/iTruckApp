@@ -90,20 +90,23 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    int degrees = newLocation.coordinate.latitude;
+    /*int degrees = newLocation.coordinate.latitude;
     double decimal = fabs(newLocation.coordinate.latitude - degrees);
     int minutes = decimal * 60;
     double seconds = decimal * 3600 - minutes * 60;
     NSString *lat = [NSString stringWithFormat:@"%d.%d%1.0f", 
                      degrees, minutes, seconds];
-    latLabel = lat;
+     */
+    latLabel = [NSString stringWithFormat:@"%f", newLocation.coordinate.latitude];
+    /*
     degrees = newLocation.coordinate.longitude;
     decimal = fabs(newLocation.coordinate.longitude - degrees);
     minutes = decimal * 60;
     seconds = decimal * 3600 - minutes * 60;
     NSString *longt = [NSString stringWithFormat:@"%d.%d%1.0f", 
                        degrees, minutes, seconds];
-    longLabel = longt;
+     */
+    longLabel = [NSString stringWithFormat:@"%f",newLocation.coordinate.longitude];
 }
 
 - (void)promptTwitterLogin{
