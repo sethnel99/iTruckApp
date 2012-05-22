@@ -124,7 +124,7 @@
     }
     ((UILabel*)[cell viewWithTag:100]).text = [NSString stringWithFormat:@"%@ %d%@, %d",
                                                [[df monthSymbols] objectAtIndex:([components month] - 1)],
-                                               [components day],[Truck getAffixForDay:[components day]],[components year]];
+                                               [components day],[Truck getAffixForNumber:[components day]],[components year]];
     ((UILabel*)[cell viewWithTag:101]).text = [NSString stringWithFormat:@"%02d:%02d %@",
                                                hour,[components minute],ampm];
     

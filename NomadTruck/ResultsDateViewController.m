@@ -41,7 +41,13 @@
     self.salesByDay = [Truck getSalesDataByDay];
     [self.tableView reloadData];
 
+    if([self.salesByDay count] == 0)
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    else{
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
 }
+
 
 - (void)viewDidLoad
 {
@@ -126,7 +132,7 @@
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     dateLabel.text = [NSString stringWithFormat:@"%@ %d%@, %d",
                            [[df monthSymbols] objectAtIndex:([components month] - 1)],
-                      [components day],[Truck getAffixForDay:[components day]],[components year]];
+                      [components day],[Truck getAffixForNumber:[components day]],[components year]];
     
     //apply gradient 
     [cell.layer insertSublayer:[Truck getCellGradientWithFrame:cell.bounds] atIndex:0];

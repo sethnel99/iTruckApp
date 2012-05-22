@@ -290,12 +290,12 @@ static Truck *sharedTruck = nil;
     return gradient;
 }
 
-+ (NSString *)getAffixForDay:(int)day{
-    if (day == 1)
++ (NSString *)getAffixForNumber:(int)number{
+    if (number == 1)
         return @"st";
-    else if (day == 2)
+    else if (number == 2)
         return @"nd";
-    else if (day == 3)
+    else if (number == 3)
         return @"rd";
     else {
         return @"th";

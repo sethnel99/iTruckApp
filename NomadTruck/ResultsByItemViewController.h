@@ -11,9 +11,19 @@
 @interface ResultsByItemViewController : UIViewController
 
 @property (nonatomic, strong) NSMutableArray *itemSalesData;
+@property (nonatomic, strong) NSMutableArray *itemSalesCalculationData;
+@property (nonatomic, assign) double grossMargin;
 @property (nonatomic, assign) int keyNumber;
+@property (nonatomic, assign) NSString *key;
 @property (weak, nonatomic) IBOutlet UISlider *daySlider;
 @property (weak, nonatomic) IBOutlet UILabel *daySliderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *soldPerDayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *profitPerDayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *profitRankLabel;
+@property (weak, nonatomic) IBOutlet UILabel *grossMarginLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bestLocationLabel;
+@property (weak, nonatomic) IBOutlet UIView *titleLabelView;
+@property (weak, nonatomic) IBOutlet UILabel *itemNameLabel;
 
 
 

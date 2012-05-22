@@ -146,7 +146,7 @@
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     self.dateLabel.text = [NSString stringWithFormat:@"%@ %d%@, %d",
                                                 [[df monthSymbols] objectAtIndex:([components month] - 1)],
-                                                [components day],[Truck getAffixForDay:[components day]],[components year]];
+                                                [components day],[Truck getAffixForNumber:[components day]],[components year]];
     
     int maxIndex = 0;
     int maxSold = 0; 
