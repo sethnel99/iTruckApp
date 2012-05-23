@@ -1,0 +1,468 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4E213D06155C774C00CD4A30 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E213D05155C774C00CD4A30 /* MapKit.framework */; };
+		4E39AE58155C108100BE0A8B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E39AE57155C108100BE0A8B /* CoreLocation.framework */; };
+		4E8AE51A1550EEC400CBD331 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E8AE5191550EEC400CBD331 /* MapViewController.m */; };
+		4EA8058115005EDC00DCB4BC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058015005EDC00DCB4BC /* Parse.framework */; };
+		4EA8058415005F0D00DCB4BC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058315005F0D00DCB4BC /* AudioToolbox.framework */; };
+		4EA8058615005F2700DCB4BC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058515005F2700DCB4BC /* CFNetwork.framework */; };
+		4EA8058815005F3A00DCB4BC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058715005F3A00DCB4BC /* SystemConfiguration.framework */; };
+		4EA8058A15005F4700DCB4BC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058915005F4700DCB4BC /* MobileCoreServices.framework */; };
+		4EA8058C15005F5B00DCB4BC /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058B15005F5B00DCB4BC /* libz.1.1.3.dylib */; };
+		4EA8058E15005FA300DCB4BC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058D15005FA300DCB4BC /* Security.framework */; };
+		4EA8059015005FAD00DCB4BC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA8058F15005FAD00DCB4BC /* QuartzCore.framework */; };
+		4EA80596150075AB00DCB4BC /* Truck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA80595150075AB00DCB4BC /* Truck.m */; };
+		4EAC8A191505DB390082911C /* Nomad Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EAC8A181505DB390082911C /* Nomad Logo.png */; };
+		4EAFE0CA15004CA1004360CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAFE0C915004CA1004360CD /* UIKit.framework */; };
+		4EAFE0CC15004CA1004360CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAFE0CB15004CA1004360CD /* Foundation.framework */; };
+		4EAFE0CE15004CA1004360CD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EAFE0CD15004CA1004360CD /* CoreGraphics.framework */; };
+		4EAFE0D415004CA1004360CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4EAFE0D215004CA1004360CD /* InfoPlist.strings */; };
+		4EAFE0D615004CA1004360CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE0D515004CA1004360CD /* main.m */; };
+		4EAFE0DA15004CA1004360CD /* NomadTruckAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE0D915004CA1004360CD /* NomadTruckAppDelegate.m */; };
+		4EAFE0DD15004CA1004360CD /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EAFE0DB15004CA1004360CD /* MainStoryboard.storyboard */; };
+		4EAFE0E015004CA1004360CD /* NomadTruckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EAFE0DF15004CA1004360CD /* NomadTruckViewController.m */; };
+		CE23F9B71569714300E0DFBC /* ResultsByItemPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE23F9B61569714200E0DFBC /* ResultsByItemPageViewController.m */; };
+		CE23F9BB1569715800E0DFBC /* ResultsByItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE23F9BA1569715700E0DFBC /* ResultsByItemViewController.m */; };
+		CE23F9BD15699F9C00E0DFBC /* Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CE23F9BC15699F9B00E0DFBC /* Notes.rtf */; };
+		CE2E44E31528F13400FE7136 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E44E11528F13300FE7136 /* MBProgressHUD.m */; };
+		CE2E44E61528F3C400FE7136 /* InventoryDateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E44E51528F3C400FE7136 /* InventoryDateTableViewController.m */; };
+		CE2E44F3152A3DC400FE7136 /* InventoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E44F2152A3DC400FE7136 /* InventoryTableViewController.m */; };
+		CE2E44F7152A54DF00FE7136 /* MenuFoodItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E44F6152A54DF00FE7136 /* MenuFoodItem.m */; };
+		CE2E4502153296A400FE7136 /* CustomInventoryInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E4501153296A400FE7136 /* CustomInventoryInputCell.m */; };
+		CE2E45401534C85B00FE7136 /* ResultsDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2E453F1534C85B00FE7136 /* ResultsDateViewController.m */; };
+		CE33A91F153BC11C00991734 /* resultsicon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A91C153BC11C00991734 /* resultsicon.png */; };
+		CE33A921153BC11C00991734 /* twittericon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A91E153BC11C00991734 /* twittericon.png */; };
+		CE33A923153BE35500991734 /* salesicon.png in Resources */ = {isa = PBXBuildFile; fileRef = CE33A922153BE35500991734 /* salesicon.png */; };
+		CE3C99FB155075CB00614B26 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = CE3C99FA155075CB00614B26 /* background.png */; };
+		CE4633E31547565300ABA410 /* NomadNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4633E21547565300ABA410 /* NomadNavigationViewController.m */; };
+		CE4633EA15475B1600ABA410 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4633E615475B1600ABA410 /* libTestFlight.a */; };
+		CE4633EB15475B1600ABA410 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CE4633E715475B1600ABA410 /* README.txt */; };
+		CE4633EC15475B1600ABA410 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = CE4633E815475B1600ABA410 /* release_notes.txt */; };
+		CE4633EF1547625B00ABA410 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4633EE1547625B00ABA410 /* ResultsViewController.m */; };
+		CE4891D91545259B00898E02 /* titlelogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE4891D81545259B00898E02 /* titlelogo.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4E213D05155C774C00CD4A30 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4E39AE57155C108100BE0A8B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4E8AE5181550EEC400CBD331 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		4E8AE5191550EEC400CBD331 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		4EA8058015005EDC00DCB4BC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		4EA8058315005F0D00DCB4BC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		4EA8058515005F2700DCB4BC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		4EA8058715005F3A00DCB4BC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4EA8058915005F4700DCB4BC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		4EA8058B15005F5B00DCB4BC /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		4EA8058D15005FA300DCB4BC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4EA8058F15005FAD00DCB4BC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4EA80594150075AB00DCB4BC /* Truck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Truck.h; sourceTree = "<group>"; };
+		4EA80595150075AB00DCB4BC /* Truck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Truck.m; sourceTree = "<group>"; };
+		4EAC8A181505DB390082911C /* Nomad Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Nomad Logo.png"; path = "../NomadTruck/Nomad Logo.png"; sourceTree = "<group>"; };
+		4EAFE0C515004CA0004360CD /* NomadTruck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NomadTruck.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EAFE0C915004CA1004360CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4EAFE0CB15004CA1004360CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4EAFE0CD15004CA1004360CD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4EAFE0D115004CA1004360CD /* NomadTruck-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NomadTruck-Info.plist"; sourceTree = "<group>"; };
+		4EAFE0D315004CA1004360CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4EAFE0D515004CA1004360CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4EAFE0D715004CA1004360CD /* NomadTruck-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NomadTruck-Prefix.pch"; sourceTree = "<group>"; };
+		4EAFE0D815004CA1004360CD /* NomadTruckAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomadTruckAppDelegate.h; sourceTree = "<group>"; };
+		4EAFE0D915004CA1004360CD /* NomadTruckAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomadTruckAppDelegate.m; sourceTree = "<group>"; };
+		4EAFE0DC15004CA1004360CD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		4EAFE0DE15004CA1004360CD /* NomadTruckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NomadTruckViewController.h; sourceTree = "<group>"; };
+		4EAFE0DF15004CA1004360CD /* NomadTruckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NomadTruckViewController.m; sourceTree = "<group>"; };
+		CE23F9B51569714200E0DFBC /* ResultsByItemPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsByItemPageViewController.h; sourceTree = "<group>"; };
+		CE23F9B61569714200E0DFBC /* ResultsByItemPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsByItemPageViewController.m; sourceTree = "<group>"; };
+		CE23F9B91569715700E0DFBC /* ResultsByItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsByItemViewController.h; sourceTree = "<group>"; };
+		CE23F9BA1569715700E0DFBC /* ResultsByItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsByItemViewController.m; sourceTree = "<group>"; };
+		CE23F9BC15699F9B00E0DFBC /* Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Notes.rtf; sourceTree = "<group>"; };
+		CE2E44E01528F13300FE7136 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		CE2E44E11528F13300FE7136 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		CE2E44E41528F3C400FE7136 /* InventoryDateTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryDateTableViewController.h; sourceTree = "<group>"; };
+		CE2E44E51528F3C400FE7136 /* InventoryDateTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryDateTableViewController.m; sourceTree = "<group>"; };
+		CE2E44F1152A3DC400FE7136 /* InventoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InventoryTableViewController.h; sourceTree = "<group>"; };
+		CE2E44F2152A3DC400FE7136 /* InventoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InventoryTableViewController.m; sourceTree = "<group>"; };
+		CE2E44F5152A54DF00FE7136 /* MenuFoodItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuFoodItem.h; sourceTree = "<group>"; };
+		CE2E44F6152A54DF00FE7136 /* MenuFoodItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuFoodItem.m; sourceTree = "<group>"; };
+		CE2E4500153296A300FE7136 /* CustomInventoryInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInventoryInputCell.h; sourceTree = "<group>"; };
+		CE2E4501153296A400FE7136 /* CustomInventoryInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInventoryInputCell.m; sourceTree = "<group>"; };
+		CE2E453E1534C85B00FE7136 /* ResultsDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsDateViewController.h; sourceTree = "<group>"; };
+		CE2E453F1534C85B00FE7136 /* ResultsDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsDateViewController.m; sourceTree = "<group>"; };
+		CE33A91C153BC11C00991734 /* resultsicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resultsicon.png; sourceTree = "<group>"; };
+		CE33A91E153BC11C00991734 /* twittericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twittericon.png; sourceTree = "<group>"; };
+		CE33A922153BE35500991734 /* salesicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = salesicon.png; sourceTree = "<group>"; };
+		CE3C99FA155075CB00614B26 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		CE4633E11547565300ABA410 /* NomadNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NomadNavigationViewController.h; sourceTree = "<group>"; };
+		CE4633E21547565300ABA410 /* NomadNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NomadNavigationViewController.m; sourceTree = "<group>"; };
+		CE4633E615475B1600ABA410 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		CE4633E715475B1600ABA410 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		CE4633E815475B1600ABA410 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
+		CE4633E915475B1600ABA410 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		CE4633ED1547625A00ABA410 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		CE4633EE1547625B00ABA410 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
+		CE4891D81545259B00898E02 /* titlelogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titlelogo.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4EAFE0C215004CA0004360CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E213D06155C774C00CD4A30 /* MapKit.framework in Frameworks */,
+				4E39AE58155C108100BE0A8B /* CoreLocation.framework in Frameworks */,
+				4EA8059015005FAD00DCB4BC /* QuartzCore.framework in Frameworks */,
+				4EA8058E15005FA300DCB4BC /* Security.framework in Frameworks */,
+				4EA8058C15005F5B00DCB4BC /* libz.1.1.3.dylib in Frameworks */,
+				4EAFE0CE15004CA1004360CD /* CoreGraphics.framework in Frameworks */,
+				4EA8058A15005F4700DCB4BC /* MobileCoreServices.framework in Frameworks */,
+				4EA8058815005F3A00DCB4BC /* SystemConfiguration.framework in Frameworks */,
+				4EA8058615005F2700DCB4BC /* CFNetwork.framework in Frameworks */,
+				4EA8058415005F0D00DCB4BC /* AudioToolbox.framework in Frameworks */,
+				4EAFE0CA15004CA1004360CD /* UIKit.framework in Frameworks */,
+				4EAFE0CC15004CA1004360CD /* Foundation.framework in Frameworks */,
+				4EA8058115005EDC00DCB4BC /* Parse.framework in Frameworks */,
+				CE4633EA15475B1600ABA410 /* libTestFlight.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4EAFE0BA15004CA0004360CD = {
+			isa = PBXGroup;
+			children = (
+				4E213D05155C774C00CD4A30 /* MapKit.framework */,
+				4E39AE57155C108100BE0A8B /* CoreLocation.framework */,
+				CE4633E515475B1600ABA410 /* TestFlightSDK1 */,
+				CE33A91B153BC11C00991734 /* Assets */,
+				4EAFE0CF15004CA1004360CD /* NomadTruck */,
+				4EAFE0C815004CA1004360CD /* Frameworks */,
+				4EAFE0C615004CA0004360CD /* Products */,
+				4EA8058F15005FAD00DCB4BC /* QuartzCore.framework */,
+				4EA8058D15005FA300DCB4BC /* Security.framework */,
+				4EA8058B15005F5B00DCB4BC /* libz.1.1.3.dylib */,
+				4EA8058915005F4700DCB4BC /* MobileCoreServices.framework */,
+				4EA8058715005F3A00DCB4BC /* SystemConfiguration.framework */,
+				4EA8058315005F0D00DCB4BC /* AudioToolbox.framework */,
+				4EA8058515005F2700DCB4BC /* CFNetwork.framework */,
+			);
+			sourceTree = "<group>";
+		};
+		4EAFE0C615004CA0004360CD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4EAFE0C515004CA0004360CD /* NomadTruck.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4EAFE0C815004CA1004360CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4EA8058015005EDC00DCB4BC /* Parse.framework */,
+				4EAFE0C915004CA1004360CD /* UIKit.framework */,
+				4EAFE0CB15004CA1004360CD /* Foundation.framework */,
+				4EAFE0CD15004CA1004360CD /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4EAFE0CF15004CA1004360CD /* NomadTruck */ = {
+			isa = PBXGroup;
+			children = (
+				CE2E44F5152A54DF00FE7136 /* MenuFoodItem.h */,
+				CE2E44F6152A54DF00FE7136 /* MenuFoodItem.m */,
+				CE2E44E01528F13300FE7136 /* MBProgressHUD.h */,
+				CE2E44E11528F13300FE7136 /* MBProgressHUD.m */,
+				4EAFE0DB15004CA1004360CD /* MainStoryboard.storyboard */,
+				4E8AE5181550EEC400CBD331 /* MapViewController.h */,
+				4E8AE5191550EEC400CBD331 /* MapViewController.m */,
+				4EAFE0D815004CA1004360CD /* NomadTruckAppDelegate.h */,
+				4EAFE0D915004CA1004360CD /* NomadTruckAppDelegate.m */,
+				4EA80594150075AB00DCB4BC /* Truck.h */,
+				4EA80595150075AB00DCB4BC /* Truck.m */,
+				4EAFE0DE15004CA1004360CD /* NomadTruckViewController.h */,
+				4EAFE0DF15004CA1004360CD /* NomadTruckViewController.m */,
+				CE2E4500153296A300FE7136 /* CustomInventoryInputCell.h */,
+				CE2E4501153296A400FE7136 /* CustomInventoryInputCell.m */,
+				CE2E44E41528F3C400FE7136 /* InventoryDateTableViewController.h */,
+				CE2E44E51528F3C400FE7136 /* InventoryDateTableViewController.m */,
+				CE2E44F1152A3DC400FE7136 /* InventoryTableViewController.h */,
+				CE2E44F2152A3DC400FE7136 /* InventoryTableViewController.m */,
+				CE2E453E1534C85B00FE7136 /* ResultsDateViewController.h */,
+				CE2E453F1534C85B00FE7136 /* ResultsDateViewController.m */,
+				CE4633ED1547625A00ABA410 /* ResultsViewController.h */,
+				CE4633EE1547625B00ABA410 /* ResultsViewController.m */,
+				4EAFE0D015004CA1004360CD /* Supporting Files */,
+				CE4633E11547565300ABA410 /* NomadNavigationViewController.h */,
+				CE4633E21547565300ABA410 /* NomadNavigationViewController.m */,
+				CE23F9B51569714200E0DFBC /* ResultsByItemPageViewController.h */,
+				CE23F9B61569714200E0DFBC /* ResultsByItemPageViewController.m */,
+				CE23F9B91569715700E0DFBC /* ResultsByItemViewController.h */,
+				CE23F9BA1569715700E0DFBC /* ResultsByItemViewController.m */,
+				CE23F9BC15699F9B00E0DFBC /* Notes.rtf */,
+			);
+			path = NomadTruck;
+			sourceTree = "<group>";
+		};
+		4EAFE0D015004CA1004360CD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4EAFE0D115004CA1004360CD /* NomadTruck-Info.plist */,
+				4EAFE0D215004CA1004360CD /* InfoPlist.strings */,
+				4EAFE0D515004CA1004360CD /* main.m */,
+				4EAFE0D715004CA1004360CD /* NomadTruck-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CE33A91B153BC11C00991734 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CE3C99FA155075CB00614B26 /* background.png */,
+				CE4891D81545259B00898E02 /* titlelogo.png */,
+				CE33A922153BE35500991734 /* salesicon.png */,
+				CE33A91C153BC11C00991734 /* resultsicon.png */,
+				4EAC8A181505DB390082911C /* Nomad Logo.png */,
+				CE33A91E153BC11C00991734 /* twittericon.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		CE4633E515475B1600ABA410 /* TestFlightSDK1 */ = {
+			isa = PBXGroup;
+			children = (
+				CE4633E615475B1600ABA410 /* libTestFlight.a */,
+				CE4633E715475B1600ABA410 /* README.txt */,
+				CE4633E815475B1600ABA410 /* release_notes.txt */,
+				CE4633E915475B1600ABA410 /* TestFlight.h */,
+			);
+			path = TestFlightSDK1;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4EAFE0C415004CA0004360CD /* NomadTruck */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4EAFE0E315004CA1004360CD /* Build configuration list for PBXNativeTarget "NomadTruck" */;
+			buildPhases = (
+				4EAFE0C115004CA0004360CD /* Sources */,
+				4EAFE0C215004CA0004360CD /* Frameworks */,
+				4EAFE0C315004CA0004360CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NomadTruck;
+			productName = NomadTruck;
+			productReference = 4EAFE0C515004CA0004360CD /* NomadTruck.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4EAFE0BC15004CA0004360CD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 4EAFE0BF15004CA0004360CD /* Build configuration list for PBXProject "NomadTruck" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4EAFE0BA15004CA0004360CD;
+			productRefGroup = 4EAFE0C615004CA0004360CD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4EAFE0C415004CA0004360CD /* NomadTruck */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4EAFE0C315004CA0004360CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EAFE0D415004CA1004360CD /* InfoPlist.strings in Resources */,
+				4EAFE0DD15004CA1004360CD /* MainStoryboard.storyboard in Resources */,
+				4EAC8A191505DB390082911C /* Nomad Logo.png in Resources */,
+				CE33A91F153BC11C00991734 /* resultsicon.png in Resources */,
+				CE33A921153BC11C00991734 /* twittericon.png in Resources */,
+				CE33A923153BE35500991734 /* salesicon.png in Resources */,
+				CE4891D91545259B00898E02 /* titlelogo.png in Resources */,
+				CE4633EB15475B1600ABA410 /* README.txt in Resources */,
+				CE4633EC15475B1600ABA410 /* release_notes.txt in Resources */,
+				CE3C99FB155075CB00614B26 /* background.png in Resources */,
+				CE23F9BD15699F9C00E0DFBC /* Notes.rtf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4EAFE0C115004CA0004360CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EAFE0D615004CA1004360CD /* main.m in Sources */,
+				4EAFE0DA15004CA1004360CD /* NomadTruckAppDelegate.m in Sources */,
+				4EAFE0E015004CA1004360CD /* NomadTruckViewController.m in Sources */,
+				4EA80596150075AB00DCB4BC /* Truck.m in Sources */,
+				CE2E44E31528F13400FE7136 /* MBProgressHUD.m in Sources */,
+				CE2E44E61528F3C400FE7136 /* InventoryDateTableViewController.m in Sources */,
+				CE2E44F3152A3DC400FE7136 /* InventoryTableViewController.m in Sources */,
+				CE2E44F7152A54DF00FE7136 /* MenuFoodItem.m in Sources */,
+				CE2E4502153296A400FE7136 /* CustomInventoryInputCell.m in Sources */,
+				CE2E45401534C85B00FE7136 /* ResultsDateViewController.m in Sources */,
+				CE4633E31547565300ABA410 /* NomadNavigationViewController.m in Sources */,
+				CE4633EF1547625B00ABA410 /* ResultsViewController.m in Sources */,
+				4E8AE51A1550EEC400CBD331 /* MapViewController.m in Sources */,
+				CE23F9B71569714300E0DFBC /* ResultsByItemPageViewController.m in Sources */,
+				CE23F9BB1569715800E0DFBC /* ResultsByItemViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4EAFE0D215004CA1004360CD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4EAFE0D315004CA1004360CD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4EAFE0DB15004CA1004360CD /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4EAFE0DC15004CA1004360CD /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4EAFE0E115004CA1004360CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4EAFE0E215004CA1004360CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4EAFE0E415004CA1004360CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NomadTruck/NomadTruck-Prefix.pch";
+				INFOPLIST_FILE = "NomadTruck/NomadTruck-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4EAFE0E515004CA1004360CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NomadTruck/NomadTruck-Prefix.pch";
+				INFOPLIST_FILE = "NomadTruck/NomadTruck-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4EAFE0BF15004CA0004360CD /* Build configuration list for PBXProject "NomadTruck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EAFE0E115004CA1004360CD /* Debug */,
+				4EAFE0E215004CA1004360CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4EAFE0E315004CA1004360CD /* Build configuration list for PBXNativeTarget "NomadTruck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EAFE0E415004CA1004360CD /* Debug */,
+				4EAFE0E515004CA1004360CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4EAFE0BC15004CA0004360CD /* Project object */;
+}

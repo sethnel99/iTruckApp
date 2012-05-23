@@ -81,7 +81,7 @@
     //gross margin
     NSMutableArray *randomDataPoint = [self.itemSalesData objectAtIndex:0];
     //(revenue-cost)/revenue
-    self.grossMargin = ([[randomDataPoint objectAtIndex:3] doubleValue]-[[randomDataPoint objectAtIndex:4] doubleValue])/[[randomDataPoint objectAtIndex:3] doubleValue];
+    self.grossMargin = ([[randomDataPoint objectAtIndex:3] doubleValue]-[[randomDataPoint objectAtIndex:4] doubleValue])/[[randomDataPoint objectAtIndex:3] doubleValue] * 100;
     
     
     //location ranking (pretty much the same as finding profit per day (in the page view controller), but now it's profit/day at a specific location!
@@ -189,7 +189,7 @@
     self.profitPerDayLabel.text = [numberFormatter stringFromNumber:[calcPoint objectAtIndex:1]];
     self.profitRankLabel.text = [NSString stringWithFormat:@"%d%@",[[calcPoint objectAtIndex:2] intValue],[Truck getAffixForNumber:[[calcPoint objectAtIndex:2] intValue]]];
     
-    self.grossMarginLabel.text = [NSString stringWithFormat:@"%.1f",self.grossMargin];
+    self.grossMarginLabel.text = [NSString stringWithFormat:@"%.1f%%",self.grossMargin];
     self.bestLocationLabel.text = [calcPoint objectAtIndex:3];
     
     
