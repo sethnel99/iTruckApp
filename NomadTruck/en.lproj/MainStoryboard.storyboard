@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="D7Y-vV-k6h">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
@@ -203,84 +202,92 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sold/Day:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="9dK-Zb-s4H">
-                                <rect key="frame" x="20" y="142" width="97" height="28"/>
+                                <rect key="frame" x="20" y="178" width="97" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="MET-Nc-FxJ">
-                                <rect key="frame" x="125" y="145" width="175" height="21"/>
+                                <rect key="frame" x="125" y="181" width="175" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.1843137255" green="0.56470588239999997" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Profit/Day:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="rgc-L3-huM">
-                                <rect key="frame" x="20" y="178" width="127" height="28"/>
+                                <rect key="frame" x="20" y="214" width="127" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="$140.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="Mlw-xd-5Uv">
-                                <rect key="frame" x="138" y="181" width="162" height="21"/>
+                                <rect key="frame" x="138" y="217" width="162" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.1843137255" green="0.56470588239999997" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Profit Rank:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="nFO-ws-JdD">
-                                <rect key="frame" x="20" y="217" width="110" height="28"/>
+                                <rect key="frame" x="20" y="253" width="110" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1st" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="3d8-mI-i2B">
-                                <rect key="frame" x="138" y="220" width="162" height="21"/>
+                                <rect key="frame" x="138" y="256" width="162" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.1843137255" green="0.56470588239999997" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Gross Margin:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="uPe-6c-Vbt">
-                                <rect key="frame" x="20" y="253" width="127" height="28"/>
+                                <rect key="frame" x="20" y="289" width="127" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="3.2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="7AO-St-CGV">
-                                <rect key="frame" x="147" y="256" width="153" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.1843137255" green="0.56470588239999997" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Best Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="TQF-yK-7Sq">
-                                <rect key="frame" x="20" y="289" width="134" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Maple Ave." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="cev-La-0gF">
                                 <rect key="frame" x="147" y="292" width="153" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.1843137255" green="0.56470588239999997" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Best Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="TQF-yK-7Sq">
+                                <rect key="frame" x="20" y="325" width="134" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Maple Ave." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" id="cev-La-0gF">
+                                <rect key="frame" x="147" y="328" width="153" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.1843137255" green="0.56470588239999997" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="All Locations" borderStyle="roundedRect" minimumFontSize="17" id="pS1-Zu-00F">
+                                <rect key="frame" x="20" y="139" width="280" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="bestLocLabel" destination="TQF-yK-7Sq" id="5p5-yb-8iQ"/>
                         <outlet property="bestLocationLabel" destination="cev-La-0gF" id="XFN-tU-Yla"/>
                         <outlet property="daySlider" destination="ANl-lv-fJc" id="eVf-z0-Ig8"/>
                         <outlet property="daySliderLabel" destination="UIP-fL-Eaw" id="ktT-ft-xeO"/>
                         <outlet property="grossMarginLabel" destination="7AO-St-CGV" id="VDg-Tf-mlA"/>
                         <outlet property="itemNameLabel" destination="OMD-e1-BTD" id="4pq-Xn-qm8"/>
+                        <outlet property="locationInput" destination="pS1-Zu-00F" id="yYS-Yr-40K"/>
                         <outlet property="profitPerDayLabel" destination="Mlw-xd-5Uv" id="kBP-Zb-o7s"/>
                         <outlet property="profitRankLabel" destination="3d8-mI-i2B" id="Xep-B4-8fX"/>
                         <outlet property="soldPerDayLabel" destination="MET-Nc-FxJ" id="Jsq-La-9be"/>

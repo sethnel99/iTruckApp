@@ -29,6 +29,8 @@
 @synthesize bestLocationLabel;
 @synthesize titleLabelView;
 @synthesize itemNameLabel;
+@synthesize locationInput;
+@synthesize bestLocLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +50,36 @@
     
     //add gradient to title label (really, to the uiview that houses it)
     [self.titleLabelView.layer insertSublayer:[Truck getTitleBarGradientWithFrame:self.titleLabelView.bounds] atIndex:0];
+    
+    
+    //set up location picker
+    //add picker here
+    UIPickerView locPicker = [UIPickerView alloc] init];
+      
+    locationTextField.text = [self.entrySalesData objectAtIndex:1];
+    locationTextField.delegate = self;
+    
+    // create a done view + done button, attach to it a doneClicked action, and place it in a toolbar as an accessory input view...
+    // Prepare done button
+    UIToolbar* keyboardDoneButtonView = [[UIToolbar alloc] init];
+    keyboardDoneButtonView.barStyle = UIBarStyleBlack;
+    keyboardDoneButtonView.translucent = YES;
+    keyboardDoneButtonView.tintColor = nil;
+    [keyboardDoneButtonView sizeToFit];
+    
+    UIBarButtonItem* doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                   style:UIBarButtonItemStyleBordered target:self
+                                                                  action:@selector(doneWithDateInput)];
+    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:doneButton, nil]];
+    
+    // Plug the keyboardDoneButtonView into the text field...
+    DateInput.inputAccessoryView = keyboardDoneButtonView;
+    
+    
+    
+    DateInput.inputView = dp; 
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -174,6 +206,8 @@
     [self setBestLocationLabel:nil];
     [self setTitleLabelView:nil];
     [self setItemNameLabel:nil];
+    [self setLocationInput:nil];
+    [self setBestLocLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }

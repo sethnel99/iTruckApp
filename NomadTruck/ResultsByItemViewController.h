@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *bestLocationLabel;
 @property (weak, nonatomic) IBOutlet UIView *titleLabelView;
 @property (weak, nonatomic) IBOutlet UILabel *itemNameLabel;
+@property (weak, nonatomic) IBOutlet UITextField *locationInput;
+@property (weak, nonatomic) IBOutlet UILabel *bestLocLabel;
 
 
 
