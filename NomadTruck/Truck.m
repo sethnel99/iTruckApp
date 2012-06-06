@@ -65,10 +65,20 @@ static Truck *sharedTruck = nil;
 }*/
 
 + (void) updateSalesEntry:(NSMutableArray *)entrySales onEntryIndex:(int)index{
-    [sharedTruck.salesData replaceObjectAtIndex:index withObject:entrySales];
-    [self rebuildSalesEntryByDay];
-    [self rebuildSalesEntryByItem];
-    [self saveSalesToParse];
+    NSDate *newDate = [entrySales objectAtIndex:0];
+    NSDate *oldDate = [(NSMutableArray*)[sharedTruck.salesData objectAtIndex:index] objectAtIndex:0];
+    if([oldDate isEqualToDate:newDate]){
+        [sharedTruck.salesData replaceObjectAtIndex:index withObject:entrySales];
+        [self rebuildSalesEntryByDay];
+        [self rebuildSalesEntryByItem];
+        [self saveSalesToParse];
+    }
+    else{
+        //if the date has changed, it might be out of order
+        [sharedTruck.salesData removeObjectAtIndex:index];
+        [self addSalesEntry:entrySales];
+    }
+
 }
 
 + (void) deleteSalesEntryAtIndex:(int) index{
@@ -200,14 +210,17 @@ static Truck *sharedTruck = nil;
     
     NSLog(@"userobjectID %@",sharedTruck.userObjectID);
 
-        sharedTruck.truckObjectID = sharedTruck.truckPFObject.objectId;
             
         NSLog(@"global truckObjectID %@",sharedTruck.truckObjectID);
             
         sharedTruck.name = [sharedTruck.truckPFObject objectForKey:@"Name"];
         PFFile *truckLogoFromParse = [sharedTruck.truckPFObject objectForKey:@"Logo"];
-        sharedTruck.truckLogo = [truckLogoFromParse getData];
-    
+        if(truckLogoFromParse == nil)
+            sharedTruck.truckLogo = nil;
+        else {
+            sharedTruck.truckLogo = [truckLogoFromParse getData];
+        }
+      
     //end load general stuff
     
     //////load inventory//////////
@@ -225,6 +238,9 @@ static Truck *sharedTruck = nil;
         //quick error check: make sure there is a cost - otherwise 0
         if(cost != [NSNull null])
             dcost = [cost doubleValue];
+        else {
+            dcost = 0;
+        }
         
         double price = [[temp objectForKey:@"Price"] doubleValue];
         [menuData addObject:[[MenuFoodItem alloc] initWithParseID:ParseID withName:name withCost:dcost withPrice:price]];
@@ -235,7 +251,7 @@ static Truck *sharedTruck = nil;
     
     NSArray *dl = [sharedTruck.truckPFObject objectForKey:@"SalesData"];
      
-    if(dl == [NSNull null]){
+    if(dl == [NSNull null] || dl == nil){
         sharedTruck.salesData = [[NSMutableArray alloc] init]; 
     }else{
         sharedTruck.salesData = [[NSMutableArray alloc] initWithArray:dl];

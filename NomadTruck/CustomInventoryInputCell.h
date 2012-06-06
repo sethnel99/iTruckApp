@@ -10,5 +10,6 @@
 
 @interface CustomInventoryInputCell : UITableViewCell
 @property (nonatomic, assign) int textTag;
+@property (nonatomic, assign) int keyboardHeight;
 
 @end

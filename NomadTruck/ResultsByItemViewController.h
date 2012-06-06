@@ -15,6 +15,7 @@
 @property (nonatomic, assign) double grossMargin;
 @property (nonatomic, assign) int keyNumber;
 @property (nonatomic, assign) NSString *key;
+@property (nonatomic, assign) double startingSliderValue;
 @property (weak, nonatomic) IBOutlet UISlider *daySlider;
 @property (weak, nonatomic) IBOutlet UILabel *daySliderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *soldPerDayLabel;

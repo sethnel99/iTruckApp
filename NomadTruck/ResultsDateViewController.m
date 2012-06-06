@@ -39,7 +39,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     self.salesByDay = [Truck getSalesDataByDay];
-    [self.tableView reloadData];
+    [self.tableView reloadData]; 
+    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+    if(ip.row > 0){
+        [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
 
     if([self.salesByDay count] == 0)
         self.navigationItem.rightBarButtonItem.enabled = NO;

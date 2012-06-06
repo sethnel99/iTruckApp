@@ -12,6 +12,7 @@ static CustomInventoryInputCell *activeCell = nil;
 
 @implementation CustomInventoryInputCell
 @synthesize textTag;
+@synthesize keyboardHeight;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -19,6 +20,17 @@ static CustomInventoryInputCell *activeCell = nil;
     if (self) {
         // Initialization code
     }
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+
+    
     return self;
 }
 
@@ -45,14 +57,32 @@ static CustomInventoryInputCell *activeCell = nil;
 {
     // check to see if the hit is in this cell 
     if ([self pointInside:point withEvent:event]) {
+        if(point.y <  self.superview.frame.size.height - self.keyboardHeight){
             [activeCell resignFirstResponder];
             activeCell = self;   
+        }
         
     }
     
     // return the super's hitTest result
     return [super hitTest:point withEvent:event];   
 }  
+
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.keyboardHeight = kbSize.height;
+    
+}
+
+- (void)keyboardWasHidden:(NSNotification*)aNotification
+{
+    self.keyboardHeight = 0;
+    
+}
+
+
 
 
 

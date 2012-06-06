@@ -251,7 +251,7 @@
         
     }
     
-    rbivc.daySlider.value = oldView.daySlider.value;
+    rbivc.startingSliderValue = oldView.daySlider.value;
     
 
     
@@ -289,7 +289,7 @@
         
     }
     
-    rbivc.daySlider.value = oldView.daySlider.value;
+    rbivc.startingSliderValue = oldView.daySlider.value;
     
 
 

@@ -78,6 +78,10 @@
 - (void)viewWillAppear:(BOOL)animated{
     salesData = [Truck getSalesData];
     [self.tableView reloadData];
+    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+    if(ip.row > 0){
+        [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
     [super viewWillAppear:animated];
 }
 

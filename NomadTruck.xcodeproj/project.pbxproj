@@ -47,6 +47,7 @@
 		CE4633EC15475B1600ABA410 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = CE4633E815475B1600ABA410 /* release_notes.txt */; };
 		CE4633EF1547625B00ABA410 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4633EE1547625B00ABA410 /* ResultsViewController.m */; };
 		CE4891D91545259B00898E02 /* titlelogo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE4891D81545259B00898E02 /* titlelogo.png */; };
+		CEB2E84415746C6F00606E0B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB2E84315746C6F00606E0B /* Icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		CE4633ED1547625A00ABA410 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
 		CE4633EE1547625B00ABA410 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		CE4891D81545259B00898E02 /* titlelogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titlelogo.png; sourceTree = "<group>"; };
+		CEB2E84315746C6F00606E0B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +143,7 @@
 				4E213D05155C774C00CD4A30 /* MapKit.framework */,
 				4E39AE57155C108100BE0A8B /* CoreLocation.framework */,
 				CE4633E515475B1600ABA410 /* TestFlightSDK1 */,
-				CE33A91B153BC11C00991734 /* Assets */,
+				CE33A91B153BC11C00991734 /* Resources */,
 				4EAFE0CF15004CA1004360CD /* NomadTruck */,
 				4EAFE0C815004CA1004360CD /* Frameworks */,
 				4EAFE0C615004CA0004360CD /* Products */,
@@ -223,9 +225,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CE33A91B153BC11C00991734 /* Assets */ = {
+		CE33A91B153BC11C00991734 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CEB2E84315746C6F00606E0B /* Icon.png */,
 				CE3C99FA155075CB00614B26 /* background.png */,
 				CE4891D81545259B00898E02 /* titlelogo.png */,
 				CE33A922153BE35500991734 /* salesicon.png */,
@@ -233,6 +236,7 @@
 				4EAC8A181505DB390082911C /* Nomad Logo.png */,
 				CE33A91E153BC11C00991734 /* twittericon.png */,
 			);
+			name = Resources;
 			path = Assets;
 			sourceTree = "<group>";
 		};
@@ -308,6 +312,7 @@
 				CE4633EC15475B1600ABA410 /* release_notes.txt in Resources */,
 				CE3C99FB155075CB00614B26 /* background.png in Resources */,
 				CE23F9BD15699F9C00E0DFBC /* Notes.rtf in Resources */,
+				CEB2E84415746C6F00606E0B /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +411,8 @@
 		4EAFE0E415004CA1004360CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -418,6 +425,8 @@
 					"\"$(SRCROOT)/TestFlightSDK1\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -425,6 +434,8 @@
 		4EAFE0E515004CA1004360CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Seth Nelson";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Seth Nelson";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -437,6 +448,8 @@
 					"\"$(SRCROOT)/TestFlightSDK1\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "DE542323-38A6-40E5-B34D-570871D0F601";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DE542323-38A6-40E5-B34D-570871D0F601";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

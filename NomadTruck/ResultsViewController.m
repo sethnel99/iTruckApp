@@ -20,7 +20,9 @@
 @synthesize mostProfitableLabel;
 @synthesize salesPerformanceLabel;
 @synthesize timeLabel;
+@synthesize timePromptLabel;
 @synthesize locationLabel;
+@synthesize locationPromptLabel;
 @synthesize dateLabel;
 @synthesize daySalesIndex;
 @synthesize daySales;
@@ -138,8 +140,12 @@
 }
 
 -(void)setDayLabels{
-    timeLabel.text = @"N/A";
-    locationLabel.text = @"N/A";
+    //timeLabel.text = @"N/A";
+    //locationLabel.text = @"N/A";
+    [timeLabel setHidden:YES];
+    [timePromptLabel setHidden:YES];
+    [locationLabel setHidden:YES];
+    [locationPromptLabel setHidden:YES];
     
     NSDate *tempDate = [((NSMutableArray *)[self.daySales objectAtIndex:0]) objectAtIndex:0];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:tempDate];
@@ -185,6 +191,11 @@
 }
 
 -(void)setStopLabels:(int)index{
+    [timeLabel setHidden:NO];
+    [timePromptLabel setHidden:NO];
+    [locationLabel setHidden:NO];
+    [locationPromptLabel setHidden:NO];
+    
     NSMutableArray *stopSales = [self.daySales objectAtIndex:index];
     
     NSDate *tempDate = [stopSales objectAtIndex:0];
@@ -247,6 +258,8 @@
     [self setLocationLabel:nil];
     [self setTitleLabelView:nil];
     [self setDateLabel:nil];
+    [self setLocationPromptLabel:nil];
+    [self setTimePromptLabel:nil];
     [super viewDidUnload];
 }
 

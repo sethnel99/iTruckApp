@@ -243,6 +243,8 @@
                           cancelButtonTitle:nil
                           otherButtonTitles:@"Ok", nil];
     [alert show];
+    self.message.text = @"";
+    [self.message resignFirstResponder];
     
    
 }

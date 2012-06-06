@@ -29,6 +29,7 @@
 @synthesize bestLocationLabel;
 @synthesize titleLabelView;
 @synthesize itemNameLabel;
+@synthesize startingSliderValue;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +53,14 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [self moreCalculations];
+    
+    if(self.startingSliderValue >= 0){
+        self.daySlider.value = self.startingSliderValue;
+        self.startingSliderValue = -1;
+        [self sliderChanged:nil];
+    }
+    
+    
     [self setDataForSliderPosition:lroundf(self.daySlider.value)];
 }
 

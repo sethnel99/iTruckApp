@@ -16,7 +16,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *mostProfitableLabel;
 @property (weak, nonatomic) IBOutlet UILabel *salesPerformanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timePromptLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationPromptLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @property (nonatomic, assign) int daySalesIndex;
